@@ -78,24 +78,56 @@
     "sections": {
       "header": {
         "type": "header",
+        "blocks": {
+          "image_iWYad4": {
+            "type": "image",
+            "settings": {
+              "position": "1",
+              "image": "shopify:\/\/shop_images\/kolossya.png",
+              "aspect_ratio": 1.2,
+              "wide_image": false,
+              "bg_position": "center-center",
+              "title": "КОЛОССЯ",
+              "link_text": "",
+              "link": "shopify:\/\/collections\/kolossya"
+            }
+          },
+          "image_AYk9JT": {
+            "type": "image",
+            "settings": {
+              "position": "1",
+              "image": "shopify:\/\/shop_images\/PEONIES.png",
+              "aspect_ratio": 1.2,
+              "wide_image": false,
+              "bg_position": "center-center",
+              "title": "Півонії",
+              "link_text": "",
+              "link": "shopify:\/\/collections\/peonies-long-sleeve-blouses"
+            }
+          }
+        },
+        "block_order": [
+          "image_iWYad4",
+          "image_AYk9JT"
+        ],
         "custom_css": [],
         "settings": {
-          "header_style": "logo_above",
+          "header_style": "logo_left",
           "icon_family": "modern",
-          "logo": "shopify:\/\/shop_images\/2023-02-15_160224907.png",
-          "logo_mob": "shopify:\/\/shop_images\/magdych_mob_black.png",
-          "logo_max_limit": 220,
-          "logo_max_limit_mob": 110,
-          "main_menu_linklist": "",
+          "logo": "shopify:\/\/shop_images\/logo_black.svg",
+          "logo_mob": "shopify:\/\/shop_images\/logo_black_mobile.svg",
+          "logo_max_limit": 155,
+          "logo_max_limit_mob": 150,
+          "main_menu_linklist": "main-menu",
           "enable_search": true,
           "enable_account": true,
           "header_sticky": "sticky",
           "transparent_home": true,
           "transparent_collection": false,
           "transparent_article": false,
-          "transparent_logo": "shopify:\/\/shop_images\/2023-02-15_160247162.png",
-          "transparent_logo_mob": "shopify:\/\/shop_images\/logo_mobile.png",
-          "secondary_menu_linklist": ""
+          "transparent_logo": "shopify:\/\/shop_images\/logo.svg",
+          "transparent_logo_mob": "shopify:\/\/shop_images\/logo_mobile.svg",
+          "secondary_menu_linklist": "link-list-1"
         }
       },
       "footer": {

@@ -8261,6 +8261,7 @@ form .errors {
   width: 100%;
   top: 0;
   z-index: 6000;
+  transition: top 0.2s linear;
 }
 .js__header__stuck .theme__header::after {
   opacity: 1;

@@ -47,6 +47,7 @@
   {% else %}
     {{ 'theme.css' | asset_url | stylesheet_tag: preload: true }}
   {% endif %}
+  {{ 'wss.css' | asset_url | stylesheet_tag: preload: true }}
 
   {% render 'theme-pre' %}
 
@@ -230,9 +231,9 @@
     transform: scale(1.15)
   }
 
-  .header__mobile__button.btnWish svg {
+  {% comment %} .header__mobile__button.btnWish svg {
     transform: scale(1.1) translate(0, 1px)
-  }
+  } {% endcomment %}
 
   .header__mobile__button .btnCart svg {
     transform: scale(1.0) translate(0, -1px)

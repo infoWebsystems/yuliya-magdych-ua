@@ -191,7 +191,7 @@
       {% if section.settings.enable_search %}
         <div class="header__mobile__button">
           <a href="{{ routes.search_url }}" class="navlink btnSearch" data-popdown-toggle="search-popdown" data-focus-element>
-            {% render 'header-icon', filename: icon_string_search %}
+            {%- render 'icon-search' -%}
             <span class="visually-hidden">{{ 'general.search.submit' | t }}</span>
           </a>
         </div>
@@ -205,7 +205,7 @@
       {% if section.settings.enable_account and shop.customer_accounts_enabled %}
         <div class="header__mobile__button btnAcc" style="display:none;">
           <a href="{{ routes.account_url }}" class="navlink">
-            {% render 'header-icon', filename: icon_string_account %}
+            {%- render 'icon-account' -%}
             <span class="visually-hidden">{{ 'customer.account.title' | t }}</span>
           </a>
         </div>
@@ -214,7 +214,7 @@
         <a class="navlink navlink--cart" href="{{ routes.cart_url }}" {% if settings.enable_cart_dropdown and template != 'cart' %} data-cart-toggle data-focus-element {% endif %}>
           <div class="cart__icon__content">
             {{ cart_status }}
-            {% render 'header-icon', filename: icon_string_cart %}
+            {%- render 'icon-cart' -%}
             <span class="visually-hidden">{{ 'cart.general.title' | t }}</span>
           </div>
         </a>
@@ -259,6 +259,43 @@
   </div>
 {% endcapture %}
 
+{% capture cart_content_new %}
+  <div class="header__desktop__buttons header__desktop__buttons--icons header__desktop--icons">
+    {% if section.settings.enable_search %}
+      <div class="header__desktop__button btnSearch">
+        <a href="{{ routes.search_url }}" class="navlink" data-popdown-toggle="search-popdown" data-focus-element title="{{ 'general.search.submit' | t }}">
+          {%- render 'icon-search' -%}
+          <span class="visually-hidden">{{ 'general.search.submit' | t }}</span>
+        </a>
+      </div>
+    {% endif %}
+
+    {% if section.settings.enable_account and shop.customer_accounts_enabled %}
+      <div class="header__desktop__button btnAcc">
+        <a href="{{ routes.account_url }}" class="navlink" title="{{ 'customer.account.title' | t }}">
+          {%- render 'icon-account' -%}
+          <span class="visually-hidden">{{ 'customer.account.title' | t }}</span>
+        </a>
+      </div>
+    {% endif %}
+
+    {% comment %} <a href="#swym-wishlist" class="swym-wishlist">
+      <i aria-hidden="true" focusable="false" role="presentation" class="icon icon-swym-wishlist"></i>
+    </a> {% endcomment %}
+
+    <div class="header__desktop__button btnCart">
+      <a href="{{ routes.cart_url }}" class="navlink navlink--cart" title="{{ 'cart.general.title' | t }}" {% if settings.enable_cart_dropdown and template != 'cart' %} data-cart-toggle data-focus-element {% endif %}>
+        <div class="cart__icon__content">
+          {{ cart_status }}
+          {%- render 'icon-cart' -%}
+          <span class="visually-hidden">{{ 'cart.general.title' | t }}</span>
+        </div>
+      </a>
+    </div>
+
+  </div>
+{% endcapture %}
+
 {% capture menu %}
   <nav class="header__menu{% if settings.type_nav_caps %} caps{% endif %}">
     <div class="header__menu__inner" data-text-items-wrapper>
@@ -267,6 +304,16 @@
       {% endfor %}
       <div class="hover__bar"></div>
       <div class="hover__bg"></div>
+    </div>
+  </nav>
+{% endcapture %}
+
+{% capture menu_new %}
+  <nav class="header__menu{% if settings.type_nav_caps %} caps{% endif %}">
+    <div class="header__menu__inner" data-text-items-wrapper>
+      {% for link in linklists[main_menu_linklist].links %}
+        {% render 'nav-item', link: link, section: section, index: forloop.index %}
+      {% endfor %}
     </div>
   </nav>
 {% endcapture %}
@@ -287,19 +334,72 @@
               {% render 'nav-item-mobile', link: link, section: section, index: forloop.index, secondary_menu: true %}
             {% endfor %}
           {% endunless %}
+          {% liquid
+            if shop.published_locales.size > 1
+              assign languages = true
+            endif
+            if shop.enabled_currencies.size > 1
+              assign currencies = true
+            endif
+            if languages or currencies
+              assign localization = true
+            endif
+          %}
+          {%- if languages or currencies -%}
+            {% if localization %}
+              <div class="drawer__bottom__form">
+                {%- form 'localization', class: 'header__drawer__selects', id: 'localization-form-drawer' -%}
+                  {%- if languages -%}
+                    <div class="popout--drawer">
+                      <h2 class="visually-hidden" id="lang-drawer">
+                        {{ 'layout.footer.language' | t }}
+                      </h2>
+                      <div class="popout" data-popout>
+                        <button type="button" class="popout__toggle" aria-expanded="false" aria-controls="lang-list-drawer" aria-describedby="lang-drawer" data-popout-toggle>
+                          {{ form.current_locale.endonym_name }}
+                        </button>
+                        <ul id="lang-list-drawer" class="popout-list" data-popout-list>
+                          {% for locale in form.available_locales %}
+                            <li class="popout-list__item {% if locale.iso_code == form.current_locale.iso_code %}popout-list__item--current{% endif %}">
+                              <a class="popout-list__option" href="#" lang="{{ locale.iso_code }}" {% if locale.iso_code == form.current_locale.iso_code %}aria-current="true"{% endif %} data-value="{{ locale.iso_code }}" data-popout-option>
+                                <span>{{ locale.endonym_name }}</span>
+                              </a>
+                            </li>
+                          {%- endfor -%}
+                        </ul>
+                        <input type="hidden" name="locale_code" id="LocaleSelectorDrawer" value="{{ form.current_locale.iso_code }}" data-popout-input/>
+                      </div>
+                    </div>
+                  {%- endif -%}
+
+                  {%- if currencies -%}
+                    <div class="popout--drawer">
+                      <h2 class="visually-hidden" id="currency-drawer">
+                        {{ 'layout.footer.currency' | t }}
+                      </h2>
+                      <div class="popout" data-popout>
+                        <button type="button" class="popout__toggle" aria-expanded="false" aria-controls="currency-list-drawer" aria-describedby="currency-drawer" data-popout-toggle>
+                          {{ form.current_currency.iso_code }} {%- if form.current_currency.symbol -%}{{ form.current_currency.symbol }}{%- endif -%}
+                        </button>
+                        <ul id="currency-list-drawer" class="popout-list" data-popout-list>
+                          {% for currency in form.available_currencies %}
+                            <li class="popout-list__item {% if currency.iso_code == form.current_currency.iso_code %}popout-list__item--current{% endif %}">
+                              <a class="popout-list__option" href="#" {% if currency.iso_code == form.current_currency.iso_code %}aria-current="true"{% endif %} data-value="{{ currency.iso_code }}" data-popout-option>
+                                <span>{{ currency.iso_code }} {%- if currency.symbol -%}{{ currency.symbol }}{%- endif -%}</span>
+                              </a>
+                            </li>
+                          {%- endfor -%}
+                        </ul>
+                        <input type="hidden" name="currency_code" id="CurrencySelectorDrawer" value="{{ form.current_currency.iso_code }}" data-popout-input/>
+                      </div>
+                    </div>
+                  {%- endif -%}
+                {%- endform -%}
+              </div>
+            {% endif %}
+          {%- endif -%}
         </div>
       </div>
-      {% liquid
-        if shop.published_locales.size > 1
-          assign languages = true
-        endif
-        if shop.enabled_currencies.size > 1
-          assign currencies = true
-        endif
-        if languages or currencies
-          assign localization = true
-        endif
-      %}
       {% if settings.instagram_link != ''
         or settings.pinterest_link != ''
         or settings.facebook_link != ''
@@ -312,65 +412,13 @@
         or settings.atom_link != '' %}
         {% assign social = true %}
       {% endif %}
-      {%- if social or languages or currencies -%}
+      {%- if social -%}
         <div class="drawer__bottom">
           {%- if social -%}
             <div class="{% if localization %}drawer__bottom__left{% else %}drawer__bottom__center{% endif %}">
               {% render 'social' %}
             </div>
           {%- endif -%}
-
-          {% if localization %}
-            <div class="drawer__bottom__right">
-              {%- form 'localization', class: 'header__drawer__selects', id: 'localization-form-drawer' -%}
-                {%- if languages -%}
-                  <div class="popout--drawer">
-                    <h2 class="visually-hidden" id="lang-drawer">
-                      {{ 'layout.footer.language' | t }}
-                    </h2>
-                    <div class="popout" data-popout>
-                      <button type="button" class="popout__toggle" aria-expanded="false" aria-controls="lang-list-drawer" aria-describedby="lang-drawer" data-popout-toggle>
-                        {{ form.current_locale.endonym_name }}
-                      </button>
-                      <ul id="lang-list-drawer" class="popout-list" data-popout-list>
-                        {% for locale in form.available_locales %}
-                          <li class="popout-list__item {% if locale.iso_code == form.current_locale.iso_code %}popout-list__item--current{% endif %}">
-                            <a class="popout-list__option" href="#" lang="{{ locale.iso_code }}" {% if locale.iso_code == form.current_locale.iso_code %}aria-current="true"{% endif %} data-value="{{ locale.iso_code }}" data-popout-option>
-                              <span>{{ locale.endonym_name }}</span>
-                            </a>
-                          </li>
-                        {%- endfor -%}
-                      </ul>
-                      <input type="hidden" name="locale_code" id="LocaleSelectorDrawer" value="{{ form.current_locale.iso_code }}" data-popout-input/>
-                    </div>
-                  </div>
-                {%- endif -%}
-
-                {%- if currencies -%}
-                  <div class="popout--drawer">
-                    <h2 class="visually-hidden" id="currency-drawer">
-                      {{ 'layout.footer.currency' | t }}
-                    </h2>
-                    <div class="popout" data-popout>
-                      <button type="button" class="popout__toggle" aria-expanded="false" aria-controls="currency-list-drawer" aria-describedby="currency-drawer" data-popout-toggle>
-                        {{ form.current_currency.iso_code }} {%- if form.current_currency.symbol -%}{{ form.current_currency.symbol }}{%- endif -%}
-                      </button>
-                      <ul id="currency-list-drawer" class="popout-list" data-popout-list>
-                        {% for currency in form.available_currencies %}
-                          <li class="popout-list__item {% if currency.iso_code == form.current_currency.iso_code %}popout-list__item--current{% endif %}">
-                            <a class="popout-list__option" href="#" {% if currency.iso_code == form.current_currency.iso_code %}aria-current="true"{% endif %} data-value="{{ currency.iso_code }}" data-popout-option>
-                              <span>{{ currency.iso_code }} {%- if currency.symbol -%}{{ currency.symbol }}{%- endif -%}</span>
-                            </a>
-                          </li>
-                        {%- endfor -%}
-                      </ul>
-                      <input type="hidden" name="currency_code" id="CurrencySelectorDrawer" value="{{ form.current_currency.iso_code }}" data-popout-input/>
-                    </div>
-                  </div>
-                {%- endif -%}
-              {%- endform -%}
-            </div>
-          {% endif %}
         </div>
       {% endif %}
     </div>
@@ -389,7 +437,7 @@
 >
   <header class="theme__header header__icons--{{ section.settings.icon_family }}" role="banner" data-header-height>
     <div>
-      <div class="header__mobile" style="min-height: 64px;">
+      <div class="header__mobile">
         {{ minimal }}
       </div>
       <div data-header-desktop class="header__desktop">
@@ -402,6 +450,13 @@
             </div>
           {%- when 'drawer' -%}
             {%- comment -%} Do nothing for drawer {%- endcomment -%}
+          {%- when 'logo_left' -%}
+            <div class="header__desktop__upper header__desktop__left">
+              <div data-child-takes-space class="header__desktop__bar__c header__desktop__bar__logo">{{ logos }}</div>
+              <div data-child-takes-space class="header__desktop__bar__r">{{ cart_content_new }}</div>
+          
+              <div data-child-takes-space class="header__desktop__bar__c header__desktop__bar__menu">{{ menu_new }}</div>
+            </div>
           {%- else -%}
             {%- comment -%} 'logo_above' is default case, this covers migrated settings {%- endcomment -%}
             <div class="header__desktop__upper" data-takes-space-wrapper>
@@ -495,6 +550,10 @@
         {
           "value": "drawer",
           "label": "Mobile drawer menu"
+        },
+        {
+          "value": "logo_left",
+          "label": "Logo left of menu"
         }
       ]
     },

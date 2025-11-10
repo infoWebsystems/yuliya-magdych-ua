@@ -20,6 +20,7 @@ Required params:
     -%}
     <div class="{{ width_class }}" {{ block.shopify_attributes }}>
       <div class="header__dropdown__image palette--contrast--dark" data-stagger-first>
+        {%- render 'image-fill', img_object: block.settings.image, bg_position: block.settings.bg_position, aspect_ratio: block.settings.aspect_ratio -%}
         {%- if block.settings.title != blank or block.settings.link_text != blank -%}
           <a href="{{ block.settings.link }}" class="link-over-image">
             <div class="hero__content__wrapper align--bottom-left">
@@ -38,8 +39,6 @@ Required params:
             </div>
           </a>
         {%- endif -%}
-
-        {%- render 'image-fill', img_object: block.settings.image, bg_position: block.settings.bg_position, aspect_ratio: block.settings.aspect_ratio -%}
       </div>
     </div>
 

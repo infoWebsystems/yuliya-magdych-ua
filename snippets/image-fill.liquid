@@ -17,19 +17,25 @@
     style="padding-top: {{ aspect_ratio | times: 100 }}%;
            filter: brightness(.95);"
   {%- elsif aspect_ratio -%}
-    style="padding-top: {{ aspect_ratio | times: 100 }}%;
-           background-image: url('{{ image | image_url: width: 1, height: 1 }}');"
+    style="padding-top: {{ aspect_ratio | times: 100 }}%;"
   {%- else -%}
-    style="padding-top: {{ 1 | divided_by: image.aspect_ratio | times: 100 }}%;
-           background-image: url('{{ image | image_url: width: 1, height: 1 }}');"
+    style="padding-top: {{ 1 | divided_by: image.aspect_ratio | times: 100 }}%;"
   {%- endif -%}>
       <div class="background-size-cover"
         style="
           background-image: image-set(
             url('{{ image | image_url: width: 720 }}') 1x,
             url('{{ image | image_url: width: 1440 }}') 2x
-          )
-          background-position: {{ bg_position | replace: '-', ' ' }};"
+          );
+          background-position: {{ bg_position | replace: '-', ' ' | default: 'center' }};
+          background-size: cover;
+          background-repeat: no-repeat;
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          "
         role="img"
         aria-label="{{ image.alt | strip_html | escape }}"></div>
   <noscript>
