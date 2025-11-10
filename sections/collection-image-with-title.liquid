@@ -1,0 +1,239 @@
+{%- assign transparency_class = '' -%}
+{%- if section.settings.transparent -%}
+  {%- assign transparency_class = 'hero__content--transparent' -%}
+{%- endif -%}
+
+<section class="collection collection-{{ collection.handle }}"
+  data-section-id="{{ section.id }}"
+  data-section-type="collection">
+  {%- if section.settings.show_title or section.settings.show_description -%}
+    {%- capture collection_content -%}
+      <div class="collection__title hero__content__wrapper {{ section.settings.flex_align }} {{ transparency_class }} {{ section.settings.text_color }}">
+        <div class="hero__content js-overflow-content">
+          {%- if section.settings.show_title -%}
+            <h1 class="hero__title">{{ collection.title }}</h1>
+          {%- endif -%}
+
+          {%- if collection.description != blank and section.settings.show_description -%}
+            <div class="hero__description rte">{{ collection.description }}</div>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endcapture -%}
+  {%- endif -%}
+
+  {%- capture image_overlay -%}
+    <div class="image-overlay" style="background-color:{{ section.settings.overlay_color }} !important; opacity:{{ section.settings.overlay_opacity | times: 0.01 }};"></div>
+  {%- endcapture -%}
+
+  {%- if collection.image and section.settings.show_image -%}
+    {%- if section.settings.banner_layout == 'inline' -%}
+      <div class="collection__image-inline js-overflow-container">
+    {%- endif -%}
+
+    <div class="collection__image wide-image{% if section.settings.banner_layout != 'inline' %} js-overflow-container{% endif %} {{ section.settings.height }}" data-overlay-header>
+      {%- if section.settings.banner_layout == 'overlay' -%}
+        {{ collection_content }}
+      {%- endif -%}
+
+      {{ image_overlay }}
+
+      {%- if section.settings.height == 'image-height' -%}
+        {%- assign img_api = collection.image | image_url: width: 1, height: 1 | replace: '_1x1.', '_{width}x.' -%}
+        {%- assign img_aspect_ratio = 1 | divided_by: collection.image.aspect_ratio | times: 100 | round: 1 -%}
+        <div class="collection__image__original" style="padding-top: {{ img_aspect_ratio }}%">
+          {{ img_api | image_url: width: 1440 | image_tag: alt: collection.image.alt, class: 'collection__image__original__inner', loading: 'lazy' }}
+        </div>
+      {%- else -%}
+        {% render 'image-background', img_object: collection.image, frame_height_class: section.settings.height %}
+      {%- endif -%}
+
+      <noscript>
+        {{ collection.image | image_url: width: 1440 | image_tag: collection.image.alt | default: collectin.title, class: 'responsive-wide-image' }}
+      </noscript>
+    </div>
+
+    {%- if section.settings.banner_layout == 'inline' -%}
+        <div class="collection__title-wrapper {{ section.settings.height }}">
+          {{ collection_content }}
+        </div>
+      </div>
+    {%- endif -%}
+  {%- else -%}
+    {%- if section.settings.show_title or section.settings.show_description -%}
+      <div class="collection__title collection__title--no-image {{ section.settings.flex_align }}">
+        {%- if collection.handle != 'all' and section.settings.show_title -%}
+          <h1 class="hero__title">{{ collection.title }}</h1>
+        {%- endif -%}
+
+        {%- if collection.description != blank and section.settings.show_description -%}
+          <div class="hero__description rte">{{ collection.description }}</div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Image with title",
+  "templates": [
+    "collection"
+  ],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Title and Description"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show collection title",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show collection description",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "text-dark",
+      "options": [
+        {
+          "value": "text-light",
+          "label": "White"
+        },
+        {
+          "value": "text-dark",
+          "label": "Dark"
+        }
+      ],
+      "info": "If no Collection image body text color will be used"
+    },
+    {
+      "type": "select",
+      "id": "flex_align",
+      "label": "Text alignment",
+      "default": "align--middle-left",
+      "options": [
+        {
+          "value": "align--top-left",
+          "label": "Top left"
+        },
+        {
+          "value": "align--top-right",
+          "label": "Top right"
+        },
+        {
+          "value": "align--middle-left",
+          "label": "Center left"
+        },
+        {
+          "value": "align--middle-center",
+          "label": "Center center"
+        },
+        {
+          "value": "align--middle-right",
+          "label": "Center right"
+        },
+        {
+          "value": "align--bottom-left",
+          "label": "Bottom left"
+        },
+        {
+          "value": "align--bottom-right",
+          "label": "Bottom right"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "transparent",
+      "label": "Transparent text background",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Collection image"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_image",
+      "label": "Show collection image",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "banner_layout",
+      "label": "Layout",
+      "default": "overlay",
+      "options": [
+        {
+          "value": "inline",
+          "label": "Inline"
+        },
+        {
+          "value": "overlay",
+          "label": "Overlay"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "height",
+      "label": "Height",
+      "default": "screen-height-one-third",
+      "options": [
+        {
+          "value": "screen-height-one-half",
+          "label": "1/2 of screen"
+        },
+        {
+          "value": "screen-height-one-third",
+          "label": "1/3 of screen"
+        },
+        {
+          "value": "five-fifty-height-hero ",
+          "label": "550px"
+        },
+        {
+          "value": "four-fifty-height-hero",
+          "label": "450px"
+        },
+        {
+          "value": "three-fifty-height-hero",
+          "label": "350px"
+        },
+        {
+          "value": "two-fifty-height-hero",
+          "label": "250px"
+        },
+        {
+          "value": "image-height",
+          "label": "Image height"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay color",
+      "default": "#000"
+    }
+  ]
+}
+{% endschema %}

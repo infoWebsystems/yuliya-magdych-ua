@@ -1,0 +1,36 @@
+<!-- /sections/custom-html.liquid -->
+{%- assign html = section.settings.html -%}
+{%- assign show_padding = section.settings.show_padding -%}
+
+<section class="custom-html-section {% if show_padding %}wrapper custom-html-section--padding {% endif %}" data-section-id="{{ section.id }}" data-section-type="custom-html">
+  {% comment %}
+  HTML added through the Theme Editor renders on the next line. You can also add code before/after this comment.
+  {% endcomment %}
+  {{ html }}
+</section>
+
+{% schema %}
+{
+  "name": "Custom HTML",
+  "settings": [
+    {
+      "type": "html",
+      "id": "html",
+      "label": "Custom HTML",
+      "default": "<p>Once you write some HTML, it will render right here.</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_padding",
+      "label": "Show padding",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "category": "Text",
+      "name": "Custom HTML"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,181 @@
+{% comment %}
+  /snippets/media.liquid
+
+  Returns a media object for a product slideshow
+  Accepts:
+  -  media: {Object} - The media object we will use (required)
+  -  product: {Object} - The current product (required)
+  -  sectionkey: {String} - A section key for use in the media object js
+  Usage:
+  {% render 'media', media: media, featured_media: featured_media, enable_video_looping: enable_video_looping, sectionkey: section.id  %}
+{% endcomment %}
+{%- liquid
+  assign image_size = '1024x1024'
+  assign media_aspect_ratio = media.aspect_ratio
+  unless media_aspect_ratio
+    assign media_aspect_ratio = 1
+  endunless
+  assign media_padding_top = 1 | divided_by: media_aspect_ratio | times: 100 | round: 2
+-%}
+
+{%- capture noscript_code -%}
+  <noscript>
+    {{ media.preview_image | image_url: width: 900 | image_tag: alt: product.title }}
+  </noscript>
+{%- endcapture -%}
+
+<div
+  class="product__slide{% unless featured_media == media %} media--hidden{% endunless %}"
+  data-media-id="{{ sectionkey }}-{{ media.id }}"
+  data-type="{{ media.media_type }}"
+  data-thumb="{{ media.preview_image.src | image_url: width: 75, crop: 'center' }}"
+  {% if media.media_type == 'video' or media.media_type == 'external_video' %}
+    data-video
+    data-video-id="{{ media.id }}"
+    data-enable-video-looping="{{ enable_video_looping }}"
+  {% endif %}
+  {% if media.media_type == 'model' %}
+    data-model
+    data-model-id="{{ media.id }}"
+  {% endif %}
+  {% if media.media_type == 'external_video' %}
+    data-youtube-id="{{ media.external_id }}"
+  {% endif %}
+  data-product-single-media-wrapper
+  data-media-id="{{ unique }}-{{ media.id }}">
+
+  {%- case media.media_type -%}
+    {%- when 'image' -%}
+
+      <div class="product__photo" >
+        <div
+          class="lazy-image"
+          data-image-src="{{ media | image_url: width: 3000 }}"
+          data-image-width="{{ media.width }}"
+          data-image-height="{{ media.height }}"
+          data-zoom-wrapper
+          data-image-src="{{ media | image_url: width: 3000 }}"
+          style="padding-top: {{ media_padding_top }}%;">
+          {%- comment -%} <img data-zoom data-src="{{ media | image_url: width: 3000 }}" style="display: none;" alt="{{ 'products.product.zoom' | t }}"> {%- endcomment -%}
+
+          {{ media | image_url: width: 3000 | image_tag: loading: 'lazy' }}
+
+          {% comment %} <img data-product-image class="fade-in lazyload{% if image_size_setting == 'stretch' %} stretch{% endif %}"
+            data-image-id="{{ media.id }}"
+            alt="{{ media.alt | strip_html | escape }}"
+            aria-label="{{ media.alt | strip_html | escape }}"
+            {% if media.alt contains 'variant--' %}
+              data-variant="media.alt"
+            {% endif %}
+
+            srcset="{% if media.preview_image.width >= 1100 %}{{ media.preview_image | image_url: width: 1100 }} 1100w,{% endif %}
+                    {% if media.preview_image.width >= 550 %}{{ media.preview_image | image_url: width: 550 }} 550w,{% endif %}
+                    {% if media.preview_image.width >= 576 %}{{ media.preview_image | image_url: width: 576 }} 576w,{% endif %}
+                    {% if media.preview_image.width >= 288 %}{{ media.preview_image | image_url: width: 288 }} 288w{% endif %}"
+            src="{{ media | image_url: width: 550, height: 550 }}"
+            sizes="(max-width: 750px) 390px, (max-width: 990px) 500px, 1100px"
+            width="343"
+            height="{{ 343 | divided_by: media.preview_image.aspect_ratio }}"
+            alt="{{ media.preview_image.alt | escape }}"
+            loading="lazy"
+            /> {% endcomment %}
+        </div>
+
+        {{ noscript_code }}
+      </div>
+
+    {%- when 'model' -%}
+      <deferred-media class="product__media deferred-media" data-deferred-media style="padding-top: {{ media_padding_top }}%;">
+        <button type="button" class="deferred-media__poster" aria-label="{{ 'general.accessibility.view' | t }} {{ media.alt | strip_html | escape }}" data-deferred-media-button>
+          <span class="deferred-media__poster-button">
+            {%- render 'icon-media-model' -%}
+          </span>
+
+          <img
+            srcset="{% if media.preview_image.width >= 288 %}{{ media.preview_image | image_url: width: 288 }} 288w,{% endif %}
+                    {% if media.preview_image.width >= 576 %}{{ media.preview_image | image_url: width: 576 }} 576w,{% endif %}
+                    {% if media.preview_image.width >= 550 %}{{ media.preview_image | image_url: width: 550 }} 550w,{% endif %}
+                    {% if media.preview_image.width >= 1100 %}{{ media.preview_image | image_url: width: 1100 }} 1100w{% endif %}"
+            src="{{ media | image_url: width: 550, height: 550 }}"
+            sizes="(min-width: 1200px) calc((1200px - 10rem) / 2), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)"
+            loading="lazy"
+            width="576"
+            height="{{ 576 | divided_by: media.preview_image.aspect_ratio }}"
+            alt="{{ media.preview_image.alt | escape }}">
+        </button>
+
+        <template>
+          {{ media | model_viewer_tag: image_size: image_size, toggleable: true, data-model-id: media.id }}
+        </template>
+
+        {{ noscript_code }}
+      </deferred-media>
+
+    {%- when 'video' -%}
+      <deferred-media class="product__media deferred-media" data-deferred-media style="padding-top: {{ media_padding_top }}%;">
+        <button type="button" class="deferred-media__poster" aria-label="{{ 'general.accessibility.view' | t }} {{ media.alt | strip_html | escape }}" data-deferred-media-button>
+          <span class="deferred-media__poster-button">
+            {%- render 'icon-media-video' -%}
+          </span>
+
+          <img
+            srcset="{% if media.preview_image.width >= 288 %}{{ media.preview_image | image_url: width: 288 }} 288w,{% endif %}
+                    {% if media.preview_image.width >= 576 %}{{ media.preview_image | image_url: width: 576 }} 576w,{% endif %}
+                    {% if media.preview_image.width >= 550 %}{{ media.preview_image | image_url: width: 550 }} 550w,{% endif %}
+                    {% if media.preview_image.width >= 1100 %}{{ media.preview_image | image_url: width: 1100 }} 1100w{% endif %}"
+            src="{{ media | image_url: width: 550, height: 550 }}"
+            sizes="(min-width: 1200px) calc((1200px - 10rem) / 2), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)"
+            loading="lazy"
+            width="576"
+            height="{{ 576 | divided_by: media.preview_image.aspect_ratio }}"
+            alt="{{ media.preview_image.alt | escape }}">
+        </button>
+
+        <template>
+          {{ media | media_tag: image_size: image_size, class: 'media-video', autoplay: true, loop: enable_video_looping, controls: true, preload: 'none' }}
+        </template>
+
+        {{ noscript_code }}
+      </deferred-media>
+
+    {%- when 'external_video' -%}
+      <deferred-media class="product__media deferred-media" data-deferred-media style="padding-top: {{ media_padding_top }}%;">
+        <button type="button" class="deferred-media__poster" aria-label="{{ 'general.accessibility.view' | t }} {{ media.alt | strip_html | escape }}" data-deferred-media-button>
+          <span class="deferred-media__poster-button">
+            {%- render 'icon-media-video' -%}
+          </span>
+
+          <img
+            srcset="{% if media.preview_image.width >= 288 %}{{ media.preview_image | image_url: width: 288 }} 288w,{% endif %}
+                    {% if media.preview_image.width >= 576 %}{{ media.preview_image | image_url: width: 576 }} 576w,{% endif %}
+                    {% if media.preview_image.width >= 550 %}{{ media.preview_image | image_url: width: 550 }} 550w,{% endif %}
+                    {% if media.preview_image.width >= 1100 %}{{ media.preview_image | image_url: width: 1100 }} 1100w{% endif %}"
+            src="{{ media | image_url: width: 550, height: 550 }}"
+            sizes="(min-width: 1200px) calc((1200px - 10rem) / 2), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)"
+            loading="lazy"
+            width="576"
+            height="{{ 576 | divided_by: media.preview_image.aspect_ratio }}"
+            alt="{{ media.preview_image.alt | escape }}">
+        </button>
+
+        <template>
+          {%- if media.host == 'youtube' -%}
+            {{ media | external_video_url: autoplay: true, mute: true, playsinline: true, loop: enable_video_looping, playlist: media.external_id | external_video_tag: loading: 'lazy' }}
+          {%- else -%}
+            {{ media | external_video_url: autoplay: true, mute: true, playsinline: true, loop: enable_video_looping | external_video_tag: loading: 'lazy' }}
+          {%- endif -%}
+        </template>
+
+        {{ noscript_code }}
+      </deferred-media>
+
+    {%- else -%}
+      <div class="product__media">
+        <div style="padding-top: {{ media_padding_top }}%;">
+          {{ media | media_tag: class: "media__other" }}
+        </div>
+
+        {{ noscript_code }}
+      </div>
+  {%- endcase -%}
+</div>

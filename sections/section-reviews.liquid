@@ -1,0 +1,178 @@
+<!-- /sections/section-reviews.liquid -->
+
+<div class="reviews {{ section.settings.text_color }} {{ section.settings.text_align }}" data-section-id="{{ section.id }}" data-section-type="reviews" style="background-color: {{ section.settings.bg_color }};">
+  <div class="reviews__slider {% if section.blocks.size == 1 %}reviews__slider--with-only-one-slide{% endif %} reviews__slider--{{ section.id }}">
+    {% if section.blocks.size > 0 %}
+      {% for block in section.blocks %}
+        {% assign customer_name = block.settings.title %}
+        {% assign review = block.settings.review_text %}
+        {% assign bio_image = block.settings.bio_image %}
+        {% assign subheading = block.settings.subheading %}
+        {% assign review_url = block.settings.review_url %}
+
+        <div class="review__slide review__slide--{{ block.id }}" {{ block.shopify_attributes }}>
+          <div class="review">
+            <div class="review__content">
+              {% if review != blank %}
+                <blockquote>
+                  <span class="tesimonial__quotes">{% render 'icon-quotes' %}</span>
+                  {{ review }}
+                </blockquote>
+              {% endif %}
+
+              {% if customer_name != blank or review_url != blank or bio_image != blank %}
+                <div class="review__author {% if bio_image == blank %}review__author--no-bio-image{% endif %}">
+                  {% if bio_image != blank %}
+                    <div
+                      class="review__author-bio-image"
+                      style="
+                        background-image: image-set(
+                          url({{ bio_image | image_url: width: 512 }}) 1x,
+                          url({{ bio_image | image_url: width: 1024 }}) 2x
+                        )
+                      "
+                    ></div>
+                    <noscript>
+                      <div
+                        class="review__author-bio-image no-js-image" style="background-image: url( {{ bio_image | image_url: width: 1024 }} )"></div>
+                    </noscript>
+                  {% endif %}
+                  {% if customer_name != blank %}
+                    <strong>{{ customer_name }}</strong>
+                  {% endif %}
+                  {% if subheading != blank %}
+                    <span class="subheading">{{ subheading }}</span>
+                  {% endif %}
+                </div>
+              {% endif %}
+
+              {% if review_url != blank %}
+                <div class="review__tweet-url">
+                  <a href="{{ review_url }}" rel="noopener" target="_blank">
+                    {{ block.settings.review_link_name }}
+                  </a>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "settings": [
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "Text alignment",
+      "default": "text-left",
+      "options": [
+        {
+          "value": "text-left",
+          "label": "Left"
+        },
+        {
+          "value": "text-center",
+          "label": "Centered"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "text-dark",
+      "options": [
+        {
+          "value": "text-light",
+          "label": "White"
+        },
+        {
+          "value": "text-dark",
+          "label": "Dark"
+        }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#fafafa"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Testimonial",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Testimonial"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Customer name",
+          "default": "Example Customer"
+        },
+        {
+          "type": "text",
+          "id": "subheading",
+          "label": "Subheading",
+          "default": "Industry Expert"
+        },
+        {
+          "type": "richtext",
+          "id": "review_text",
+          "label": "Testimonial",
+          "default": "<p>Use this text to showcase a review from one of your customers.  A great review is honest and speaks to the concerns of your customers.</p>"
+        },
+        {
+          "type": "image_picker",
+          "id": "bio_image",
+          "label": "Bio image"
+        },
+        {
+          "type": "header",
+          "content": "Review link"
+        },
+        {
+          "type": "url",
+          "id": "review_url",
+          "label": "Link"
+        },
+        {
+          "type": "text",
+          "id": "review_link_name",
+          "label": "Link name"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials",
+      "category": "Text",
+      "blocks": [
+        {
+          "type": "review",
+          "settings": {
+            "title": "Jeremy Usborne"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "title": "Willy Bridge"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

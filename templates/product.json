@@ -1,0 +1,392 @@
+{
+  "sections": {
+    "main": {
+      "type": "product",
+      "blocks": {
+        "price_and_title": {
+          "type": "price_and_title",
+          "settings": {
+            "subheading_option": "breadcrumb",
+            "show_rating": false,
+            "enable_star_rating": false,
+            "show_rating_count": false,
+            "shop_price": true
+          }
+        },
+        "form": {
+          "type": "form",
+          "settings": {
+            "info_page": "size-chart",
+            "size_chart_kids": "size-chart-kids",
+            "show_sku": true,
+            "show_labels": true,
+            "show_quantity": false,
+            "show_payment_button": true,
+            "sibling": true,
+            "siblings_collection": "{{ product.metafields.theme.siblings.value }}",
+            "sibling_color": "{{ product.metafields.theme.sibling_color.value }}",
+            "subscriptions_enable_selectors": false
+          }
+        },
+        "tabs": {
+          "type": "tab_richtext",
+          "settings": {
+            "show_read_more": true,
+            "style": "accordions",
+            "title_1": "ДОСТАВКА ТА ПОВЕРНЕННЯ",
+            "raw_content_1": "<p><strong>Доставка<br\/><\/strong>Безкоштовна доставка для всіх замовлень. Як правило, ми відправляємо товари якомога швидше після отримання оплати. В середньому доставка по Україні займає 3-5 днів після виготовлення товару.<\/p><p><strong>Повернення<br\/><\/strong>Згідно із політикою бренду, ми не приймаємо повернення. Ви можете обміняти нову, неношену, невипрану і неушкоджену річ на таку ж саму в іншому розмірі, або на іншу річ протягом 2-3 днів після отримання замовлення.<\/p>",
+            "title_2": "ДОГЛЯД",
+            "raw_content_2": "<p>Тільки хімчистка.<\/p>",
+            "title_3": "РОЗМІР",
+            "raw_content_3": "",
+            "title_4": "",
+            "raw_content_4": "",
+            "title_5": "",
+            "raw_content_5": ""
+          }
+        }
+      },
+      "block_order": [
+        "price_and_title",
+        "form",
+        "tabs"
+      ],
+      "settings": {
+        "product_sticky_enable": true,
+        "image_layout": "thumbnails",
+        "image_size": "normal",
+        "show_cart_bar": false,
+        "enable_zoom": true,
+        "enable_video_looping": false
+      }
+    },
+    "164762450379075fed": {
+      "type": "page-faq",
+      "blocks": {
+        "16476245020b17f4a7-0": {
+          "type": "heading",
+          "settings": {
+            "title": "FAQ"
+          }
+        },
+        "16476245020b17f4a7-1": {
+          "type": "question",
+          "settings": {
+            "title": "Frequently asked question",
+            "content": "<p>Share details about your shipping policies, item returns, or customer service.<\/p>"
+          }
+        },
+        "16476245020b17f4a7-2": {
+          "type": "question",
+          "settings": {
+            "title": "Frequently asked question",
+            "content": "<p>Share details about your shipping policies, item returns, or customer service.<\/p>"
+          }
+        },
+        "16476245020b17f4a7-3": {
+          "type": "question",
+          "settings": {
+            "title": "Frequently asked question",
+            "content": "<p>Share details about your shipping policies, item returns, or customer service.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "16476245020b17f4a7-0",
+        "16476245020b17f4a7-1",
+        "16476245020b17f4a7-2",
+        "16476245020b17f4a7-3"
+      ],
+      "disabled": true,
+      "settings": {
+        "width": "wrapper--narrow",
+        "height": "margin--medium",
+        "text_color": "text-dark",
+        "bg_color": "#ffffff"
+      }
+    },
+    "about": {
+      "type": "section-accordion",
+      "blocks": {
+        "about-0": {
+          "type": "image",
+          "settings": {
+            "title": "Image heading",
+            "text": "<p>Use this to answer some common questions you hear from your customers. You could discuss product details, size fit, shipping policies, or anything you think would help merchants make an informed decision about your products. This section will appear across all products.<\/p>",
+            "bg_position": "center-center",
+            "aspect_ratio": 0.6
+          }
+        },
+        "about-1": {
+          "type": "image",
+          "settings": {
+            "title": "Image heading",
+            "text": "<p>Use this to answer some common questions you hear from your customers. You could discuss product details, size fit, shipping policies, or anything you think would help merchants make an informed decision about your products. This section will appear across all products.<\/p>",
+            "bg_position": "center-center",
+            "aspect_ratio": 0.6
+          }
+        },
+        "about-2": {
+          "type": "image",
+          "settings": {
+            "title": "Image heading",
+            "text": "<p>Use this to answer some common questions you hear from your customers. You could discuss product details, size fit, shipping policies, or anything you think would help merchants make an informed decision about your products. This section will appear across all products.<\/p>",
+            "bg_position": "center-center",
+            "aspect_ratio": 0.6
+          }
+        }
+      },
+      "block_order": [
+        "about-0",
+        "about-1",
+        "about-2"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "About us"
+      }
+    },
+    "reviews": {
+      "type": "reviews",
+      "disabled": true,
+      "settings": {
+        "enable_product_reviews": false,
+        "enable_accordion": true
+      }
+    },
+    "custom": {
+      "type": "section-custom-content",
+      "blocks": {
+        "custom-0": {
+          "type": "image",
+          "settings": {
+            "bg_position": "center-center",
+            "overlay_opacity": 0,
+            "overlay_color": "#000000",
+            "title": "",
+            "heading_size": 7,
+            "description": "",
+            "text_size": 3,
+            "flex_align": "align--middle-center",
+            "text_color": "text-light",
+            "transparent": true,
+            "link_text": "",
+            "link": "",
+            "button_color": "btn--white",
+            "button_style": "hero__btn btn btn--large btn--outline caps"
+          }
+        },
+        "custom-1": {
+          "type": "text",
+          "settings": {
+            "subheading": "Introducing",
+            "title": "Product feature",
+            "text": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.<\/p>",
+            "text_size": 2,
+            "text_columns": 1,
+            "align_text": "text-left",
+            "text_color": "text-dark",
+            "bg_color": "#f7f7f7",
+            "button_text": "",
+            "button_url": "",
+            "button_color": "btn--neutral",
+            "button_style": "hero__btn btn btn--large btn--outline caps"
+          }
+        }
+      },
+      "block_order": [
+        "custom-0",
+        "custom-1"
+      ],
+      "disabled": true,
+      "settings": {
+        "height": "screen-height-one-half",
+        "padding": true,
+        "borders": false,
+        "wrapper": false
+      }
+    },
+    "imgtxt": {
+      "type": "section-custom-content",
+      "blocks": {
+        "imgtxt-0": {
+          "type": "text",
+          "settings": {
+            "subheading": "Introducing",
+            "title": "Another feature",
+            "text": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.<\/p>",
+            "text_size": 2,
+            "text_columns": 1,
+            "align_text": "text-left",
+            "text_color": "text-dark",
+            "bg_color": "#f7f7f7",
+            "button_text": "",
+            "button_url": "",
+            "button_color": "btn--neutral",
+            "button_style": "hero__btn btn btn--large btn--outline caps"
+          }
+        },
+        "imgtxt-1": {
+          "type": "image",
+          "settings": {
+            "bg_position": "center-center",
+            "overlay_opacity": 0,
+            "overlay_color": "#000000",
+            "title": "",
+            "heading_size": 7,
+            "description": "",
+            "text_size": 3,
+            "flex_align": "align--middle-center",
+            "text_color": "text-light",
+            "transparent": true,
+            "link_text": "",
+            "link": "",
+            "button_color": "btn--white",
+            "button_style": "hero__btn btn btn--large btn--outline caps"
+          }
+        }
+      },
+      "block_order": [
+        "imgtxt-0",
+        "imgtxt-1"
+      ],
+      "disabled": true,
+      "settings": {
+        "height": "screen-height-one-half",
+        "padding": true,
+        "borders": false,
+        "wrapper": false
+      }
+    },
+    "related": {
+      "type": "related",
+      "settings": {
+        "related_products_enable": true,
+        "limit": 4,
+        "product_recommendations_heading": "Супутні товари",
+        "show_recently_viewed": false,
+        "product_recently_limit": 4,
+        "product_recently_heading": "Нещодвно переглянуті"
+      }
+    },
+    "shipping": {
+      "type": "section-accordion",
+      "blocks": {
+        "shipping-0": {
+          "type": "icon",
+          "settings": {
+            "icon_name": "icon-shipment",
+            "icon_color": "#aaaaaa",
+            "title": "Fast shipping",
+            "text": "<p>Use this to answer some common questions you hear from your customers. You could discuss product details, size fit, shipping policies, or anything you think would help merchants make an informed decision about your products. This section will appear across all products.<\/p>"
+          }
+        },
+        "shipping-1": {
+          "type": "icon",
+          "settings": {
+            "icon_name": "icon-truck",
+            "icon_color": "#aaaaaa",
+            "title": "Order tracking",
+            "text": "<p>Use this to answer some common questions you hear from your customers. You could discuss product details, size fit, shipping policies, or anything you think would help merchants make an informed decision about your products. This section will appear across all products.<\/p>"
+          }
+        },
+        "shipping-2": {
+          "type": "icon",
+          "settings": {
+            "icon_name": "icon-chat",
+            "icon_color": "#aaaaaa",
+            "title": "Get in touch",
+            "text": "<p>Use this to answer some common questions you hear from your customers. You could discuss product details, size fit, shipping policies, or anything you think would help merchants make an informed decision about your products. This section will appear across all products.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "shipping-0",
+        "shipping-1",
+        "shipping-2"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "FAQ"
+      }
+    },
+    "1648738006719c7d43": {
+      "type": "section-recent-products",
+      "settings": {
+        "product_recently_heading": "Нещодавно переглянуті",
+        "product_recently_limit": 6,
+        "product_recently_minimum": 4
+      }
+    },
+    "ee03c8be-67bb-4856-b04f-8b441abfcb3b": {
+      "type": "section-drop-a-hing",
+      "blocks": {
+        "df336d09-aa74-4c6c-ad74-904aab0ef4e0": {
+          "type": "input",
+          "settings": {
+            "title": "Ім'я одержувача",
+            "input_type": "text"
+          }
+        },
+        "763b878b-ab9a-4d8c-8552-907f3ef40eea": {
+          "type": "input",
+          "settings": {
+            "title": "Email одержувача",
+            "input_type": "email"
+          }
+        },
+        "4d73a533-24c2-4c0a-aa97-ad6aac25e34b": {
+          "type": "input",
+          "settings": {
+            "title": "Ваше ім'я",
+            "input_type": "text"
+          }
+        },
+        "c4639a59-feb4-482e-a816-1fd2aeb27bfc": {
+          "type": "input",
+          "settings": {
+            "title": "Ваша електронна пошта",
+            "input_type": "email"
+          }
+        },
+        "4a0577f9-02ac-4147-8c9f-959af8dbd14f": {
+          "type": "input",
+          "settings": {
+            "title": "Ваше повідомлення",
+            "input_type": "textarea"
+          }
+        }
+      },
+      "block_order": [
+        "df336d09-aa74-4c6c-ad74-904aab0ef4e0",
+        "763b878b-ab9a-4d8c-8552-907f3ef40eea",
+        "4d73a533-24c2-4c0a-aa97-ad6aac25e34b",
+        "c4639a59-feb4-482e-a816-1fd2aeb27bfc",
+        "4a0577f9-02ac-4147-8c9f-959af8dbd14f"
+      ],
+      "disabled": true,
+      "custom_css": [],
+      "settings": {
+        "button_text": "НАТЯКНИ НА ПОДАРУНОК",
+        "button_icon": true,
+        "button_append_selector": ".product__submit.product__submit--spb",
+        "card_template": "<p>Дорога {імя-одержувача},<\/p>\n<p> {ваше-імя}<\/p>\n<p>мріяв про це.<\/p> \n<span class=\"style1\">МАЛЕНЬКА НЕСПОДІВАНКА.<\/span>\n<span class=\"style2\">ЛЮБОВ<\/span>\n<p>P.S.<\/p> {ваше-повідомлення}",
+        "klavio_api_key": "",
+        "klavio_send_list_id": "",
+        "klavio_recive_list_id": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "164762450379075fed",
+    "about",
+    "reviews",
+    "custom",
+    "imgtxt",
+    "related",
+    "shipping",
+    "1648738006719c7d43",
+    "ee03c8be-67bb-4856-b04f-8b441abfcb3b"
+  ]
+}

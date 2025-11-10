@@ -1,0 +1,47 @@
+{%- if form_id -%}
+  {%- assign placeholder_default = 'general.newsletter_form.newsletter_email' | t -%}
+  {%- assign placeholder_field = placeholder | default: placeholder_default -%}
+  
+  {%- form 'customer', id: form_id, data-newsletter-form: '' -%}
+    {%- assign success_message = 'general.newsletter_form.thank_you' | t -%}
+    {%- assign success_message_discount = 'general.newsletter_form.thank_you_with_code_html' | t -%}
+
+    {%- if success_text != blank -%}
+      {%- assign success_message_discount = success_text | remove: '<p>' | remove: '</p>' -%}
+    {%- endif -%}
+
+    <p class="newsletter-message newsletter-message--success">
+      {%- if show_discount_message and success_message_discount != blank -%}
+        {{ success_message_discount }}
+      {%- else -%}
+        {{ success_message }}
+      {%- endif -%}
+    </p>
+      
+    <p class="newsletter-message newsletter-message--error">
+      <em>{{ 'general.newsletter_form.error_message' | t }}</em>
+    </p>
+
+    <input type="hidden" name="contact[accepts_marketing]" value="true">
+    
+    {%- if show_name -%}
+      <div class="input-group input-group--fullwidth newsletter-form">
+        <input type="text" name="contact[first_name]" class="input-group-field" aria-label="{{ 'general.newsletter_form.first_name' | t }}" placeholder="{{ 'general.newsletter_form.first_name' | t }}" value="{% if customer %}{{ customer.first_name }}{% endif %}"> 
+      </div>  
+    {%- endif -%}
+
+    <div class="input-group newsletter-form">
+      <input type="email" id="{{ field_id }}" class="input-group-field" placeholder="{{ placeholder_field }}" aria-label="{{ placeholder_field }}" autocorrect="off" autocapitalize="off" name="contact[email]" data-newsletter-field required/>
+
+      {%- unless button_text -%}
+        {%- assign button_text = 'general.newsletter_form.submit' | t -%}
+      {%- endunless -%}
+      
+      <span class="input-group-btn">
+        <button type="submit" class="btn caps {{ button_type }}{% if show_arrow %} btn--arrow{% endif %}" name="subscribe" id="{{ button_id }}">
+          {{ button_text }}  
+        </button>
+      </span>
+    </div>
+  {%- endform -%}
+{%- endif -%}

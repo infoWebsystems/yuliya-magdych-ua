@@ -1,0 +1,731 @@
+{
+  "sections": {
+    "1648716423cfb494fc": {
+      "type": "section-video",
+      "settings": {
+        "video_link_bg": "https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/f8fcced69f6b425a9fda3edd8872b65f.mp4",
+        "video_link_bg_mob": "https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/c6f1747d12b04534864042cd91c9c275.mp4",
+        "video_link": "",
+        "bg_position": "center-center",
+        "height": "sixty-fifty-height-hero",
+        "overlay_opacity": 10,
+        "overlay_color": "#000000",
+        "title": "НОВІ ТОВАРИ",
+        "description": "",
+        "flex_align": "align--bottom-center",
+        "text_color": "text-light",
+        "transparent": true,
+        "link_text": "ПЕРЕЙТИ ДО КОЛЕКЦІЇ",
+        "link": "shopify:\/\/collections\/whats-new",
+        "button_color": "btn--white",
+        "button_style": "hero__btn btn btn--large btn--outline caps"
+      }
+    },
+    "1647508476dfe5763c": {
+      "type": "section-logo-list",
+      "blocks": {
+        "9131dcbf-32ce-4851-bb35-497890626133": {
+          "type": "logo-item",
+          "settings": {
+            "logo": "shopify:\/\/shop_images\/2023-03-02_095750739.png",
+            "logo_width": 150,
+            "link": "https:\/\/www.vogue.com\/article\/yuliya-magdych-ukrainian-fashion-designer-vyshyvanka"
+          }
+        },
+        "16475084766838061c-2": {
+          "type": "logo-item",
+          "settings": {
+            "logo": "shopify:\/\/shop_images\/2023-03-02_095939624.png",
+            "logo_width": 150,
+            "link": "https:\/\/wwd.com\/fashion-news\/fashion-features\/yuliya-magdych-us-handbag-scarves-bridal-10445420\/"
+          }
+        },
+        "16475084766838061c-0": {
+          "type": "logo-item",
+          "settings": {
+            "logo": "shopify:\/\/shop_images\/2023-03-02_100036600.png",
+            "logo_width": 150,
+            "link": ""
+          }
+        },
+        "907dad57-c75d-46a8-916c-5739894b454f": {
+          "type": "logo-item",
+          "settings": {
+            "logo": "shopify:\/\/shop_images\/2023-03-02_100127656.png",
+            "logo_width": 150,
+            "link": "https:\/\/observer.com\/2016\/08\/ukrainian-designer-yuliya-magdych-has-designed-the-perfect-vacation-frock\/"
+          }
+        }
+      },
+      "block_order": [
+        "9131dcbf-32ce-4851-bb35-497890626133",
+        "16475084766838061c-2",
+        "16475084766838061c-0",
+        "907dad57-c75d-46a8-916c-5739894b454f"
+      ],
+      "settings": {
+        "title": "Про нас писали у",
+        "text_color": "text-dark",
+        "bg_color": "rgba(0,0,0,0)"
+      }
+    },
+    "28a6abf3-bd68-4b90-8853-7314b20a04f1": {
+      "type": "section-custom-content",
+      "blocks": {
+        "template--21338157580599__28a6abf3-bd68-4b90-8853-7314b20a04f1-image-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/offset_269536.jpg",
+            "bg_position": "center-center",
+            "overlay_opacity": 0,
+            "overlay_color": "#000000",
+            "title": "Duo form Ring",
+            "heading_size": 10,
+            "description": "Explore rings for your big moment, and all the little memories after.",
+            "text_size": 3,
+            "flex_align": "align--bottom-left",
+            "text_color": "text-light",
+            "transparent": true,
+            "link_text": "SHOP NOW",
+            "link": "",
+            "button_color": "btn--white",
+            "button_style": "hero__btn btn btn--input caps"
+          }
+        },
+        "d3bcfb16-c618-4c94-83a6-14b1ec9b931f": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/images.jpg",
+            "bg_position": "center-center",
+            "overlay_opacity": 0,
+            "overlay_color": "#000000",
+            "title": "Contemporary and Timeless",
+            "heading_size": 10,
+            "description": "Accessorize with 14k recycled gold all day, everyday.",
+            "text_size": 3,
+            "flex_align": "align--bottom-left",
+            "text_color": "text-light",
+            "transparent": true,
+            "link_text": "SHOP NOW",
+            "link": "",
+            "button_color": "btn--white",
+            "button_style": "hero__btn btn btn--input caps"
+          }
+        }
+      },
+      "block_order": [
+        "template--21338157580599__28a6abf3-bd68-4b90-8853-7314b20a04f1-image-1",
+        "d3bcfb16-c618-4c94-83a6-14b1ec9b931f"
+      ],
+      "disabled": true,
+      "settings": {
+        "height": "sixty-fifty-height-hero",
+        "padding": false,
+        "borders": false,
+        "wrapper": false
+      }
+    },
+    "1647087524b6e56875": {
+      "type": "section-slideshow",
+      "blocks": {
+        "1647087524643db072-0": {
+          "type": "image",
+          "settings": {
+            "bg_position": "center-center",
+            "overlay_opacity": 10,
+            "overlay_color": "#000000",
+            "title": "NEW IN",
+            "description": "…when every flower is a sacred code",
+            "flex_align": "align--bottom-center",
+            "text_color": "text-light",
+            "transparent": true,
+            "link_text": "SHOP NOW",
+            "link": "",
+            "button_color": "btn--white",
+            "button_style": "hero__btn btn btn--large btn--outline caps"
+          }
+        }
+      },
+      "block_order": [
+        "1647087524643db072-0"
+      ],
+      "disabled": true,
+      "settings": {
+        "height": "image-height",
+        "transition": "slide",
+        "arrows_style": true,
+        "dots_style": "hidden",
+        "autoplay": false,
+        "autoplay_speed": 8
+      }
+    },
+    "16487157483894b2a4": {
+      "type": "section-slideshow",
+      "blocks": {
+        "image_Vtapgz": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "bg_position": "center-center",
+            "image": "shopify:\/\/shop_images\/White_Aesthetic_Photo_Sale_Instagram_Story_2.png",
+            "mobile_image": "shopify:\/\/shop_images\/White_Aesthetic_Photo_Sale_Instagram_Story.png",
+            "overlay_opacity": 5,
+            "overlay_color": "#000000",
+            "title": "ДО ДНЯ НЕЗАЛЕЖНОСТІ",
+            "description": "",
+            "flex_align": "align--bottom-center",
+            "text_color": "text-light",
+            "transparent": true,
+            "link_text": "ПЕРЕЙТИ ДО ПОКУПКИ",
+            "link": "shopify:\/\/collections\/made-in-ua",
+            "button_color": "btn--white",
+            "button_style": "hero__btn btn btn--large btn--outline caps"
+          }
+        },
+        "16487157481a06ff77-0": {
+          "type": "image",
+          "settings": {
+            "bg_position": "center-center",
+            "image": "shopify:\/\/shop_images\/photo_2025-09-15_13.43.07.jpg",
+            "mobile_image": "shopify:\/\/shop_images\/photo_2025-09-15_13.46.39.jpg",
+            "overlay_opacity": 15,
+            "overlay_color": "#000000",
+            "title": "ПІВОНІЇ",
+            "description": "",
+            "flex_align": "align--bottom-center",
+            "text_color": "text-light",
+            "transparent": true,
+            "link_text": "ПЕРЕЙТИ ДО ПОКУПКИ",
+            "link": "shopify:\/\/collections\/півонії",
+            "button_color": "btn--white",
+            "button_style": "hero__btn btn btn--large btn--outline caps"
+          }
+        },
+        "image_zR7jPh": {
+          "type": "image",
+          "settings": {
+            "bg_position": "center-center",
+            "image": "shopify:\/\/shop_images\/photo_2024-10-02_21.49.13.jpg",
+            "mobile_image": "shopify:\/\/shop_images\/photo_2024-08-18_23.32.31.jpg",
+            "overlay_opacity": 15,
+            "overlay_color": "#000000",
+            "title": "БЕСТСЕЛЕРИ",
+            "description": "",
+            "flex_align": "align--bottom-center",
+            "text_color": "text-light",
+            "transparent": true,
+            "link_text": "ПЕРЕЙТИ ДО ПОКУПКИ",
+            "link": "shopify:\/\/collections\/best-sellers",
+            "button_color": "btn--white",
+            "button_style": "hero__btn btn btn--large btn--outline caps"
+          }
+        }
+      },
+      "block_order": [
+        "image_Vtapgz",
+        "16487157481a06ff77-0",
+        "image_zR7jPh"
+      ],
+      "settings": {
+        "height": "image-height",
+        "transition": "slide",
+        "arrows_style": true,
+        "dots_style": "hidden",
+        "autoplay": false,
+        "autoplay_speed": 8
+      }
+    },
+    "16487180825f806188": {
+      "type": "section-slideshow",
+      "blocks": {
+        "1648718082f422b854-0": {
+          "type": "image",
+          "settings": {
+            "bg_position": "center-center",
+            "image": "shopify:\/\/shop_images\/IMG_3525.jpg",
+            "mobile_image": "shopify:\/\/shop_images\/photo_2024-10-02_22.04.39.jpg",
+            "overlay_opacity": 10,
+            "overlay_color": "#000000",
+            "title": "ONE OF A KIND",
+            "description": "",
+            "flex_align": "align--middle-center",
+            "text_color": "text-light",
+            "transparent": true,
+            "link_text": "ПЕРЕЙТИ ДО ПОКУПКИ",
+            "link": "shopify:\/\/collections\/one-of-a-kind",
+            "button_color": "btn--white",
+            "button_style": "hero__btn btn btn--large btn--outline caps"
+          }
+        },
+        "f6219ee7-fad1-4ba4-98d9-c466c955aaf4": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "bg_position": "center-center",
+            "image": "shopify:\/\/shop_images\/photo_2024-10-02_22.15.46.jpg",
+            "mobile_image": "shopify:\/\/shop_images\/photo_2024-10-02_22.15.52.jpg",
+            "overlay_opacity": 20,
+            "overlay_color": "#000000",
+            "title": "БЛУЗИ",
+            "description": "",
+            "flex_align": "align--middle-center",
+            "text_color": "text-light",
+            "transparent": true,
+            "link_text": "ПЕРЕЙТИ ДО ПОКУПКИ",
+            "link": "shopify:\/\/collections\/вишиті-сорочки",
+            "button_color": "btn--white",
+            "button_style": "hero__btn btn btn--large btn--outline caps"
+          }
+        },
+        "image_KCY4WW": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "bg_position": "center-center",
+            "image": "shopify:\/\/shop_images\/IMG_3526.jpg",
+            "mobile_image": "shopify:\/\/shop_images\/photo_2024-08-07_16.36.38.jpg",
+            "overlay_opacity": 10,
+            "overlay_color": "#000000",
+            "title": "HIGH SUMMER",
+            "description": "",
+            "flex_align": "align--middle-center",
+            "text_color": "text-light",
+            "transparent": true,
+            "link_text": "View products",
+            "link": "shopify:\/\/collections\/high-summer",
+            "button_color": "btn--white",
+            "button_style": "hero__btn btn btn--large btn--outline caps"
+          }
+        }
+      },
+      "block_order": [
+        "1648718082f422b854-0",
+        "f6219ee7-fad1-4ba4-98d9-c466c955aaf4",
+        "image_KCY4WW"
+      ],
+      "custom_css": [],
+      "settings": {
+        "height": "image-height",
+        "transition": "slide",
+        "arrows_style": true,
+        "dots_style": "hidden",
+        "autoplay": true,
+        "autoplay_speed": 4
+      }
+    },
+    "1646913077501bda2c": {
+      "type": "section-collection",
+      "settings": {
+        "heading": "КОЛЕКЦІЯ ВИШИТІ БЛУЗИ",
+        "description": "",
+        "text_alignment": "center",
+        "link_text": "ПЕРЕГЛЯНУТИ",
+        "link_url": "shopify:\/\/collections\/вишиванки",
+        "button_color": "btn--black",
+        "button_style": "hero__btn btn btn--input btn--outline caps",
+        "featured_collection": "вишиванки",
+        "grid": 4,
+        "rows": 1,
+        "aspect_ratio": 120,
+        "layout_mobile": "carousel"
+      }
+    },
+    "16487181790b5af08c": {
+      "type": "section-slideshow",
+      "blocks": {
+        "164871817933586793-0": {
+          "type": "image",
+          "settings": {
+            "bg_position": "center-center",
+            "image": "shopify:\/\/shop_images\/fd62caae5aa7446bb57d5b51c2852f45-ezgif.com-video-to-gif-converter.gif",
+            "mobile_image": "shopify:\/\/shop_images\/fd62caae5aa7446bb57d5b51c2852f45-ezgif.com-video-to-gif-converter.gif",
+            "overlay_opacity": 0,
+            "overlay_color": "#000000",
+            "title": "ПАЛЬТА",
+            "description": "",
+            "flex_align": "align--bottom-center",
+            "text_color": "text-light",
+            "transparent": true,
+            "link_text": "ПЕРЕЙТИ ДО ПОКУПКИ",
+            "link": "shopify:\/\/collections\/пальта",
+            "button_color": "btn--white",
+            "button_style": "hero__btn btn btn--large btn--outline caps"
+          }
+        },
+        "image_fCxyRk": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "bg_position": "center-center",
+            "image": "shopify:\/\/shop_images\/photo_2024-10-02_22.15.46.jpg",
+            "mobile_image": "shopify:\/\/shop_images\/photo_2024-10-02_22.15.52.jpg",
+            "overlay_opacity": 0,
+            "overlay_color": "#000000",
+            "title": "Image slide",
+            "description": "Tell your brand's story through images.",
+            "flex_align": "align--middle-center",
+            "text_color": "text-light",
+            "transparent": true,
+            "link_text": "View products",
+            "link": "",
+            "button_color": "btn--white",
+            "button_style": "hero__btn btn btn--large btn--outline caps"
+          }
+        }
+      },
+      "block_order": [
+        "164871817933586793-0",
+        "image_fCxyRk"
+      ],
+      "settings": {
+        "height": "image-height",
+        "transition": "slide",
+        "arrows_style": true,
+        "dots_style": "hidden",
+        "autoplay": false,
+        "autoplay_speed": 8
+      }
+    },
+    "1647088647f28fdec9": {
+      "type": "section-collection",
+      "disabled": true,
+      "settings": {
+        "heading": "DISCOVER WEDDING COLLECTION",
+        "description": "",
+        "text_alignment": "center",
+        "link_text": "DISCOVER NOW",
+        "link_url": "",
+        "button_color": "btn--black",
+        "button_style": "hero__btn btn btn--input btn--outline caps",
+        "featured_collection": "best-sellers",
+        "grid": 4,
+        "rows": 1,
+        "aspect_ratio": 150,
+        "layout_mobile": "2"
+      }
+    },
+    "1646912645d74a211c": {
+      "type": "section-collection-carousel",
+      "disabled": true,
+      "settings": {
+        "heading": "DISCOVER BEST SELLERS",
+        "description": "<p>Swipe left to see more →<\/p>",
+        "text_alignment": "inline",
+        "link_text": "",
+        "link_url": "",
+        "button_color": "btn--black",
+        "button_style": "hero__btn btn btn--input btn--outline caps",
+        "featured_collection": "best-sellers"
+      }
+    },
+    "1647088588fb429245": {
+      "type": "section-tab-collections",
+      "blocks": {
+        "1647088588c88de67e-0": {
+          "type": "collection",
+          "settings": {
+            "title": "NEW COLLECTION",
+            "featured_collection": "whats-new",
+            "show_image": false,
+            "overlay_opacity": 0,
+            "overlay_color": "#000000",
+            "description": "",
+            "text_color": "text-light",
+            "link_text": "View products",
+            "link": "",
+            "button_color": "btn--white",
+            "button_style": "hero__btn btn btn--large btn--outline caps"
+          }
+        },
+        "1647088588c88de67e-1": {
+          "type": "collection",
+          "settings": {
+            "title": "BEST SELLERS",
+            "featured_collection": "",
+            "show_image": false,
+            "overlay_opacity": 0,
+            "overlay_color": "#000000",
+            "description": "",
+            "text_color": "text-light",
+            "link_text": "View products",
+            "link": "",
+            "button_color": "btn--white",
+            "button_style": "hero__btn btn btn--large btn--outline caps"
+          }
+        }
+      },
+      "block_order": [
+        "1647088588c88de67e-0",
+        "1647088588c88de67e-1"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "YULIYA MAGDYCH"
+      }
+    },
+    "1647087626b1d4f4fc": {
+      "type": "section-slideshow",
+      "blocks": {
+        "16470876267080aa5a-0": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "bg_position": "center-center",
+            "overlay_opacity": 40,
+            "overlay_color": "#000000",
+            "title": "OUR BEST SELLERS",
+            "description": "…again and again.",
+            "flex_align": "align--middle-left",
+            "text_color": "text-light",
+            "transparent": false,
+            "link_text": "SHOP NOW",
+            "link": "",
+            "button_color": "btn--white",
+            "button_style": "hero__btn btn btn--large btn--outline caps"
+          }
+        }
+      },
+      "block_order": [
+        "16470876267080aa5a-0"
+      ],
+      "disabled": true,
+      "settings": {
+        "height": "image-height",
+        "transition": "slide",
+        "arrows_style": true,
+        "dots_style": "hidden",
+        "autoplay": false,
+        "autoplay_speed": 8
+      }
+    },
+    "164708858671e6daca": {
+      "type": "section-slideshow",
+      "blocks": {
+        "1647088586fd4dc110-0": {
+          "type": "image",
+          "settings": {
+            "bg_position": "center-center",
+            "overlay_opacity": 0,
+            "overlay_color": "#000000",
+            "title": "BRIDAL COLLECTION",
+            "description": "…to feel the love from the dress",
+            "flex_align": "align--middle-center",
+            "text_color": "text-dark",
+            "transparent": true,
+            "link_text": "SHOP NOW",
+            "link": "shopify:\/\/collections\/wedding-collection",
+            "button_color": "btn--black",
+            "button_style": "hero__btn btn btn--large btn--outline caps"
+          }
+        }
+      },
+      "block_order": [
+        "1647088586fd4dc110-0"
+      ],
+      "disabled": true,
+      "settings": {
+        "height": "image-height",
+        "transition": "slide",
+        "arrows_style": true,
+        "dots_style": "hidden",
+        "autoplay": false,
+        "autoplay_speed": 8
+      }
+    },
+    "16470876289648b57f": {
+      "type": "section-collection",
+      "disabled": true,
+      "settings": {
+        "heading": "DISCOVER BEST SELLERS",
+        "description": "",
+        "text_alignment": "center",
+        "link_text": "DISCOVER NOW",
+        "link_url": "shopify:\/\/collections\/best-sellers",
+        "button_color": "btn--black",
+        "button_style": "hero__btn btn btn--input btn--outline caps",
+        "featured_collection": "best-sellers",
+        "grid": 4,
+        "rows": 2,
+        "aspect_ratio": 150,
+        "layout_mobile": "2"
+      }
+    },
+    "16470892308fbc9825": {
+      "type": "section-columns",
+      "blocks": {
+        "1647089230e6c7943b-0": {
+          "type": "text_block",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/6_6317e5d7-5ccc-4fcc-800b-db0b0a961da0.png",
+            "bg_position": "center-center",
+            "title": "Collection",
+            "heading_size": 7,
+            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<\/p>",
+            "text_size": 3,
+            "button_text": "SHOP NOW",
+            "button_url": "",
+            "button_color": "btn--black",
+            "button_style": "hero__btn btn btn--input",
+            "button_caps": false
+          }
+        },
+        "1647089230e6c7943b-1": {
+          "type": "text_block",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/mag176261_1.jpg",
+            "bg_position": "center-center",
+            "title": "Heading",
+            "heading_size": 7,
+            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<\/p>",
+            "text_size": 3,
+            "button_text": "SHOP NOW",
+            "button_url": "",
+            "button_color": "btn--neutral",
+            "button_style": "hero__btn btn btn--large",
+            "button_caps": false
+          }
+        },
+        "1647089230e6c7943b-2": {
+          "type": "text_block",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/mag17440.jpg",
+            "bg_position": "center-center",
+            "title": "Bestseller",
+            "heading_size": 7,
+            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<\/p>",
+            "text_size": 3,
+            "button_text": "SHOP NOW",
+            "button_url": "",
+            "button_color": "btn--black",
+            "button_style": "hero__btn btn btn--input btn--outline",
+            "button_caps": false
+          }
+        },
+        "2be5b393-bb1d-4f47-8c17-704eb3f7d8b8": {
+          "type": "text_block",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/mag17414.jpg",
+            "bg_position": "center-center",
+            "title": "Heading",
+            "heading_size": 7,
+            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<\/p>",
+            "text_size": 3,
+            "button_text": "SHOP NOW",
+            "button_url": "",
+            "button_color": "btn--neutral",
+            "button_style": "hero__btn btn btn--large btn--outline",
+            "button_caps": false
+          }
+        }
+      },
+      "block_order": [
+        "1647089230e6c7943b-0",
+        "1647089230e6c7943b-1",
+        "1647089230e6c7943b-2",
+        "2be5b393-bb1d-4f47-8c17-704eb3f7d8b8"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "Shop Instagram",
+        "bg_color": "#ffffff",
+        "align_text": "text-left",
+        "width": "wrapper--full",
+        "photo_aspect_ratio": 0.7,
+        "enable_image": true
+      }
+    },
+    "16470894638b613ea6": {
+      "type": "section-slideshow",
+      "blocks": {
+        "16470894639c3df1d1-0": {
+          "type": "image",
+          "settings": {
+            "bg_position": "center-center",
+            "overlay_opacity": 0,
+            "overlay_color": "#000000",
+            "title": "SHOP INSTAGRAM",
+            "description": "",
+            "flex_align": "align--middle-center",
+            "text_color": "text-light",
+            "transparent": true,
+            "link_text": "SHOP NOW",
+            "link": "",
+            "button_color": "btn--white",
+            "button_style": "hero__btn btn btn--large btn--outline caps"
+          }
+        }
+      },
+      "block_order": [
+        "16470894639c3df1d1-0"
+      ],
+      "disabled": true,
+      "settings": {
+        "height": "screen-height-two-thirds",
+        "transition": "slide",
+        "arrows_style": true,
+        "dots_style": "hidden",
+        "autoplay": false,
+        "autoplay_speed": 8
+      }
+    },
+    "16470894451d63114f": {
+      "type": "section-collection",
+      "settings": {
+        "heading": "СЛІДКУЙТЕ ЗА НАМИ В ІНСТАГРАМІ",
+        "description": "",
+        "text_alignment": "center",
+        "link_text": "Перейти до колекції",
+        "link_url": "",
+        "button_color": "btn--black",
+        "button_style": "hero__btn btn btn--input btn--outline caps",
+        "featured_collection": "instagram",
+        "grid": 4,
+        "rows": 1,
+        "aspect_ratio": 100,
+        "layout_mobile": "carousel"
+      }
+    },
+    "1646914021d3e32621": {
+      "type": "featured-posts",
+      "blocks": {
+        "164691402165b17bb7-0": {
+          "type": "featured_post",
+          "settings": {
+            "featured_post": "news\/paris-fashion-week-is-calling",
+            "subheading": "Featured post",
+            "bg_position": "center-center"
+          }
+        }
+      },
+      "block_order": [
+        "164691402165b17bb7-0"
+      ],
+      "disabled": true,
+      "settings": {
+        "show_author": false,
+        "show_date": true,
+        "show_button": true
+      }
+    }
+  },
+  "order": [
+    "1648716423cfb494fc",
+    "1647508476dfe5763c",
+    "28a6abf3-bd68-4b90-8853-7314b20a04f1",
+    "1647087524b6e56875",
+    "16487157483894b2a4",
+    "16487180825f806188",
+    "1646913077501bda2c",
+    "16487181790b5af08c",
+    "1647088647f28fdec9",
+    "1646912645d74a211c",
+    "1647088588fb429245",
+    "1647087626b1d4f4fc",
+    "164708858671e6daca",
+    "16470876289648b57f",
+    "16470892308fbc9825",
+    "16470894638b613ea6",
+    "16470894451d63114f",
+    "1646914021d3e32621"
+  ]
+}

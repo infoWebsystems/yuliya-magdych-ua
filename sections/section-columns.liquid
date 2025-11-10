@@ -1,0 +1,383 @@
+<!-- /sections/section-columns.liquid -->
+{{ 'section-columns.css' | asset_url | stylesheet_tag: preload: true }}
+
+{%- liquid
+  assign border_class = 'column--borderless'
+  if section.settings.width == ''
+    assign border_class = 'column--border'
+  elsif section.settings.width == 'wrapper--narrow' or section.settings.width == 'wrapper'
+    assign border_class = ''
+  endif
+
+  case section.blocks.size
+    when 1
+      assign grid_item_width = 'large-up--one-whole medium--two-fifths small--seven-eighths'
+    when 2
+      assign grid_item_width = 'large-up--one-half medium--two-fifths small--seven-eighths'
+    when 3
+      assign grid_item_width = 'large-up--one-third medium--two-fifths small--seven-eighths'
+    else
+      assign grid_item_width = 'large-up--three-tenths medium--two-fifths small--seven-eighths'
+
+      if section.settings.width == 'wrapper--narrow'
+      assign grid_item_width = 'large-up--four-tenths medium--two-fifths small--seven-eighths'
+      endif
+  endcase
+
+  assign animation_anchor = "[data-section-id='" | append: section.id | append: "']"
+-%}
+
+{%- capture slider_attributes -%}
+  data-slider="{{ section.id }}" data-infinite="false" data-cell-align="left" data-group-cells="true" data-dots="hidden" data-arrows="true" data-arrow-position-middle data-watch-css="true"
+{%- endcapture -%}
+
+<div class="section-columns {{ border_class }}"
+  style="--bg: {{ section.settings.bg_color }};"
+  data-section-id="{{ section.id }}"
+  data-section-type="columns-with-image">
+  <div class="{{ section.settings.width }}">
+
+    {%- if section.settings.title != '' -%}
+      <h2 class="grid__heading">{{ section.settings.title }}</h2>
+    {%- endif -%}
+
+    <div class="grid__outer">
+      <div class="grid flickity-button-circle" {{ slider_attributes }}>
+        {%- for block in section.blocks -%}
+          {%- assign layout_slide_attributes = 'data-slide="' | append: block.id | append: '" data-slide-index="' | append: forloop.index0 | append: '" data-block-scroll' -%}
+
+          <div class="grid__item column__grid__item {{ grid_item_width }} {{ section.settings.align_text }}" {{ block.shopify_attributes }} {{ layout_slide_attributes }}>
+            {%- if section.settings.enable_image -%}
+              <div class="column__image__wrapper">
+                {%- if block.settings.image != blank -%}
+                    <div class="column__image"  style="padding-top: {{ section.settings.photo_aspect_ratio | times: 100 }}%;">
+                      <div class="column__image__bg fade-in"
+                        style="
+                        background-position: {{ block.settings.bg_position | replace: '-', ' ' }};
+                        background-image:  image-set(
+                          url({{ block.settings.image | image_url: width: 540 }}) 1x,
+                          url({{ block.settings.image | image_url: width: 1080 }}) 2x
+                        )"
+                        data-aos="img-in"
+                        data-aos-anchor="{{ animation_anchor }}"
+                        data-aos-delay="{{ forloop.index0 | times: 150 }}"
+                        data-aos-duration="{{ forloop.index0 | times: 100 | plus: 800 }}"
+                        data-aos-easing="ease-out-quart"
+                        >
+                        </div>
+
+                        <noscript>
+                          <div class="column__image__bg"
+                            style="background-image:url('{{ block.settings.image | image_url: width: 540 }}'); background-size: cover; background-position: center center; background-repeat: no-repeat;"
+                            role="img"
+                            aria-label="{{ block.settings.image.alt | default: block.settings.title | strip_html | escape }}"></div>
+                        </noscript>
+                    </div>
+
+                  {%- if block.settings.enable_video -%}
+                    {%- if block.settings.video_link.type == 'youtube' -%}
+                      {%- capture video_link %}https://www.youtube.com/watch?v={{ block.settings.video_link.id }}{%- endcapture -%}
+                    {%- elsif block.settings.video_link.type == 'vimeo' -%}
+                      {%- capture video_link %}https://vimeo.com/{{ block.settings.video_link.id }}{%- endcapture -%}
+                    {%- endif -%}
+                    {%- assign video_parent_id = 'item-video-' | append: section.id -%}
+                    <a href="{{ video_link }}" class="column__image__link icon__play--column" data-video-play="{%- render 'photoswipe-video-html' item_link: block.settings.video_link, item_id: video_parent_id -%}">
+                      {%- render 'icon-play-circle' -%}
+                      <span class="icon-fallback-text">&#9658;</span>
+                    </a>
+                  {%- elsif block.settings.button_text == '' and block.settings.button_url != blank -%}
+                    <a class="column__image__link" href="{{ block.settings.button_url }}"></a>
+                  {%- endif -%}
+                {%- else -%}
+                  {%- assign svg_holder_attr = '' -%}
+                  {%- assign svg_class = 'placeholder-svg' -%}
+                    {%- assign svg_holder_aspect_ratio = section.settings.photo_aspect_ratio | times: 100 -%}
+                    {%- assign svg_holder_attr = 'class="column__image" style="padding-top: ' | append: svg_holder_aspect_ratio | append: '%;"' -%}
+                    {%- assign svg_class = 'placeholder-svg column__image__bg' -%}
+                  <div {{ svg_holder_attr }}>
+                    {{ 'image' | placeholder_svg_tag: svg_class }}
+                  </div>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+
+            <div class="column__content">
+              {%- if block.settings.title != blank -%}
+                <h2 class="h6 column__heading heading-size-{{ block.settings.heading_size }}">{{ block.settings.title | escape }}</h2>
+              {%- endif -%}
+
+              {%- if block.settings.text != blank -%}
+                <div class="column__text rte body-size-{{ block.settings.text_size }}">{{ block.settings.text }}</div>
+              {%- endif -%}
+
+              {%- if block.settings.button_text != '' -%}
+                <a href="{{ block.settings.button_url }}" class="standard__cta {{ block.settings.button_style }} {{ block.settings.button_color }} {% if block.settings.button_caps %} btn_caps {% endif %}">
+                  {{- block.settings.button_text -}}
+                </a>
+              {%- endif -%}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    {%- if section.blocks.size == 0 -%}
+      {%- render 'no-blocks' -%}
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Text columns with images",
+  "class": "index-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "select",
+      "id": "align_text",
+      "label": "Text alignment",
+      "default": "text-left",
+      "options": [
+        {
+          "value": "text-left",
+          "label": "Left"
+        },
+        {
+          "value": "text-center",
+          "label": "Centered"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Width",
+      "default": "wrapper--full",
+      "options": [
+        {
+          "value": "wrapper",
+          "label": "Normal"
+        },
+        {
+          "value": "wrapper--narrow",
+          "label": "Narrow"
+        },
+        {
+          "value": "wrapper--full",
+          "label": "Wide"
+        },
+        {
+          "value": "",
+          "label": "Wide with borders"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Height"
+    },
+    {
+      "type": "range",
+      "id": "photo_aspect_ratio",
+      "min": 0.5,
+      "max": 1.5,
+      "step": 0.1,
+      "unit": ":1",
+      "label": "Photo height",
+      "info": "Wide to tall",
+      "default": 0.7
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_image",
+      "label": "Show images",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text_block",
+      "name": "Column",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "select",
+          "id": "bg_position",
+          "label": "Position",
+          "default": "center-center",
+          "info": "Requires 'equalize image heights' to be enabled",
+          "options": [
+            {
+              "label": "Top",
+              "value": "center-top"
+            },
+            {
+              "label": "Right",
+              "value": "right-center"
+            },
+            {
+              "label": "Center",
+              "value": "center-center"
+            },
+            {
+              "label": "Left",
+              "value": "left-center"
+            },
+            {
+              "label": "Bottom",
+              "value": "center-bottom"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Add a title or tagline"
+        },
+        {
+          "type":  "range",
+          "id":    "heading_size",
+          "label": "Heading size",
+          "min": 1,
+          "max": 15,
+          "step": 1,
+          "default":7
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Use this text to describe products, share details on availability and style, or as a space to display recent reviews or FAQs.</p>"
+        }, 
+        {
+          "type":  "range",
+          "id":    "text_size",
+          "label": "Text size",
+          "min": 1,
+          "max": 15,
+          "step": 1,
+          "default":3
+        },
+        {
+          "type": "header",
+          "content": "Button"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Text",
+          "default": "Learn more"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Link"
+        },
+        {
+          "type": "select",
+          "id": "button_color",
+          "label": "Color",
+          "default": "btn--neutral",
+          "options": [
+            {
+              "value": "btn--primary",
+              "label": "Bright accent"
+            },
+            {
+              "value": "btn--secondary",
+              "label": "Secondary accent"
+            },
+            {
+              "value": "btn--link",
+              "label": "Link color"
+            },
+            {
+              "value": "btn--neutral",
+              "label": "Text color"
+            },
+            {
+              "value": "btn--black",
+              "label": "Black"
+            },
+            {
+              "value": "btn--white",
+              "label": "White"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "button_style",
+          "label": "Style",
+          "default": "caps--large",
+          "options": [
+            {
+              "value": "caps--large",
+              "label": "Text"
+            },
+            {
+              "value": "hero__btn btn btn--input",
+              "label": "Small button"
+            },
+            {
+              "value": "hero__btn btn btn--large",
+              "label": "Large button"
+            },
+            {
+              "value": "hero__btn btn btn--input btn--outline",
+              "label": "Small outline button"
+            },
+            {
+              "value": "hero__btn btn btn--large btn--outline",
+              "label": "Large outline button"
+            }
+          ]
+        },
+        {
+          "type": "checkbox",
+          "label": "Enable uppercase",
+          "id": "button_caps",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Text columns with images",
+      "category": "Text",
+      "blocks": [
+        {
+          "type": "text_block"
+        },
+        {
+          "type": "text_block"
+        },
+        {
+          "type": "text_block"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

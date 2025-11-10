@@ -1,0 +1,189 @@
+<!-- /sections/section-press.liquid -->
+
+{%- assign heading = section.settings.title -%}
+{%- assign logo_opacity_default = section.settings.logo_opacity | default: 100 -%}
+{% assign logo_opacity = logo_opacity_default | times: 0.01 %}
+<style>
+  .logos--{{ section.id }} {
+    --bg: {{ section.settings.bg_color }};
+    ---logo-opacity: {{ logo_opacity }};
+  }
+</style>
+
+{%- assign slider_text_show = false -%}
+
+<div class="logos logos--{{ section.id }} {{ section.settings.text_color }}" data-section-id="{{ section.id }}" data-section-type="logos">
+  <div class="container">
+    <div class="logos__wrapper{% if heading.size %} logos__wrapper--tall{% endif %}">
+
+      {%- if heading != blank -%}
+        <h2 class="h5 caps logos__title">{{ heading }}</h2>
+      {%- endif -%}
+
+      {%- if section.blocks.size > 0 -%}
+        <div class="logos__slider">
+          <div class="logos__slider-inner" data-slider-logo data-block-scroll>
+            {%- for block in section.blocks -%}
+              {%- assign logo = block.settings.logo -%}
+
+              {%- if block.settings.description != blank -%}
+                {%- assign slider_text_show = true -%}
+              {%- endif -%}
+
+              <div class="logos__slide{% if forloop.first %} is-selected{% endif %}"
+                data-slide="{{- block.id -}}"
+                data-slide-index="{{ forloop.index0 }}"
+                data-block="item_logo"
+                {{ block.shopify_attributes }}>
+                {%- if block.settings.link != blank -%}
+                  <a href="{{ block.settings.link }}">
+                {%- endif -%}
+
+                <div class="logos__logo">
+                  {%- if logo != blank -%}
+                    <div class="logos__img fade-in"
+                      style="
+                        width: {{ block.settings.logo_width }}px;
+                        height: {{- block.settings.logo_width | divided_by: logo.aspect_ratio -}}px;
+                        background-image: image-set(
+                          url({{ logo | image_url: width: block.settings.logo_width }}) 1x,
+                          url({{ logo | image_url: width: block.settings.logo_width | times: 2 }}) 2x
+                        )
+                      "
+                      data-sizes="auto"
+                      data-parent-fit="cover"
+                      data-aspectratio="{{ logo.aspect_ratio }}">
+                    </div>
+
+                    <noscript>
+                      <div class="logos__img no-js-image" style="background-image: url( {{ logo | image_url: width: 180 }} ); width: {{ block.settings.logo_width }}px; height: {{- block.settings.logo_width | divided_by: logo.aspect_ratio -}}px;" loading="lazy"></div>
+                    </noscript>
+                  {%- else -%}
+                    <div class="logos__img svg-placeholder" style="width: {{ block.settings.logo_width }}px; height: {{ block.settings.logo_width }}px;" loading="lazy">
+                      {{ 'logo' | placeholder_svg_tag: 'placeholder-svg' }}
+                    </div>
+                  {%- endif -%}
+                </div>
+
+                {%- if block.settings.link != blank -%}
+                  </a>
+                {%- endif -%}
+              </div>
+            {%- endfor -%}
+          </div>
+        </div>
+      {%- endif -%}
+
+      {%- if slider_text_show -%}
+        <div class="logos__slider-text" data-slider-text id="logos__slider-text--{{ section.id }}">
+          {%- for block in section.blocks -%}
+            {%- assign text = block.settings.description -%}
+
+            <div class="logos__slide logos__slide--{{ block.id }}" data-block="item_logo" data-slide-index="{{ forloop.index0 }}"
+            data-slide="{{- block.id -}}"
+            {{ block.shopify_attributes }}>
+              {%- if text != blank -%}
+                <div class="h6--body">{{ text }}</div>
+              {%- else -%}
+                &nbsp;
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Press",
+  "max_blocks": 25,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Press"
+    },
+    {
+      "type": "range",
+      "id": "logo_opacity",
+      "label": "Inactive logo opacity",
+      "unit": "%",
+      "min": 5,
+      "max": 100,
+      "step": 5,
+      "default": 60
+    },
+    {
+      "type": "select",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "text-dark",
+      "options": [
+        {
+          "value": "text-light",
+          "label": "White"
+        },
+        {
+          "value": "text-dark",
+          "label": "Dark"
+        }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#fafafa"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo-item",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Include a brief quote from a brand that loves your products</p>"
+        },
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo"
+        },
+        {
+          "type": "range",
+          "id": "logo_width",
+          "label": "Width",
+          "unit": "px",
+          "min": 100,
+          "max": 180,
+          "step": 10,
+          "default": 100
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Press",
+      "category": "Image",
+      "blocks": [
+        {
+          "type": "logo-item"
+        },
+        {
+          "type": "logo-item"
+        },
+        {
+          "type": "logo-item"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

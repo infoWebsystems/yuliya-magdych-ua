@@ -1,0 +1,89 @@
+  <script data-cart-total-discount type="text/x-template">
+    {% raw %}
+    <div class="cart__total">
+      <span>
+        {{it.discountTitle}}
+      </span>
+
+      <span>
+        -{{it.discountTotalAllocatedAmount | safe}}
+      </span>
+    </div>
+    {% endraw %}
+  </script>
+  
+  <script pair-product-template type="text/x-template">
+    {% raw %}
+      <div class="product-upsell-holder product-upsell-holder--cart" data-upsell-holder>      
+        <div class="product-upsell">
+          <div class="product-upsell__image">
+            <a href="{{ it.product.url }}" aria-label='{{ it.product.title }}'>
+              {{ @if(it.product.image) }}
+                <div class="product-upsell__image-inner" aria-label="{{ it.product.title }}" role="img" style="background-image: url({{ it.product.image.thumb }})">
+                  <noscript>
+                    <img src="{{ it.product.image.thumb }}" width="480" height="480"  alt="{{ it.product.title }}">
+                  </noscript>
+                </div>
+              {{ /if}}
+            </a>
+          </div>
+      
+          <div class="product-upsell__content">
+            <a href="{{ it.product.url }}">
+              <p class="product-upsell__title small">{{ it.product.title }}</p>
+              
+              {{ @if(it.product.hasVariants) }}
+                <p class="product-upsell__variant-title small">{{ it.product.firstAvailableVariant.title | safe }}</p> 
+              {{ /if}}
+    
+              <p class="product-upsell__price small {{ @if(it.product.firstAvailableVariant.compare_at_price > it.product.firstAvailableVariant.price) }} sale{{ /if}}">
+                <span class="new-price">{{ it.product.firstAvailableVariant.price | safe }}</span>  
+                
+                {{ @if(it.product.firstAvailableVariant.compare_at_price > it.product.firstAvailableVariant.price) }}
+                  <span class="old-price">{{ it.product.firstAvailableVariant.compare_at_price | safe }}</span>
+                {{ /if}}
+
+                {{ @if(it.product.firstAvailableVariant.hasUnitPrice) }}
+                  <br />
+
+                  <span class="visually-hidden visually-hidden--inline">{{ it.product.unitPriceLabel | safe }}</span>
+
+                  <span class="unit">
+                    {{ it.product.firstAvailableVariant.unit_price | safe }}
+                    <span aria-hidden="true">/</span>
+                    <span class="visually-hidden">{{ it.product.unitPriceSeparator }}&nbsp;</span>
+                    {{ it.product.firstAvailableVariant.unitCount }}
+                    {{ it.product.firstAvailableVariant.unitValue }}
+                  </span>
+                {{ /if}}
+              </p>  
+            </a>
+
+            <button type="button" class="product-upsell__skip" data-skip-pair-product>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" class="icon"><path fill="#444" d="M15.89 14.696l-4.734-4.734 4.717-4.717c.4-.4.37-1.085-.03-1.485s-1.085-.43-1.485-.03L9.641 8.447 4.97 3.776c-.4-.4-1.085-.37-1.485.03s-.43 1.085-.03 1.485l4.671 4.671-4.688 4.688c-.4.4-.37 1.085.03 1.485s1.085.43 1.485.03l4.688-4.687 4.734 4.734c.4.4 1.085.37 1.485-.03s.43-1.085.03-1.485z"/></svg>
+            </button>
+              
+            <button type="button" name="add" data-add-to-cart
+            data-focus-element data-upsell-btn class="product-upsell__btn" data-product-id="{{ it.product.firstAvailableVariant.id }}">
+              <span class="product-upsell__btn-hidden" data-upsell-btn-text>{{ it.product.addToCartText }}</span>
+  
+              <span class="product-upsell__btn-text">{{ it.product.addToCartText }}</span>
+  
+              <span class="product-upsell__btn-plus">+</span>
+  
+              <span class="product-upsell__btn-progress">
+                <svg height="18" width="18" class="svg-loader">
+                  <circle r="7" cx="9" cy="9" />
+                  <circle stroke-dasharray="87.96459430051421 87.96459430051421" r="7" cx="9" cy="9" />
+                </svg>
+              </span>
+  
+              <span class="product-upsell__btn-check">&nbsp;</span>
+            </button>
+          </div>
+        </div>
+
+        <div data-cart-errors-container class="product-upsell__errors small"></div>
+      </div>
+    {% endraw %}    
+  </script>

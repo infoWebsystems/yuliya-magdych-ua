@@ -1,0 +1,170 @@
+{% liquid
+  assign default_title = 'home_page.sections.news_title' | t
+  assign default_content = 'home_page.onboarding.no_content' | t
+%}
+
+{% if section.blocks.size > 0 %}
+  <section class="blog-page" data-section-id="{{ section.id }}" data-section-type="blog-template">
+    <div class="blog-editorial" style="background-color: {{ section.settings.section_bg }};">
+      <div class="editorial__slider editorial__slider--{{ section.id }}" data-slider="{{ section.id }}" data-dots="hidden" data-arrows="true">
+        {% for block in section.blocks %}
+          {%- assign article = articles[block.settings.featured_post] -%}
+          <div class="editorial__slide editorial__slide--{{ block.id }}" data-slide="{{ block.id }}" data-slide-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+            <div class="editorial">
+              <div class="editorial__content">
+                <p class="editorial__subheading caps">{{ block.settings.subheading }}</p>
+                <h2 class="editorial__title">
+                  <a href="{{ article.url }}" title="{{ article.title | escape }}">
+                    {{ article.title | default: default_title }}
+                  </a>
+                </h2>
+                {% if section.settings.show_date or section.settings.show_author %}
+                  <h3 class="editorial__meta">
+                    {% if section.settings.show_date %}
+                      {% assign published_at = article.published_at | default: 'now' | date: format: 'full_date' %}
+                      <time datetime="{{ published_at }}">{{ published_at }}</time>
+                    {% endif %}
+
+                    {% if section.settings.show_author %}
+                      {% assign article_author = article.author | default: 'Jane Doe' %}
+                      <span class="editorial__meta__author">{{ 'blogs.article.by_author' | t: author: article_author }} </span>
+                    {% endif %}
+                  </h3>
+                {% endif %}
+                {%- unless article != blank and article.excerpt_or_content == blank -%}
+                  <div class="editorial__excerpt">
+                    <p>{{ article.excerpt_or_content | default: default_content | strip_html | truncatewords: 30 }}</p>
+                  </div>
+                {%- endunless -%}
+                {% if section.settings.show_button %}
+                  <p class="article__link"><a href="{{ article.url }}" class="standard__cta caps--large">{{ 'blogs.article.read_more' | t }}</a></p>
+                {% endif %}
+
+              </div>
+              {%- if article != blank and article.image -%}
+                {%- assign img_object = article.image -%}
+              {%- else -%}
+                {%- assign img_object = 'blank.svg' | asset_url -%}
+              {%- endif -%}
+              {%- if block.settings.image -%}
+                {%- assign img_object = block.settings.image -%}
+              {%- endif -%}
+
+              <div class="editorial__image">
+                <div
+                  class="editorial__image-bg"
+                  style="
+                    background-position: {{ block.settings.bg_position | replace: '-', ' ' }};
+                    background-image: image-set(
+                      url( {{ img_object | image_url: width: 1024 }} ) 1x,
+                      url( {{ img_object | image_url: width: 2048 }} ) 2x
+                    )
+                  "></div>
+                <noscript>
+                  <div
+                    class="editorial__image-bg no-js-image"
+                    style="
+                      background-image: image-set(
+                        url( {{ img_object | image_url: width: 1024 }} ) 1x,
+                        url( {{ img_object | image_url: width: 2048 }} ) 2x
+                      )
+                    "></div>
+                </noscript>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Featured blog posts",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_author",
+      "label": "Show author",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_date",
+      "label": "Show date",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_button",
+      "label": "Show 'Read more' button",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "featured_post",
+      "name": "Featured post",
+      "settings": [
+        {
+          "type": "article",
+          "id": "featured_post",
+          "label": "Featured post"
+        },
+        {
+          "type": "text",
+          "id": "subheading",
+          "label": "Subheading",
+          "default": "Featured post"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "Optional: replace the article featured image."
+        },
+        {
+          "type": "select",
+          "id": "bg_position",
+          "label": "Position",
+          "default": "center-center",
+          "options": [
+            {
+              "label": "Top",
+              "value": "center-top"
+            },
+            {
+              "label": "Right",
+              "value": "right-center"
+            },
+            {
+              "label": "Center",
+              "value": "center-center"
+            },
+            {
+              "label": "Left",
+              "value": "left-center"
+            },
+            {
+              "label": "Bottom",
+              "value": "center-bottom"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured blog posts",
+      "category": "Text",
+      "blocks": [
+        {
+          "type": "featured_post"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

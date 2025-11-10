@@ -1,0 +1,41 @@
+<!-- /snippets/split-hero-image.liquid -->
+{% comment %}
+  The background image of a split hero section
+
+  Accepts:
+  img_object {object} - The Image we will use
+
+  Usage:
+  {% render 'split-hero-image', image: section.settings.image %}
+{% endcomment %}
+
+<div class="split-hero__box">
+  {%- unless image == blank -%}
+    <div class="split-hero__image fade-in"
+      data-sizes="auto"
+      data-parent-fit="cover"
+      style="
+        background-position: {{ bg_position | replace: '-', ' ' }};
+        background-image: image-set(
+          url('{{ image | image_url: width: 1024 }}') 1x,
+          url('{{ image | image_url: width: 2048 }}') 2x,
+        )
+      ">
+    </div>
+    <noscript>
+      <div class="split-hero__image"
+        style="
+          background-image: image-set(
+            url('{{ image | image_url: width: 1024 }}') 1x,
+            url('{{ image | image_url: width: 2048 }}') 2x,
+          );
+          background-position: {{ bg_position | replace: '-', ' ' }};
+        ">
+      </div>
+    </noscript>
+  {%- else -%}
+    <div class="split-hero__image split-hero__image--onboarding">
+      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+    </div>
+  {%- endunless -%}
+</div>

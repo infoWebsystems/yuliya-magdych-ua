@@ -1,0 +1,78 @@
+<div class="announcement__wrapper"
+  data-announcement-wrapper
+  data-section-id="{{ section.id }}"
+  data-section-type="announcement" style="background-color: {{ section.settings.bg_color }}; color:{{ section.settings.color }}">
+  <div class="announcement__content">
+    <div class="announcement__top">
+      <span>{{ section.settings.text_top }}</span>
+      {% if section.settings.title_bottom != blank or section.settings.text_bottom != blank or section.settings.text_bottom_button != blank %}
+        <button class="announcement__show" data-container="announcement__bottom">{{ section.settings.text_button }} {% render 'icon-arrow-down-2' %}</button>
+      {% endif %}
+    </div>
+    {% if section.settings.title_bottom != blank or section.settings.text_bottom != blank or section.settings.text_bottom_button != blank  %}
+      <div class="announcement__bottom" id="announcement__bottom">
+        <div class="announcement__bottom_title">{{ section.settings.title_bottom }}</div>
+        <div class="announcement__bottom_text">{{ section.settings.text_bottom }}</div>
+        <a href="{{ section.settings.link_bottom_button }}" class="announcement__bottom_link">{{ section.settings.text_bottom_button }}</a>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Announcement bar",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background",
+      "default": "#f7f7f7"
+    },
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Text",
+      "default": "#545454"
+    },
+    {
+      "type": "text",
+      "id": "text_top",
+      "label": "Text top",
+      "default": "Text"
+    },
+    {
+      "type": "text",
+      "id": "text_button",
+      "label": "Text button",
+      "default": "See details"
+    },
+    {
+      "type": "text",
+      "id": "title_bottom",
+      "label": "Title bottom",
+      "default": "Title"
+    },
+    {
+      "type": "text",
+      "id": "text_bottom",
+      "label": "Text bottom"
+    },
+    {
+      "type": "text",
+      "id": "text_bottom_button",
+      "label": "Text bottom button",
+      "default": "Learn more"
+    },
+    {
+      "type": "url",
+      "id": "link_bottom_button",
+      "label": "Link bottom button"
+    }
+  ]
+}
+{% endschema %}

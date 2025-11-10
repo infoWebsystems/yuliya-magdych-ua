@@ -1,0 +1,53 @@
+<!-- /snippets/product-column-item.liquid -->
+{% comment %}
+    Renders a product item in sidebar column
+
+    Accepts:
+    - product: {Object} product (required)
+
+    Usage:
+    {% render 'product-column-item', product: product %}
+{% endcomment %}
+<a href="{{ product.url | within: collection }}" class="product__column">
+  {% if product.featured_media %}
+    <div class="product__column__image__wrapper">
+      <div
+        class="product__column__image"
+        style="background-image: image-set(
+          url({{ product.featured_media.preview_image | image_url: width: 300 }}) 1x,
+          url({{ product.featured_media.preview_image | image_url: width: 600 }}) 2x
+        )"
+      ></div>
+      <noscript>
+        <div class="product__column__image"
+          style="background-image:url('{{ product.featured_media.preview_image | image_url: width: 300 }}');"
+          role="img"
+          aria-label="{{ product.featured_media.alt | strip_html | escape }}"></div>
+      </noscript>
+    </div>
+  {% endif %}
+  <div class="product__column__contents">
+    <p class="product__column__title"><strong>{{ product.title | strip_html }}</strong></p>
+    <p class="meta--light">
+      <span class="price{% if product.compare_at_price > product.price %} sale{% endif %}">
+      {% if product.available %}
+        <span class="new-price">
+          {% if product.price_varies %}
+            <small>{{ 'products.general.from' | t }}</small>
+          {% endif %}
+          {%- if product.price_min == 0 -%}
+            {{ 'general.money.free' | t }}
+          {%- else -%}
+            {{ product.price_min | money }}
+          {%- endif -%}
+        </span>
+        {% if product.compare_at_price > product.price %}
+          <span class="old-price">{{ product.compare_at_price | money }}</span>
+        {% endif %}
+      {% else %}
+        <span class="sold-out">{{ 'products.product.sold_out' | t }}</span>
+      {% endif %}
+      </span>
+    </p>
+  </div>
+</a>

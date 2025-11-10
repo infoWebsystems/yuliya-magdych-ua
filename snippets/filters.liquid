@@ -1,0 +1,137 @@
+{%- assign filters_default = search.filters | default: collection.filters -%}
+
+<form data-collection-filters-form class="collection__filters">
+  {%- for filter in filters_default -%}
+    {%- assign filter_check_active = filter.values | where: 'active', false -%}
+    {%- assign filter_check_count = filter.values | where: 'count', 0 -%}
+    {%- assign filter_hidden = false -%}
+
+    {%- if filter.type == 'list' and filter.values.size == filter_check_active.size and filter.values.size == filter_check_count.size -%}
+      {%- assign filter_hidden = true -%}
+    {%- endif -%}
+    
+    <div class="collection__sidebar__group{% if filter_hidden %} collection__sidebar__group--hidden{% endif %}"{% if filter_hidden %} style="display: none;"{% endif %}>
+      <p class="collection__sidebar__heading is-active" data-collection-sidebar-heading>
+        <span>{{ filter.label }} </span>
+        {%- if filter.active_values.size > 0 -%}
+          <span>({{ filter.active_values.size }})</span>
+        {%- endif -%}
+      </p>
+
+      {%- assign option_name_handle_separator = filter.label | handle | prepend: ',' | append: ',' -%}
+      {%- if settings.color_swatches -%}
+  {% comment %} Determine if current option matches swatch handle translations {% endcomment %}
+  {%- assign is_swatch_option = false -%}
+  {%- assign swatch_translation = 'general.swatches.color' | t -%}
+  {%- assign translation_string = swatch_translation | remove: '  ' | replace: ', ', ',' | replace: ' ,', ',' | replace: ',', '____' | handle | replace: '____', ',' | append: ',' | prepend: ',' -%}
+  
+  {%- if translation_string contains option_name_handle_separator -%}
+    {%- assign is_swatch_option = true -%}
+  {%- endif -%}
+{%- endif -%}
+
+      {%- case filter.type -%}
+        {%- when 'list' -%}
+          <ul class="collection-nav {% if is_swatch_option %}collection-nav--inline{% endif %}">
+            {%- for filter_value in filter.values -%}
+              <li 
+                class="sidebar__item {% if is_swatch_option %}sidebar__item--swatch{% endif %} {% if filter_value.active %}sidebar__item--active link--remove{% elsif filter_value.count == 0 and filter_value.active == false %}link--disable{% else %}link--add{% endif %}{% if forloop.index > 10 %} is-hidden{% endif %}" {% if filter_value.active %}data-link-remove{% elsif filter_value.count == 0 and filter_value.active == false %}{% else %}data-link-add{% endif %} {% if forloop.index > 10 %}data-link-hidden{% endif %} >
+                {%- if is_swatch_option -%}
+                  <span class="swatch__button" data-tooltip="{{ filter_value.value | escape_once | capitalize }}">
+                    <input type="checkbox"
+                      name="{{ filter_value.param_name }}"
+                      value="{{ filter_value.value }}" 
+                      id="filter-{{ filter.label }}-{{ forloop.index }}"
+                      {% if filter_value.active -%}checked{%- endif %}
+                      {% if filter_value.count == 0 and filter_value.active == false -%}disabled{%- endif %}>
+
+                    <label for="filter-{{ filter.label }}-{{ forloop.index }}" data-swatch="{{ filter_value.label | escape_once }}">
+                      <span class="visually-hidden">{{ filter_value.label }}</span>
+                    </label>
+                  </span>
+                {%- else -%}    
+                  <input type="checkbox"
+                    name="{{ filter_value.param_name }}"
+                    value="{{ filter_value.value }}"
+                    id="filter-{{ filter.label }}-{{ forloop.index }}"
+                    {% if filter_value.active -%}checked{%- endif %}
+                    {% if filter_value.count == 0 and filter_value.active == false -%}disabled{%- endif %}>
+                  <label for="filter-{{ filter.label }}-{{ forloop.index }}">{{ filter_value.label }}</label>
+                {%- endif -%}
+              </li>
+            {%- endfor -%}
+          </ul>
+
+          {%- if filter.values.size > 10 -%}
+            <div class="collection__sidebar__actions">
+              <a href="#" data-show-more class="collection__sidebar__link">{{ 'collections.general.show_more' | t }}</a>
+            </div>
+          {%- endif -%}
+        {%- when 'price_range' -%}
+          <div class="filter__price" data-range-holder>
+            {%- assign filter_max_money = filter.range_max | money_without_currency | replace: ',', '' -%}
+            {%- assign filter_max_money_ceil = filter_max_money | ceil -%}
+            {%- assign filter_min_value = 0 -%}
+            {%- assign filter_max_value = filter_max_money_ceil -%}
+
+            {%- if filter.min_value.value -%}
+              {%- assign filter_min_value = filter.min_value.value | money_without_currency | replace: ',', '' | floor -%}
+            {%- endif -%}
+
+            {%- if filter.max_value.value -%}
+              {%- assign filter_max_value = filter.max_value.value | money_without_currency | replace: ',', '' | ceil -%}
+            {%- endif -%}
+
+            <div class="filter__price__range range" data-range-slider data-range-filter-update data-se-min="0" data-se-step="1" data-se-min-value="{{ filter_min_value }}" data-se-max-value="{{ filter_max_value }}" data-se-max="{{ filter_max_money_ceil }}">
+              <div class="range__dot range__dot--left" data-range-left>
+                <span>&nbsp;</span>
+              </div>
+              <div class="range__dot range__dot--right" data-range-right>
+                <span>&nbsp;</span>
+              </div>
+              <div class="range__line">
+                <span data-range-line>&nbsp;</span>
+              </div>
+            </div>
+
+            <div class="filter__price__fields">
+              <div class="filter__price__field filter__price__from">
+                <span>{{ cart.currency.symbol }}</span>
+  
+                <input 
+                  data-field-price-min
+                  class="filter__price__input"
+                  name="{{ filter.min_value.param_name }}"
+                  id="filter-price-from-{{ filter.label }}-{{ forloop.index }}"
+                  {% if filter.min_value.value %}value="{{ filter_min_value }}"{% endif %}
+                  type="number"
+                  placeholder="{{ filter_min_value }}"
+                  min="0"
+                  max="{{ filter.range_max | money_without_currency | replace: ',', '' }}">
+  
+                <label for="filter-price-from-{{ filter.label }}-{{ forloop.index }}">{{ 'products.general.from' | t }}</label>
+              </div>
+              <div class="filter__price__spacer">-</div>
+              <div class="filter__price__field filter__price__to">
+                <span>{{ cart.currency.symbol }}</span>
+  
+                <input 
+                  data-field-price-max
+                  class="filter__price__input"
+                  name="{{ filter.max_value.param_name }}"
+                  id="filter-price-to-{{ filter.label }}-{{ forloop.index }}"
+                  {% if filter.max_value.value %}value="{{ filter_max_value }}"{% endif %}
+                  type="number"
+                  placeholder="{{ filter_max_value }}"
+                  min="0"
+                  max="{{ filter_max_money_ceil }}">
+  
+                <label for="filter-price-to-{{ filter.label }}-{{ forloop.index }}">{{ 'products.general.to' | t }}</label>
+              </div>
+            </div>
+          </div>
+        {%- else -%}
+      {%- endcase -%}
+    </div>
+  {%- endfor -%}
+</form>

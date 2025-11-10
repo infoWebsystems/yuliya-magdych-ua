@@ -1,0 +1,397 @@
+<!-- /sections/section-tab-collection.liquid -->
+{%- liquid
+  assign mobile_slider = "product-grid--mobile-slider"
+  assign layout_grid = 'product-grid--slider flickity-button-circle'
+  assign layout_grid_attributes = 'data-slider="' | append: section.id | append: '" data-infinite="false" data-cell-align="left" data-watch-css="true" data-group-cells="true"'
+
+  capture onboarding_products_one
+    for i in (1..6)
+      capture index
+        cycle 1, 2, 3, 4, 5, 6
+      endcapture
+      assign layout_slide_attributes = 'data-slide="' | append: forloop.index0 | append: '" data-slide-index="' | append: forloop.index0 | append: '"'
+      render 'onboarding-product-grid-item', additional_attributes: layout_slide_attributes, index: index, placeholder_root: 'product-', grid_strings: 'one-quarter small--one-whole'
+    endfor
+  endcapture
+
+  capture onboarding_products_two
+    for i in (1..6)
+      capture index
+        cycle 6, 5, 4, 3, 2, 1
+      endcapture
+      assign layout_slide_attributes = 'data-slide="' | append: forloop.index0 | append: '" data-slide-index="' | append: forloop.index0 | append: '"'
+      render 'onboarding-product-grid-item', additional_attributes: layout_slide_attributes, index: index, placeholder_root: 'product-', grid_strings: 'one-quarter small--one-whole'
+    endfor
+  endcapture
+-%}
+
+<section class="index-tab-collections layout--slider"
+  data-section-id="{{ section.id }}"
+  data-section-type="product-grid">
+
+  {%- if section.settings.title != blank -%}
+    <h2 class="grid__heading text-center"
+      data-aos="hero"
+      data-aos-anchor="{{ animation_anchor }}"
+      data-aos-order="1">{{ section.settings.title }}</h2>
+  {%- endif -%}
+
+  {%- if section.blocks.size > 0 -%}
+    {%- assign current_idx = 0 -%}
+
+    {%- if section.blocks.size > 2 -%}
+      {%- assign current_idx = 1 -%}
+    {%- endif -%}
+
+    <div class="tabs-collections" data-tabs-holder data-start-index="{{ current_idx }}">
+      {%- assign tabs_navigation = '' -%}
+      {%- assign tabs = '' -%}
+
+      {%- for block in section.blocks -%}
+        {%- assign featured_collection = collections[block.settings.featured_collection] -%}
+        {%- assign featured_collection_title = block.settings.title | default: featured_collection.title | default: 'Collection' -%}
+
+        {%- capture tabs_navigation -%}
+          {{ tabs_navigation }}
+
+          <li class="tab-link tab-link-{{ forloop.index0 }}"
+            data-focus-element
+            data-tab="{{ forloop.index0 }}"
+            data-block-id="{{ block.id }}"
+            tabindex="0"
+            data-aos="hero"
+            data-aos-order="1"
+            {{ block.shopify_attributes }}>
+            <span
+              data-aos="hero"
+              data-aos-anchor="{{ animation_anchor }}"
+              data-aos-order="1">{{ featured_collection_title }}</span>
+          </li>
+        {%- endcapture -%}
+
+        {%- capture tabs -%}
+          {{ tabs }}
+
+          <div class="tab-content tab-content-{{ forloop.index0 }}">
+            <div class="grid-container">
+              {%- assign grid_strings = 'one-quarter small--one-whole' -%}
+
+              {%- capture featured_image -%}
+                {%- if block.settings.show_image -%}
+                  {%- liquid
+                    assign grid_strings = ''
+                    assign overlay_opacity = block.settings.overlay_opacity | times: 0.01
+                    assign link = block.settings.link | default: featured_collection.url
+                    assign link_text = block.settings.link_text
+                    if block.settings.image != blank
+                      assign img_object = block.settings.image
+                    else
+                      assign img_object = 'blank.svg' | asset_url
+                    endif
+                  -%}
+
+                  {%- capture image_attributes -%}
+                    class="grid__heading-holder grid__heading-holder--end {{ block.settings.text_color }} lazyload"
+                    aria-label="{{ block.settings.image.alt | strip_html | escape }}"
+                    role="img"
+                    data-aos="img-in"
+                    data-aos-delay="{{ animation_delay | times: 150 }}"
+                    data-aos-duration="{{ animation_delay | times: 100 | plus: 800 }}"
+                    data-aos-anchor="{{ animation_anchor }}"
+                    data-aos-easing="ease-out-quart"
+                    data-bgset="{% render 'bgset', image: img_object %}"
+                  {%- endcapture -%}
+
+                  {%- if link_text == blank and link != blank -%}
+                    <a href="{{ link }}" {{ image_attributes }}>
+                  {%- else -%}
+                    <div {{ image_attributes }}>
+                  {%- endif -%}
+
+                    <div class="image-overlay" style="background-color:{{ block.settings.overlay_color }}; opacity:{{ overlay_opacity }};"></div>
+
+                    {%- if featured_collection.products.size > 0 -%}
+                      <span class="grid__counter"
+                        data-aos="hero"
+                        data-aos-anchor="{{ animation_anchor }}"
+                        data-aos-order="2">{{ 'general.products_with_count' | t: count: featured_collection.products.size }}</span>
+                    {%- endif -%}
+
+                    {%- if block.settings.description != blank -%}
+                      <div class="grid__description"
+                        data-aos="hero"
+                        data-aos-anchor="{{ animation_anchor }}"
+                        data-aos-order="2">
+                        {{ block.settings.description }}
+                      </div>
+                    {%- endif -%}
+
+                    {%- if link_text != blank -%}
+                      <div class="grid__btn-wrapper">
+                        <a class="{{ block.settings.button_style }} {{ block.settings.button_color }}"
+                          href="{{ link | default: '#' }}"
+                          data-aos="hero"
+                          data-aos-anchor="{{ animation_anchor }}"
+                          data-aos-order="3">
+                          {{ link_text | escape }}
+                        </a>
+                      </div>
+                    {%- endif -%}
+
+                  {%- if link_text == blank and link != blank -%}
+                    </a>
+                  {%- else -%}
+                    </div>
+                  {%- endif -%}
+                {%- endif -%}
+              {%- endcapture -%}
+
+              <div class="product-grid-outer">
+                <div class="product-grid{% if block.settings.show_image %} product-grid--slider-alt{% endif %} {{ mobile_slider }} {{ layout_grid }}{% unless settings.product_grid_outline %} product-grid--borderless{% endunless %}" data-arrows="true" data-arrow-position-middle {{ layout_grid_attributes }}>
+                  {% if block.settings.show_image %}
+                    <div class="product-item">
+                      {{ featured_image }}
+                    </div>
+                  {% endif %}
+
+                  {% if featured_collection.products.size > 0 %}
+                    {% for product in featured_collection.products limit: 50 %}
+                      {%- assign layout_slide_attributes = 'data-slide="' | append: forloop.index0 | append: '" data-slide-index="' | append: forloop.index0 | append: '"' -%}
+                      {% render 'product-grid-item', product: product, animation_delay: forloop.index0, additional_attributes: layout_slide_attributes, index: forloop.index, grid_strings: grid_strings %}
+                    {% endfor %}
+                  {% else %}
+                    {% assign tab_index = forloop.index | modulo: 2 %}
+                    {% if tab_index == 0 %}
+                      {{ onboarding_products_one | replace: 'one-quarter small--one-whole', grid_strings }}
+                    {% else %}
+                      {{ onboarding_products_two | replace: 'one-quarter small--one-whole', grid_strings }}
+                    {% endif %}
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        {%- endcapture -%}
+      {%- endfor -%}
+
+      {%- if tabs_navigation != '' and section.blocks.size > 1 -%}
+        <div class="tabs__head tabs-collections__head"
+          data-aos="hero"
+          data-aos-anchor="{{ animation_anchor }}"
+          data-aos-order="1">
+          <ul class="tabs tabs--center" data-scrollbar data-scrollbar-slider>
+            {{ tabs_navigation }}
+          </ul>
+
+          <button type="button" class="tabs__arrow tabs__arrow--prev tabs-collections__arrow tabs-collections__arrow--prev is-hidden" data-scrollbar-arrow-prev>
+            <span class="visually-hidden">{{ 'products.general.see_all' | t }}</span>
+          </button>
+
+          <button type="button" class="tabs__arrow tabs__arrow--next tabs-collections__arrow tabs-collections__arrow--next is-hidden" data-scrollbar-arrow-next>
+            <span class="visually-hidden">{{ 'products.general.see_all' | t }}</span>
+          </button>
+        </div>
+      {%- endif -%}
+
+      {{ tabs }}
+    </div>
+  {%- else -%}
+    <div class="grid-container text-center">
+      {% render 'no-blocks' %}
+    </div>
+  {%- endif -%}
+
+</section>
+
+{% schema %}
+{
+  "name": "Tab collections",
+  "settings": [
+    {
+      "label": "Heading",
+      "id": "title",
+      "type": "text"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Collection"
+        },
+        {
+          "label": "Tab heading",
+          "id": "title",
+          "type": "text"
+        },
+        {
+          "type": "collection",
+          "id": "featured_collection",
+          "label": "Collection"
+        },
+        {
+          "type": "header",
+          "content": "Image"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_image",
+          "label": "Show image",
+          "default": false
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "header",
+          "content": "Overlay"
+        },
+        {
+          "type": "range",
+          "id": "overlay_opacity",
+          "label": "Opacity",
+          "info": "Increase contrast for legible text.",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "unit": "%",
+          "default": 0
+        },
+        {
+          "type": "color",
+          "id": "overlay_color",
+          "label": "Overlay color",
+          "default": "#000"
+        },
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "select",
+          "id": "text_color",
+          "label": "Text color",
+          "default": "text-light",
+          "options": [
+            {
+              "value": "text-light",
+              "label": "White"
+            },
+            {
+              "value": "text-dark",
+              "label": "Dark"
+            }
+          ]
+        },
+        {
+          "type": "header",
+          "content": "Button"
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Text",
+          "default": "View products",
+          "info": "Leave blank to link entire image"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "select",
+          "id": "button_color",
+          "label": "Color",
+          "default": "btn--white",
+          "options": [
+            {
+              "value": "btn--primary",
+              "label": "Bright accent"
+            },
+            {
+              "value": "btn--secondary",
+              "label": "Secondary accent"
+            },
+            {
+              "value": "btn--link",
+              "label": "Link color"
+            },
+            {
+              "value": "btn--neutral",
+              "label": "Text color"
+            },
+            {
+              "value": "btn--black",
+              "label": "Black"
+            },
+            {
+              "value": "btn--white",
+              "label": "White"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "button_style",
+          "label": "Style",
+          "default": "hero__btn btn btn--large btn--outline caps",
+          "options": [
+            {
+              "value": "caps--large",
+              "label": "Capitalized text"
+            },
+            {
+              "value": "hero__btn btn btn--input caps",
+              "label": "Small button"
+            },
+            {
+              "value": "hero__btn btn btn--large caps",
+              "label": "Large button"
+            },
+            {
+              "value": "hero__btn btn btn--input btn--outline caps",
+              "label": "Small outline button"
+            },
+            {
+              "value": "hero__btn btn btn--large btn--outline caps",
+              "label": "Large outline button"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "category": "Collection",
+      "name": "Tab collections",
+      "blocks": [
+        {
+          "type": "collection",
+          "settings": {
+            "title": "First collection"
+          }
+        },
+        {
+          "type": "collection",
+          "settings": {
+            "title": "Second collection"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

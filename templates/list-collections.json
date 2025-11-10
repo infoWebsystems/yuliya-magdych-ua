@@ -1,0 +1,111 @@
+{
+  "sections": {
+    "main": {
+      "type": "list-collections",
+      "blocks": {
+        "collection_PMjkLy": {
+          "type": "collection",
+          "settings": {
+            "collection": "півонії",
+            "collection_name": "ПІВОНІЇ",
+            "bg_position": "center-center"
+          }
+        },
+        "fc0f655d-e0ae-423a-8aa2-3eaa8d47f879": {
+          "type": "collection",
+          "settings": {
+            "collection": "roses",
+            "collection_name": "",
+            "bg_position": "center-center"
+          }
+        },
+        "d45016bb-a843-447a-a41c-1ac699a7349d": {
+          "type": "collection",
+          "settings": {
+            "collection": "kolossya",
+            "collection_name": "КОЛОССЯ",
+            "bg_position": "center-center"
+          }
+        },
+        "64674e34-e6e5-4ca1-8920-7b567cfe436b": {
+          "type": "collection",
+          "settings": {
+            "collection": "vechornitzi",
+            "collection_name": "Вечорниці",
+            "bg_position": "center-center"
+          }
+        },
+        "collection_Wjzgnq": {
+          "type": "collection",
+          "settings": {
+            "collection": "pixel-flowers",
+            "collection_name": "ПІКСЕЛЬНІ КВІТИ",
+            "bg_position": "center-center"
+          }
+        },
+        "collection_fydyBN": {
+          "type": "collection",
+          "settings": {
+            "collection": "sotton",
+            "collection_name": "БАВОВНА",
+            "bg_position": "center-center"
+          }
+        },
+        "69ed2947-df8b-403a-867f-f6b091fd9482": {
+          "type": "collection",
+          "settings": {
+            "collection": "mimosa",
+            "collection_name": "МІМОЗА",
+            "bg_position": "center-center"
+          }
+        },
+        "c0249838-b0b5-4c00-900a-c2588ac379b0": {
+          "type": "collection",
+          "settings": {
+            "collection": "lilies",
+            "collection_name": "",
+            "bg_position": "center-center"
+          }
+        },
+        "a5f65b38-2863-408a-a7ec-ba3c724624d1": {
+          "type": "collection",
+          "settings": {
+            "collection": "exstasy",
+            "collection_name": "",
+            "bg_position": "center-center"
+          }
+        },
+        "5bed4335-9f5f-48c9-8703-2d531c662da6": {
+          "type": "collection",
+          "settings": {
+            "collection": "pansies",
+            "collection_name": "",
+            "bg_position": "center-center"
+          }
+        }
+      },
+      "block_order": [
+        "collection_PMjkLy",
+        "fc0f655d-e0ae-423a-8aa2-3eaa8d47f879",
+        "d45016bb-a843-447a-a41c-1ac699a7349d",
+        "64674e34-e6e5-4ca1-8920-7b567cfe436b",
+        "collection_Wjzgnq",
+        "collection_fydyBN",
+        "69ed2947-df8b-403a-867f-f6b091fd9482",
+        "c0249838-b0b5-4c00-900a-c2588ac379b0",
+        "a5f65b38-2863-408a-a7ec-ba3c724624d1",
+        "5bed4335-9f5f-48c9-8703-2d531c662da6"
+      ],
+      "settings": {
+        "display_type": "selected",
+        "title": "Колекції",
+        "grid": 4,
+        "rows": 1,
+        "layout_mobile": "carousel"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

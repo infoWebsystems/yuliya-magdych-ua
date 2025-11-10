@@ -1,0 +1,15 @@
+{
+  "sections": {
+    "main": {
+      "type": "search",
+      "settings": {
+        "enable_sort": false,
+        "enable_filters": false,
+        "filter_layout": "inline-open"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

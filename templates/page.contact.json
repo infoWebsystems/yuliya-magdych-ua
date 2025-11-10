@@ -1,0 +1,136 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "subheading": "",
+        "show_title": true,
+        "show_content": true,
+        "text_size": 2,
+        "align_text": "text-center",
+        "height": "margin--small",
+        "width": "wrapper--narrow",
+        "text_color": "text-dark",
+        "bg_color": "#f7f7f7"
+      }
+    },
+    "contact": {
+      "type": "contact-form",
+      "blocks": {
+        "Name": {
+          "type": "text",
+          "settings": {
+            "title": "Повне ім'я",
+            "required": false
+          }
+        },
+        "Email": {
+          "type": "email",
+          "settings": {
+            "title": "Електрона пошта",
+            "required": true
+          }
+        },
+        "Message": {
+          "type": "body",
+          "settings": {
+            "title": "Повідомлення",
+            "required": true
+          }
+        },
+        "Optional-text": {
+          "type": "formHeading",
+          "settings": {
+            "title": "Необов'язково"
+          }
+        },
+        "Urgent-checkbox": {
+          "type": "checkbox",
+          "settings": {
+            "title": "Це терміново",
+            "required": false
+          }
+        },
+        "Options-select": {
+          "type": "select",
+          "disabled": true,
+          "settings": {
+            "title": "Виберіть опцію",
+            "label-one": "- Оберіть варіант -",
+            "label-two": "Option one",
+            "label-three": "Option two",
+            "label-four": "Option three",
+            "label-five": "Option four",
+            "label-six": "Option five"
+          }
+        }
+      },
+      "block_order": [
+        "Name",
+        "Email",
+        "Message",
+        "Optional-text",
+        "Urgent-checkbox",
+        "Options-select"
+      ],
+      "settings": {
+        "title": "",
+        "terms": true,
+        "height": "margin--small",
+        "width": "wrapper--narrow",
+        "text_color": "text-dark",
+        "bg_color": "#ffffff"
+      }
+    },
+    "faq": {
+      "type": "page-faq",
+      "blocks": {
+        "heading-0": {
+          "type": "heading",
+          "settings": {
+            "title": "FAQ"
+          }
+        },
+        "question-1": {
+          "type": "question",
+          "settings": {
+            "title": "Frequently asked question",
+            "content": "<p>Share details about your shipping policies, item returns, or customer service.<\/p>"
+          }
+        },
+        "question-2": {
+          "type": "question",
+          "settings": {
+            "title": "Frequently asked question",
+            "content": "<p>Share details about your shipping policies, item returns, or customer service.<\/p>"
+          }
+        },
+        "question-3": {
+          "type": "question",
+          "settings": {
+            "title": "Frequently asked question",
+            "content": "<p>Share details about your shipping policies, item returns, or customer service.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading-0",
+        "question-1",
+        "question-2",
+        "question-3"
+      ],
+      "disabled": true,
+      "settings": {
+        "width": "wrapper--narrow",
+        "height": "margin--small",
+        "text_color": "text-dark",
+        "bg_color": "#fafafa"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "contact",
+    "faq"
+  ]
+}

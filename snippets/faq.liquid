@@ -1,0 +1,75 @@
+{%- assign animation_anchor = '#faq--' | append: section.id -%}
+
+<section class="section-faq accordion" id="faq--{{ section.id }}" data-accordion>
+  {%- if section.settings.title != blank -%}
+    <h2 data class="section-faq__title accordion__title" data-focus-element tabindex="0" data-accordion-toggle>{{ section.settings.title }}</h2>
+  {%- endif -%}
+
+  <div class="section__body accordion__body" data-accordion-body>
+    <div class="faq-list-holder">
+      <div class="faq-list faq-list--{{ section.blocks.size }}">
+        {%- for block in section.blocks -%}
+          {% capture text_content %}
+            <div class="faq-list__item-description">
+              {%- if block.settings.title != blank -%}
+                <h3 class="faq-list__item-title">
+                  {{ block.settings.title }}
+                </h3>
+              {%- endif -%}
+
+              <div class="rte faq-list__item-content">
+                {{ block.settings.text }}
+              </div>
+            </div>
+          {% endcapture %}
+
+          {%- case block.type -%}
+            {%- when '@app' -%}
+              <div class="faq-list__item">
+                {%- render block -%}
+              </div>
+
+            {%- when 'text' -%}
+              <div class="faq-list__item" {{ block.shopify_attributes }}>
+                {{ text_content }}
+              </div>
+            {%- when 'icon' -%}
+              <div class="faq-list__item" {{ block.shopify_attributes }}>
+                <div class="faq-list__item-icon">
+                  <style>
+                    .icon__animated--{{ block.id }} {
+                      --text: {{ block.settings.icon_color }};
+                    }
+                  </style>
+                  <div class="icon__animated icon__animated--{{ block.id }}"
+                  data-aos="svg-dash"
+                  data-aos-anchor="{{ animation_anchor }}"
+                  data-aos-delay="500">
+                    {% render 'animated-icon', filename: block.settings.icon_name %}
+                  </div>
+                </div>
+                {{ text_content }}
+              </div>
+            {%- when 'image' -%}
+              <div class="faq-list__item" {{ block.shopify_attributes }}>
+                <div class="faq-list__item-image">
+                  {%- render 'image-fill', img_object: block.settings.image, bg_position: block.settings.bg_position, aspect_ratio: block.settings.aspect_ratio -%}
+                </div>
+                {{ text_content }}
+              </div>
+            {%- when 'html' -%}
+              <div class="faq-list__item" {{ block.shopify_attributes }}>
+                {{ block.settings.html }}
+              </div>
+            {%- else -%}
+          {%- endcase -%}
+        {%- endfor -%}
+
+        {% if section.blocks.size == 0 %}
+          {% render 'no-blocks' %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+

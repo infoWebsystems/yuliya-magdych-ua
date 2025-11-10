@@ -1,0 +1,151 @@
+{% if linklists[collection.handle].links.size > 0 %}
+  <section class="collection collection-{{ collection.handle }}"
+    data-section-id="{{ section.id }}"
+    data-section-type="collection">
+    {%- assign sub_collections = linklists[collection.handle].links -%}
+
+    {%- if sub_collections.size > 0 -%}
+      {%- assign sub_collection_html = '' -%}
+      {%- assign sub_collection_counter = 0 -%}
+      {%- assign sub_collection_limit = 6 -%}
+
+
+      {%- for sublink in sub_collections -%}
+        {%- if sublink.type != 'collection_link' or sublink.object.handle == blank -%}
+          {%- continue -%}
+        {%- endif -%}
+
+        {%- assign sub_collection_handle = sublink.object.handle -%}
+        {%- assign sub_collection_handle_separator = sub_collection_handle | append: ',' | prepend: ',' -%}
+        {%- assign sub_collection = collections[sub_collection_handle] -%}
+
+        {%- if sublink.object.handle contains sub_collection_handle_separator or sub_collection.products.size == 0 -%}
+          {%- continue -%}
+        {%- endif -%}
+
+        {%- capture sub_collection_html -%}
+          {{ sub_collection_html }}
+
+          <div class="subcollection__item" data-slide="{{ forloop.index0 }}" data-slide-index="{{ forloop.index0 }}">
+            <div class="subcollection__inner">
+              <a class="subcollection__link" href="{{ sub_collection.url }}">
+                <div class="subcollection__image">
+                  {%- assign image = sub_collection.image -%}
+
+                  {%- if section.settings.select_image == 'product' or image == blank -%}
+                    {%- assign image = sub_collection.products.first.featured_media.preview_image -%}
+                  {%- endif -%}
+
+                  {%- if image != blank -%}
+                    {%- render 'image-background', img_object: image, frame_height_class: 'subcollection__height', bg_position: section.settings.featured_image_bg_position -%}
+                  {%- else -%}
+                    {%- comment -%} Show "No image"{%- endcomment -%}
+                    {%- assign img_api = image | image_url: width: 540 | replace: '_540x.', '_{width}x.' -%}
+                    {%- comment -%} <img
+                      class="lazyload"
+                      src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                      data-src="{{ img_api }}"
+                      data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                      data-aspectratio="1"
+                      data-sizes="auto"
+                      width="540"
+                      height="540"
+                      loading="lazy"
+                      alt="{{ sub_collection.title | strip_html | escape }}"> {%- endcomment -%}
+
+                      {{ image | image_url: width: 540 | image_tag: loading: 'lazay' }}
+
+                    <noscript>
+                      {{ image | image_url: width: 540 | image_tag: alt: sub_collection.title, loading: 'lazy' }}
+                    </noscript>
+                  {%- endif -%}
+                </div>
+                <div class="image-overlay-bottom"></div>
+                <div class="subcollection__text">
+                  <p class="subcollection__title h5">{{ sub_collection.title }}</p>
+                  {%- if sub_collection.description != '' and section.settings.subcollection_description -%}
+                    <div class="subcollection__description">{{ sub_collection.description }}</div>
+                  {%- endif -%}
+                </div>
+              </a>
+            </div>
+          </div>
+        {%- endcapture -%}
+
+        {%- assign sub_collection_counter = sub_collection_counter | plus: 1 -%}
+
+        {%- if sub_collection_counter >= sub_collection_limit -%}
+          {%- break -%}
+        {%- endif -%}
+      {%- endfor -%}
+
+      {%- if sub_collection_html != '' -%}
+        {%- assign layout_grid_classes = '' -%}
+        {%- assign layout_grid_attributes = '' -%}
+
+        {%- if section.settings.subcollection_layout == 'carousel' and sub_collection_counter > 4 -%}
+          {%- assign layout_grid_classes = 'subcollections__inner--slider flickity-button-circle' -%}
+          {%- assign layout_grid_attributes = 'data-slider="' | append: section.id | append: '" data-watch-css="true" data-cell-align="left" data-dots="hidden" data-arrows="true"' -%}
+        {%- endif -%}
+
+        <div class="subcollections subcollections__grid--{{ sub_collection_counter | at_most: 6 }}">
+          <div class="subcollections__inner {{ layout_grid_classes }}" {{ layout_grid_attributes }}>
+            {{ sub_collection_html }}
+          </div>
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+  </section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Subcollections",
+  "templates": [
+    "collection"
+  ],
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Create a [navigation list](/admin/menus) with the same name as this collection and link to other collections. [Learn more](https://invisiblethemes.com/link/broadcast/docs/subcollection)"
+    },
+    {
+      "type": "select",
+      "id": "subcollection_layout",
+      "label": "Layout",
+      "options": [
+        {
+          "value": "grid",
+          "label": "Grid"
+        },
+        {
+          "value": "carousel",
+          "label": "Carousel"
+        }
+      ],
+      "default": "grid"
+    },
+    {
+      "type": "checkbox",
+      "id": "subcollection_description",
+      "label": "Show description",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "select_image",
+      "label": "Select a photo to display",
+      "options": [
+        {
+          "value": "collection",
+          "label": "Collection image"
+        },
+        {
+          "value": "product",
+          "label": "Product image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,177 @@
+<!-- /sections/related.liquid -->
+{%- assign has_related_products = section.settings.related_products_enable -%}
+{%- assign has_recently_products = section.settings.show_recently_viewed -%}
+
+{%- if has_related_products and product.collections.size < 1 -%}
+  {% assign has_related_products = false %}
+{%- endif -%}
+
+<div class="related__wrapper js" data-section-id="{{ section.id }}" data-section-type="related">
+
+  {%- if has_related_products and has_recently_products != true -%}
+    <div class="tabs-wrapper related__products" data-tabs-holder>
+      <div class="tabs__head">
+        <ul class="tabs tabs--center" data-scrollbar data-scrollbar-slider>
+          <li class="tab-link tab-link-0 current" data-tab="0" tabindex="0">
+            {%- if section.settings.product_recommendations_heading != blank -%}
+              <h2 class="recent__title">
+                {{- section.settings.product_recommendations_heading -}}
+              </h2>
+            {%- endif -%}
+          </li>
+  
+          <li class="tab-link tab-link-1 tab-link__recent hide" data-tab="1" tabindex="0"></li>
+        </ul>
+
+        <button type="button" class="tabs__arrow tabs__arrow--prev is-hidden" data-scrollbar-arrow-prev>
+          <span class="visually-hidden">{{ 'products.general.see_all' | t }}</span>
+        </button>
+  
+        <button type="button" class="tabs__arrow tabs__arrow--next is-hidden" data-scrollbar-arrow-next>
+          <span class="visually-hidden">{{ 'products.general.see_all' | t }}</span>
+        </button>
+      </div>
+
+      <div class="tab-content tab-content-0 current tabs__recommendation" data-tab-index="0">
+        <div data-related-section data-limit="{{ section.settings.limit }}" data-product-id="{{ product.id }}">
+          {%- render 'products-recommendation', product: product -%}
+        </div>
+      </div>
+
+      <div class="tab-content tab-content-1 tabs__recently-viewed hide" data-tab-index="1"></div>
+    </div>
+
+  {%- elsif has_recently_products and has_related_products != true -%}
+    <div class="tabs-wrapper related__products" data-tabs-holder>
+      <div class="tabs__head">
+        <ul class="tabs tabs--center" data-scrollbar data-scrollbar-slider>
+          <li class="tab-link tab-link-0 hide" data-tab="0" tabindex="0"></li>
+  
+          <li class="tab-link tab-link-1 tab-link__recent current hide" data-tab="1" tabindex="0">
+            {%- if section.settings.product_recently_heading != blank -%}
+              <h2 class="recent__title">
+                {{- section.settings.product_recently_heading -}}
+              </h2>
+            {%- endif -%}
+          </li>
+        </ul>
+
+        <button type="button" class="tabs__arrow tabs__arrow--prev is-hidden" data-scrollbar-arrow-prev>
+          <span class="visually-hidden">{{ 'products.general.see_all' | t }}</span>
+        </button>
+  
+        <button type="button" class="tabs__arrow tabs__arrow--next is-hidden" data-scrollbar-arrow-next>
+          <span class="visually-hidden">{{ 'products.general.see_all' | t }}</span>
+        </button>
+      </div>
+
+      <div class="tab-content tab-content-0 tabs__recommendation hide" data-tab-index="0"></div>
+
+      <div class="tab-content tab-content-1 tabs__recently-viewed current" data-tab-index="1">
+        {%- render 'products-recently-viewed', product: product, limit: section.settings.product_recently_limit -%}
+      </div>
+    </div>
+
+  {%- elsif has_related_products and has_recently_products -%}
+    <div class="tabs-wrapper related__products" data-tabs-holder>
+      <div class="tabs__head">
+        <ul class="tabs tabs--center" data-scrollbar data-scrollbar-slider>
+          <li class="tab-link tab-link-0 current" data-tab="0" tabindex="0">
+            {%- if section.settings.product_recommendations_heading != blank -%}
+              <h2 class="recent__title">
+                {{- section.settings.product_recommendations_heading -}}
+              </h2>
+            {%- endif -%}
+          </li>
+  
+          {%- if section.settings.show_recently_viewed -%}
+            <li class="tab-link tab-link-1 tab-link__recent hide" data-tab="1" tabindex="0">
+              {%- if section.settings.product_recently_heading != blank -%}
+                <h2 class="recent__title">
+                  {{- section.settings.product_recently_heading -}}
+                </h2>
+              {%- endif -%}
+            </li>
+          {%- endif -%}
+        </ul>
+
+        <button type="button" class="tabs__arrow tabs__arrow--prev is-hidden" data-scrollbar-arrow-prev>
+          <span class="visually-hidden">{{ 'products.general.see_all' | t }}</span>
+        </button>
+  
+        <button type="button" class="tabs__arrow tabs__arrow--next is-hidden" data-scrollbar-arrow-next>
+          <span class="visually-hidden">{{ 'products.general.see_all' | t }}</span>
+        </button>
+      </div>
+
+      <div class="tab-content tab-content-0 current tabs__recommendation" data-tab-index="0">
+        <div data-related-section data-limit="{{ section.settings.limit }}" data-product-id="{{ product.id }}">
+          {%- render 'products-recommendation', product: product -%}
+        </div>
+      </div>
+
+      <div class="tab-content tab-content-1 tabs__recently-viewed" data-tab-index="1">
+        {%- render 'products-recently-viewed', product: product, limit: section.settings.product_recently_limit -%}
+      </div>
+    </div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Product recommendations",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Related products"
+    },
+    {
+      "type": "checkbox",
+      "id": "related_products_enable",
+      "label": "Show related products",
+      "info": "Dynamic recommendations change and improve with time. [Learn more](https://help.shopify.com/en/themes/development/recommended-products)",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "limit",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "label": "Product limit",
+      "default": 4
+    },
+    {
+      "type": "text",
+      "id": "product_recommendations_heading",
+      "label": "Heading",
+      "default": "Related products"
+    },
+    {
+      "type": "header",
+      "content": "Recently viewed products"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_recently_viewed",
+      "label": "Show recently viewed products",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "product_recently_limit",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "label": "Product limit",
+      "default": 4
+    },
+    {
+      "type": "text",
+      "id": "product_recently_heading",
+      "label": "Heading",
+      "default": "Recently viewed"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,163 @@
+<div data-api-content>
+  <div class="form-quick-add">
+    {%- assign current_collection = '||collection-index||' -%}
+    {%- assign current_variant = product.selected_or_first_available_variant -%}
+    {%- assign uniq_id = 'product-' | append: product.id | append: '-' | append: current_collection -%}
+
+    {%- form 'product', product, data-form-quick-add: '', id: uniq_id -%}
+      <script type="application/json" data-product-json>
+        {{ product | json }}
+      </script>
+      <script type="application/json" data-product-options-json>
+        {{ product.options_with_values | json }}
+      </script>
+
+      <input type="hidden" name="id" value="{{ current_variant.id }}">
+
+      {%- unless product.has_only_default_variant -%}
+        {%- for option in product.options_with_values -%}
+          {%- assign is_last = false -%}
+
+          {% if forloop.last %}
+            {%- assign is_last = true -%}
+          {% endif %}
+
+          {%- assign option_name_handle_separator = option.name | handle | prepend: ',' | append: ',' -%}
+          {%- if settings.color_swatches -%}
+  {% comment %} Determine if current option matches swatch handle translations {% endcomment %}
+  {%- assign is_swatch_option = false -%}
+  {%- assign swatch_translation = 'general.swatches.color' | t -%}
+  {%- assign translation_string = swatch_translation | remove: '  ' | replace: ', ', ',' | replace: ' ,', ',' | replace: ',', '____' | handle | replace: '____', ',' | append: ',' | prepend: ',' -%}
+  
+  {%- if translation_string contains option_name_handle_separator -%}
+    {%- assign is_swatch_option = true -%}
+  {%- endif -%}
+{%- endif -%}
+
+          <div class="selector-wrapper selector-wrapper--fullwidth {% unless settings.variant_lines or is_swatch_option %} selector-wrapper--select {% endunless %}" data-select-position="{{ option.position }}" data-select-option>
+            {%- if settings.variant_lines or is_swatch_option -%}            
+              <fieldset class="radio__fieldset radio__fieldset--small">
+                <legend class="radio__legend">
+                  <span class="radio__legend__label">
+                    <a href="#" class="radio__legend-back" data-back-button>
+                      <span class="visually-hidden">{{ 'general.breadcrumbs.go_back' | t }}</span>
+                    </a>
+
+                    {{ 'products.product.select' | t }} {{ option.name | escape_once }}</span>
+                </legend>
+                
+                <div class="selector-wrapper__scrollbar" data-scrollbar>
+                  {%- for value in option.values -%}
+                    {%- capture input_id %}{{ uniq_id }}-{{ option.name | escape_once }}-{{ value | escape_once }}{%- endcapture -%}
+    
+                    {%- if is_swatch_option -%}
+                      <span class="swatch__button" data-tooltip="{{ value | escape_once | capitalize }}" data-radio-option>
+                        <input type="radio"
+                          data-single-option-selector
+                          {% if is_last %} data-quick-add-button {% else %} data-go-to-next {% endif %}
+                          data-index="option{{ option.position }}"
+                          name="options[{{ option.name | escape_once }}]"
+                          value="{{ value | escape_once }}" 
+                          id="{{ input_id }}">
+    
+                        <label for="{{ input_id }}" data-swatch="{{ value | escape_once }}">
+                          <span class="visually-hidden">{{ value | escape_once }}</span>
+                        </label>
+                      </span>
+                    {%- else -%}
+                      {% comment %} radio button {% endcomment %}
+                      <span class="radio__button" data-radio-option>
+                        <input
+                          type="radio"
+                          data-single-option-selector
+                          {% if is_last %} data-quick-add-button {% else %} data-go-to-next {% endif %}
+                          data-index="option{{ option.position }}"
+                          name="options[{{ option.name | escape_once }}]"
+                          value="{{ value | escape_once }}" id="{{ input_id }}">
+    
+                        <label for="{{ input_id }}">
+                          <span>{{ value | escape_once }}</span>
+                        </label>
+                      </span>
+                    {%- endif -%}
+                  {% endfor %}
+                </div>
+
+                <button type="button" class="radio__fieldset-arrow radio__fieldset-arrow--prev is-hidden" data-scrollbar-arrow-prev>
+                  <span class="visually-hidden">{{ 'products.general.see_all' | t }}</span>
+                </button>
+
+                <button type="button" class="radio__fieldset-arrow radio__fieldset-arrow--next is-hidden" data-scrollbar-arrow-next>
+                  <span class="visually-hidden">{{ 'products.general.see_all' | t }}</span>
+                </button>
+              </fieldset>
+            {%- else -%}
+              {%- assign selects_counter = selects_counter | plus: 1 -%}
+              
+              <div class="select__fieldset select__fieldset--small">
+                {%- capture input_id -%}{{ uniq_id }}-option-{{ option.position }}{% endcapture %}
+
+                <div class="radio__legend">
+                  <span class="radio__legend__label">
+                    <a href="#" class="radio__legend-back" data-back-button>
+                      <span class="visually-hidden">{{ 'general.breadcrumbs.go_back' | t }}</span>
+                    </a>
+                    
+                    {{ 'products.product.select' | t }} {{ option.name | escape_once }}
+                  </span>
+                </div>
+
+                <div class="select-popout" data-popout data-popout-prevent="true">
+                  <button 
+                    type="button" 
+                    class="select-popout__toggle" 
+                    aria-expanded="false" 
+                    aria-controls="{{ uniq_id }}-select-{{ option.name | handle }}" 
+                    aria-describedby="{{ uniq_id }}-select-{{ option.name | handle }}-list" 
+                    data-popout-toggle>
+                    {{ 'products.product.select_value' | t }}
+                  </button>
+
+                  <ul id="{{ uniq_id }}-select-{{ option.name | handle }}" class="select-popout__list" data-popout-list>
+                    {%- for value in option.values -%}
+                      <li class="select-popout__item">
+                        <a class="select-popout__option" href="#" data-value="{{ value | escape_once }}" data-popout-option data-popout-option-step>
+                          <span>
+                            {{ value | escape_once }}
+                          </span>
+                        </a>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+
+                  <input 
+                    type="hidden" 
+                    name="options[{{ option.name | escape_once }}]" 
+                    id="{{ input_id }}" 
+                    {% if is_last %} data-quick-add-button {% else %} data-go-to-next {% endif %} 
+                    value="{{ option.selected_value }}" 
+                    data-popout-input 
+                    data-single-option-selector 
+                    data-index="option{{ option.position }}"/>
+                </div>
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      {% endunless %}
+
+      <noscript>
+        <select name="id" class="product__form__select product__form__select--hidden no-js" aria-label="{{ product.options_with_values | map: 'name' | uniq | join: ', ' }}">
+          {% for variant in product.variants %}
+            <option
+              {% if variant == current_variant %}selected="selected"{% endif %}
+              {% unless variant.available %}disabled="disabled"{% endunless %}
+              value="{{ variant.id }}">
+                {{ variant.title }}
+            </option>
+          {% endfor %}
+        </select>
+      </noscript>
+    {%- endform -%}
+  </div>
+</div>

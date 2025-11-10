@@ -1,0 +1,612 @@
+<!-- /sections/collections.liquid -->
+{%- liquid
+  assign show_sort = section.settings.enable_sort
+  assign filter_layout = section.settings.filter_layout
+
+  assign show_group_filters = false
+
+  if filter_layout == 'inline-open'
+    assign show_group_filters = true
+  endif
+
+  comment
+    The product limit decrement will be removed once we add more block types
+  endcomment
+
+  assign product_limit = section.settings.product_limit
+  if section.blocks.size > 0
+    assign product_limit = product_limit | minus: 1
+  endif
+
+  assign section_blocks_filter_group = section.blocks | where: "type", "group"
+
+  assign show_group_filter = false
+  assign show_filter = false
+  if section.settings.enable_filters and section_blocks_filter_group.size > 0
+    assign show_group_filter = true
+  elsif section.settings.enable_filters
+    assign show_filter = true
+  endif
+
+  assign mobile_class = 'small--one-whole'
+  if section.settings.grid_mobile == '2'
+    assign mobile_class = 'small--one-half'
+  endif
+
+  case section.settings.grid
+    when 2
+      assign grid_strings = 'large-up--one-half medium--one-half ' | append: mobile_class
+    when 3
+      assign grid_strings = 'large-up--one-third medium--one-third ' | append: mobile_class
+    when 4
+      assign grid_strings = 'large-up--one-quarter medium--one-half ' | append: mobile_class
+    when 5
+      assign grid_strings = 'large-up--one-fifth medium--one-third ' | append: mobile_class
+    else
+      assign grid_strings = 'large-up--one-sixth medium--one-third ' | append: mobile_class
+  endcase
+
+  assign animation_anchor = '.collection-' | append: collection.handle
+-%}
+
+{%- capture collection_sidebar_class -%}
+  {%- if filter_layout == 'slide-out' -%}
+    collection__sidebar__slide-out
+    {%- else -%}
+    collection__sidebar__slider{% if show_group_filters %} expanding expanded no-mobile-animation{% endif %}
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- paginate collection.products by product_limit -%}
+  <section class="collection collection-{{ collection.handle }}"
+    data-section-id="{{ section.id }}"
+    data-section-type="collection"
+    data-section-type="collection-grid"
+    data-section-type="collection-hero"
+    data-sort="{{ show_sort }}"
+    data-collection="{{ collection.url | default: '/collections/all' }}">
+
+    {%- assign align_classes = '' -%}
+    {%- if show_sort -%}
+      {%- assign align_classes = align_classes | append: ' collection__nav--sort ' -%}
+    {%- endif -%}
+
+    {%- if show_filter or show_group_filter -%}
+      {% assign align_classes = align_classes | append: ' collection__nav--filter ' %}
+    {%- endif -%}
+
+    {%- if show_sort or show_filter or show_group_filter -%}
+      <nav class="collection__nav {{ align_classes }}" data-collection-nav>
+        {%- if show_filter or show_group_filter -%}
+          <div class="popout--group">
+            <button
+              type="button"
+              class="popout__toggle"
+              aria-expanded="{% if show_group_filters %}true{% else %}false{% endif %}"
+              aria-controls="filter-groups"
+              data-aria-toggle
+              data-group-tags-enabled>
+              {{ 'collections.general.filter' | t }}
+
+              {%- assign filter_active_count = 0 -%}
+              {%- if show_filter -%}
+                {%- for filter in collection.filters -%}
+                  {%- assign filter_active_count = filter_active_count | plus: filter.active_values.size -%}
+                {%- endfor -%}
+              {%- endif -%}
+
+              {%- if show_group_filter and current_tags.size > 0 -%}
+                {%- assign filter_active_count = current_tags.size -%}
+              {%- endif -%}
+
+              <span{% if filter_active_count < 1 %} class="hidden"{% endif %} data-active-filters>{{filter_active_count}}</span>
+
+              {%- render 'icon-filter' -%}
+            </button>
+          </div>
+        {%- endif -%}
+        {%- if show_sort -%}
+          {% render 'collection-sorting' %}
+        {%- endif -%}
+      </nav>
+    {%- endif -%}
+
+    <div class="collection__products{% if show_filter or show_group_filter %} collection__products--group-tags{% endif %}" data-voo-products>
+      {%- if show_filter or show_group_filter -%}
+        <div class="{{ collection_sidebar_class }}" id="filter-groups" data-collection-sidebar>
+          {%- if section.settings.filter_layout == 'slide-out' -%}
+            <div class="collection__sidebar__head">
+              {%- assign products_count = search.results_count | default: collection.products_count -%}
+              <h3>{{ 'collections.general.items_with_count' | t: count: products_count }}</h3>
+
+              <a href="#filters-group" class="collection__sidebar__close" data-collection-sidebar-close aria-label="{{ 'general.accessibility.close' | t }} {{ 'collections.general.filter' | t }}">
+                {%- render 'icon-close' -%}
+              </a>
+            </div>
+          {%- endif -%}
+
+          {%- if show_filter -%}
+            {%- render 'collection-filters-sidebar', section: section -%}
+          {%- endif -%}
+
+          {%- if show_group_filter -%}
+            {%- render 'collection-tags-grouped', collection: collection, show_filters: show_group_filters, filter_layout: filter_layout -%}
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- if filter_layout == 'slide-out' -%}
+        <span class="drawer__underlay" data-drawer-underlay></span>
+      {%- endif -%}
+
+      <div data-section-id="{% if section.id %}{{section.id}}{% endif %}" data-sectionId="{% if section.id %}{{section.id}}{% endif %}" {% if section.blocks %}data-blocks='{ {%- capture blocks_json -%}{% for block in section.blocks %}{%- capture block_json -%}"{{ block.type }}":{{ block.settings | json }}{%- endcapture -%}{{ block_json | prepend: "," }}{% endfor %}{%- endcapture -%}{{ blocks_json | remove_first: "," }} }' {% endif %} data-settings='{% if section.settings %}{{ section.settings | json }}{% endif %}' id="gf-products" class="product-grid product-grid--loader{% unless settings.product_grid_outline %} product-grid--borderless{% endunless %}" id="CollectionLoop" data-products-grid>
+        {%- if paginate.current_page == 1 and collection.products.size > 0 -%}
+          {%- for block in section.blocks -%}
+            {%- case block.type -%}
+              {%- when 'featured_image' -%}
+                {%- liquid
+                  assign featured_image = block.settings.featured_image
+                  assign featured_image_bg_position = block.settings.featured_image_bg_position
+                  assign featured_header = block.settings.featured_heading
+                  assign featured_text = block.settings.featured_text
+                  assign featured_button_text = block.settings.featured_button_text
+                  assign featured_button_link = block.settings.featured_button_link
+                  assign featured_color_text = block.settings.featured_color_text
+                  assign featured_color_overlay = block.settings.featured_color_overlay
+                  assign featured_overlay_opacity = block.settings.featured_overlay_opacity | times: 0.01
+                -%}
+
+                {%- style -%}
+                  .product-item__image-overlay { color: {{ featured_color_text }}; }
+                  .product-item__image-overlay::before { opacity: {{ featured_overlay_opacity }}; background-color: {{ featured_color_overlay }}; }
+                  .product-item__image-content .btn:hover { color: {{ featured_color_overlay }}; background-color: {{ featured_color_text }}; border-color: {{ featured_color_text }}; }
+                {%- endstyle -%}
+
+                <div class="product-item product-item--featured-image {{ grid_strings }}" {{ block.shopify_attributes }}>
+                  {%- capture featured_image_content -%}
+                    <div class="product-item__image-overlay">
+                      <div class="product-item__image-content">
+                        {%- if featured_header != blank -%}
+                          <h3>{{ featured_header }}</h3>
+                        {%- endif -%}
+
+                        {%- if featured_text != blank -%}
+                          {{ featured_text }}
+                        {%- endif -%}
+
+                        {%- if featured_button_text != blank -%}
+                          <a href="{{ featured_button_link }}" class="btn btn--large btn--outline caps aos-init aos-animate" data-aos="fade-up" data-aos-anchor="{{ animation_anchor }}" data-aos-duration="700" data-aos-delay="200">{{ featured_button_text }}</a>
+                        {%- endif -%}
+                      </div>
+
+                      {% if featured_button_text == blank and featured_button_link != blank %}
+                        <a href="{{ featured_button_link }}" class="product-item__image-link"></a>
+                      {% endif %}
+                    </div>
+                  {%- endcapture -%}
+
+                  {%- unless featured_image == blank -%}
+                    <div class="product-item__image">
+                      <div class="product-item__bg"
+                        style="
+                          background-position: {{ featured_image_bg_position | replace: '-', ' ' }};
+                          background-image: image-set(
+                            url('{{ featured_image | image_url: width: 540 }}') 1x,
+                            url('{{ featured_image | image_url: width: 1080 }}') 2x
+                          );
+                        "
+                        data-aos="img-in"
+                        data-aos-anchor="{{ animation_anchor }}"
+                        data-aos-delay="{{ animation_delay | times: 150 }}"
+                        data-aos-duration="{{ animation_delay | times: 100 | plus: 800 }}"
+                        data-aos-easing="ease-out-quart""></div>
+                      {{ featured_image_content }}
+                    </div>
+
+                    <noscript>
+                      <div
+                        class="product-item__image no-js-image"
+                        style="
+                          background-image: image-set(
+                            url('{{ featured_image | image_url: width: 540 }}') 1x,
+                            url('{{ featured_image | image_url: width: 1080 }}') 2x
+                          );
+                          background-position: {{ featured_image_bg_position | replace: '-', ' ' }};
+                          background-size: cover; background-repeat: no-repeat;
+                        ">
+                        {{ featured_image_content }}
+                      </div>
+                    </noscript>
+                  {%- else -%}
+                    <div class="product-item__image svg-placeholder">
+                      {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+                      {{ 'collection-' | append: current | placeholder_svg_tag }}
+
+                      {{ featured_image_content }}
+                    </div>
+                  {%- endunless -%}
+                </div>
+            {%- endcase -%}
+          {%- endfor -%}
+        {%- endif -%}
+
+        {%- if collection.products.size > 0 -%}
+          {%- for product in collection.products -%}
+            {%- assign grid_int = section.settings.grid | times: 1 -%}
+            {%- assign animation_delay = forloop.index0 | modulo: grid_int | times: 1 -%}
+            {%- render 'product-grid-item', product: product, grid_strings: grid_strings, animation_delay: animation_delay, index: forloop.index, aspect_ratio: section.settings.aspect_ratio -%}
+          {%- endfor -%}
+        {%- else -%}
+          <div class="no-results">
+            <p><strong>{{ 'collections.general.no_matches' | t }}</strong></p>
+            {%- assign sort_by_string = '' -%}
+            {%- if collection.sort_by != blank -%}
+              {%- assign sort_by_string = '?sort_by=' | append: collection.sort_by -%}
+            {%- endif -%}
+            <a class="btn caps btn--primary" href="{{ collection.url | append: sort_by_string }}" data-filter-update-url><span>{{ 'collections.general.reset' | t }}</span></a>
+          </div>
+        {%- endif -%}
+
+        {%- render 'pagination', paginate: paginate -%}
+
+        <div class="product-grid__loader">
+          <div class="loader product-grid__loader-line"><div class="loader-indeterminate"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+{%- endpaginate -%}
+
+<style>
+  /* ================ Custom Pagination ================ */
+.pagination-custom {
+  padding-left: 0;
+  margin: var(--outer) auto;
+  border-radius: var(---radius-sm);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination-custom > li {
+  display: inline;
+}
+
+.pagination-custom > li:first-child > a,
+.pagination-custom > li:first-child > span {
+  margin-left: 0;
+  border-bottom-left-radius: var(---radius-sm);
+  border-top-left-radius: var(---radius-sm);
+}
+
+.pagination-custom > li:last-child > a,
+.pagination-custom > li:last-child > span {
+  border-top-right-radius: var(---radius-sm);
+  border-bottom-right-radius: var(---radius-sm);
+}
+
+.pagination-custom > li > a {
+  color: var(--text-light);
+}
+.pagination-custom > li > a:hover, .pagination-custom > li > a:focus {
+  color: var(--link-hover);
+}
+
+.pagination-custom > li > span:hover,
+.pagination-custom > li > span:focus {
+  color: var(--text-dark);
+}
+
+.pagination-custom > .active > a,
+.pagination-custom > .active > span,
+.pagination-custom > .active > a:hover,
+.pagination-custom > .active > span:hover,
+.pagination-custom > .active > a:focus,
+.pagination-custom > .active > span:focus {
+  z-index: 2;
+  cursor: default;
+  color: var(--text-dark);
+  font-weight: var(---font-weight-body-bold);
+}
+
+.pagination-custom > .disabled > span,
+.pagination-custom > .disabled > a,
+.pagination-custom > .disabled > a:hover,
+.pagination-custom > .disabled > a:focus {
+  border: 1px solid var(--border);
+  color: var(--border);
+  cursor: not-allowed;
+}
+
+.pagination-custom__arr > a,
+.pagination-custom__arr > span {
+  position: relative;
+  float: left;
+  padding: 10px 20px;
+  line-height: 1.42;
+  text-decoration: none;
+  border: 1px solid var(--border);
+}
+.pagination-custom__arr > a:before,
+.pagination-custom__arr > span:before {
+  content: "";
+  display: inline-block;
+  width: 0.25em;
+  height: 0.25em;
+  border-width: 0 0 1px 1px;
+  border-style: solid;
+  border-color: currentColor;
+  margin: 0 2px 0 0;
+  vertical-align: middle;
+  transform: rotate(-135deg);
+  transform-origin: 50% 50%;
+  transition: all 0.25s;
+}
+.pagination-custom__arr > a:hover:before,
+.pagination-custom__arr > span:hover:before {
+  transform: rotate(-135deg) scale(1.5);
+}
+
+.pagination-custom__arr:first-child > a:before,
+.pagination-custom__arr:first-child > span:before {
+  margin: 0 0 0 2px;
+  transform: rotate(45deg);
+}
+.pagination-custom__arr:first-child > a:hover:before,
+.pagination-custom__arr:first-child > span:hover:before {
+  transform: rotate(45deg) scale(1.5);
+}
+
+.pagination-custom__num > a,
+.pagination-custom__num > span {
+  position: relative;
+  float: left;
+  padding: 10px 20px;
+  line-height: 1.42;
+  text-decoration: none;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.pagination-custom__num.active span:after {
+  content: "";
+  width: 50%;
+  left: 25%;
+  position: absolute;
+  bottom: -1px;
+  height: 1px;
+  background: var(--text-dark);
+}
+
+.pagination-custom__spacer > span {
+  position: relative;
+  float: left;
+  padding: 10px 10px;
+  line-height: 1.42;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.pagination-custom__num--dots > span {
+  padding: 10px 5px;
+}
+
+@media only screen and (max-width: 479px) {
+  .pagination-custom__num--dots > span,
+.pagination-custom__spacer > span {
+    padding: 10px 0;
+  }
+
+  .pagination-custom__num > a,
+.pagination-custom__num > span,
+.pagination-custom__arr > a,
+.pagination-custom__arr > span {
+    padding: 10px 15px;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Collection products",
+  "templates": [
+    "collection"
+  ],
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_sort",
+      "label": "Show sorting",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_filters",
+      "label": "Enable filters",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "filter_layout",
+      "label": "Filter layout",
+      "default": "inline-open",
+      "options": [
+        {
+          "label": "Slide out",
+          "value": "slide-out"
+        },
+        {
+          "label": "Inline (closed)",
+          "value": "inline-closed"
+        },
+        {
+          "label": "Inline (open)",
+          "value": "inline-open"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Product grid"
+    },
+    {
+      "type": "range",
+      "id": "grid",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "label": "Products per row on desktop",
+      "default": 4
+    },
+    {
+      "type": "select",
+      "id": "grid_mobile",
+      "label": "Products per row on mobile",
+      "options": [
+        {
+          "value": "1",
+          "label": "One"
+        },
+        {
+          "value": "2",
+          "label": "Two"
+        }
+      ],
+      "default": "2"
+    },
+    {
+      "type": "range",
+      "id": "product_limit",
+      "min": 1,
+      "max": 50,
+      "step": 1,
+      "label": "Products per page",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "aspect_ratio",
+      "min": 100,
+      "max": 200,
+      "step": 10,
+      "label": "Aspect ratio",
+      "default": 150
+    }
+  ],
+  "blocks": [
+    {
+      "type": "featured_image",
+      "limit": 1,
+      "name": "Featured image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "featured_image",
+          "label": "Image"
+        },
+        {
+          "type": "select",
+          "id": "featured_image_bg_position",
+          "label": "Position",
+          "default": "center-center",
+          "options": [
+            {
+              "label": "Top",
+              "value": "center-top"
+            },
+            {
+              "label": "Right",
+              "value": "right-center"
+            },
+            {
+              "label": "Center",
+              "value": "center-center"
+            },
+            {
+              "label": "Left",
+              "value": "left-center"
+            },
+            {
+              "label": "Bottom",
+              "value": "center-bottom"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "featured_heading",
+          "label": "Heading",
+          "default": "Featured link"
+        },
+        {
+          "type": "richtext",
+          "id": "featured_text",
+          "label": "Text",
+          "default": "<p>Promote products or collections<p>"
+        },
+        {
+          "type": "text",
+          "id": "featured_button_text",
+          "label": "Button label",
+          "default": "Learn more"
+        },
+        {
+          "type": "url",
+          "id": "featured_button_link",
+          "label": "Button link"
+        },
+        {
+          "type": "color",
+          "id": "featured_color_text",
+          "label": "Text",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "featured_color_overlay",
+          "label": "Overlay",
+          "default": "#222222"
+        },
+        {
+          "type": "range",
+          "id": "featured_overlay_opacity",
+          "label": "Overlay opacity",
+          "step": 5,
+          "max": 100,
+          "min": 0,
+          "unit": "%",
+          "default": 10
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "name": "Legacy: Tag group",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Legacy feature: tag grouping"
+        },
+        {
+          "type": "paragraph",
+          "content": "This is a legacy feature that is intended to help merchants with large catalogs transition to OS2.0. Filtering by tag will be removed from Broadcast when 0S2.0 filters can fully replace their functionality. This method of tag-based product filtering cannot be combined with [OS2.0 filters](/admin/menus)."
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Group name",
+          "default": "Filter by size"
+        },
+        {
+          "type": "text",
+          "id": "group_tags",
+          "label": "Tag list",
+          "default": "Small, Medium, Large",
+          "info": "Comma separated group of tags"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,58 @@
+{%- if section.settings.enable_product_reviews -%}
+  {%- style -%}
+    .product__badge-link:hover { color: var(--link-hover); cursor: pointer; }
+  {%- endstyle -%}
+
+  {%- capture reviews_markup -%}
+    <div class="product__reviews"{% unless section.settings.enable_accordion %} id="reviews-{{ product.id }}"{% endunless %}>
+      <div id="shopify-product-reviews" data-id="{{ product.id }}">{{ product.metafields.spr.reviews }}</div>
+    </div>
+  {%- endcapture -%}
+
+  {%- if section.settings.enable_accordion -%}
+    <div class="reviews-holder" data-section-id="{{ section.id }}" data-section-type="reviews" id="reviews-{{ product.id }}">
+      <section class="accordion" data-accordion>
+        <h2 data class="accordion__title" data-focus-element tabindex="0" data-accordion-toggle>
+          {%- liquid
+            assign reviews_count = product.metafields.reviews.rating_count
+            assign reviews_label = 'products.general.reviews_with_count' | t: count: reviews_count
+
+            if reviews_count > 0
+              echo reviews_label
+            endif
+          -%}
+        </h2>
+
+        <div class="accordion__body" data-accordion-body>
+          {{ reviews_markup }}
+        </div>
+      </section>
+    </div>
+  {%- else -%}
+    {{ reviews_markup | replace: 'product__reviews', 'product__reviews product__reviews--alt' }}
+  {%- endif -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Reviews",
+  "class": "accordions-holder",
+  "templates": [
+    "product"
+  ],
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_product_reviews",
+      "label": "Enable reviews",
+      "info": "Install Shopify's free [Product Reviews app](https://apps.shopify.com/product-reviews) before enabling this option."
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_accordion",
+      "label": "Enable accordion",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

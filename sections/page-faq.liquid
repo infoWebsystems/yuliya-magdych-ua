@@ -1,0 +1,149 @@
+<div class="{{ section.settings.text_color }} {{ section.settings.height }}" style="background-color: {{ section.settings.bg_color }};" data-accordion-holder>
+  {%- if section.blocks.size > 0 -%}
+    <div class="faq {{ section.settings.width }}" data-section-id="{{ section.id }}" data-section-type="faq">
+      {%- for block in section.blocks -%}
+        {%- assign current_block = block.settings -%}
+
+        {%- if block.type == 'heading' and current_block.title != blank -%}
+          <h3 class="faq__title" {{ block.shopify_attributes }}>{{ current_block.title }}</h3>
+        {%- endif -%}
+
+        {%- if block.type == 'question' and current_block.title != blank and current_block.content != blank -%}
+          <div class="accordion" data-accordion {{ block.shopify_attributes }}>
+            <h4 class="accordion__title" data-focus-element tabindex="0" data-accordion-toggle data-block-id="{{ block.id }}">{{ current_block.title }}</h4>
+
+            <div class="rte accordion__body" data-accordion-body>
+              {{ current_block.content }}
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Accordion group",
+  "settings": [
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Width",
+      "default": "wrapper--narrow",
+      "options": [
+        {
+          "value": "wrapper",
+          "label": "Normal"
+        },
+        {
+          "value": "wrapper--narrow",
+          "label": "Narrow"
+        },
+        {
+          "value": "wrapper--full",
+          "label": "Wide"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "height",
+      "label": "Height",
+      "default": "margin--medium",
+      "options": [
+        {
+          "value": "margin--small",
+          "label": "Small"
+        },
+        {
+          "value": "margin--medium",
+          "label": "Medium"
+        },
+        {
+          "value": "margin--large",
+          "label": "Large"
+        },
+        {
+          "value": "margin--zero",
+          "label": "Zero"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "text-dark",
+      "options": [
+        {
+          "value": "text-light",
+          "label": "White"
+        },
+        {
+          "value": "text-dark",
+          "label": "Dark"
+        }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Heading",
+      "type": "heading",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "FAQ"
+        }
+      ]
+    },
+    {
+      "name": "Question",
+      "type": "question",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Question",
+          "default": "Frequently asked question"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Answer",
+          "default": "<p>Share details about your shipping policies, item returns, or customer service.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Accordion group",
+      "category": "Text",
+      "blocks": [
+        {
+          "type": "heading"
+        },
+        {
+          "type": "question"
+        },
+        {
+          "type": "question"
+        },
+        {
+          "type": "question"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

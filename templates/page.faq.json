@@ -1,0 +1,151 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "align_text": "text-center",
+        "height": "margin--small",
+        "bg_color": "#f7f7f7"
+      }
+    },
+    "faq-first": {
+      "type": "page-faq",
+      "blocks": {
+        "faq-heading": {
+          "type": "heading",
+          "settings": {
+            "title": "FAQ"
+          }
+        },
+        "faq-0": {
+          "type": "question",
+          "settings": {}
+        },
+        "faq-1": {
+          "type": "question",
+          "settings": {}
+        },
+        "faq-2": {
+          "type": "question",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "faq-heading",
+        "faq-0",
+        "faq-1",
+        "faq-2"
+      ],
+      "settings": {
+        "height": "margin--small"
+      }
+    },
+    "faq-second": {
+      "type": "page-faq",
+      "blocks": {
+        "heading-0": {
+          "type": "heading",
+          "settings": {
+            "title": "Shipping questions"
+          }
+        },
+        "question-1": {
+          "type": "question",
+          "settings": {}
+        },
+        "question-2": {
+          "type": "question",
+          "settings": {}
+        },
+        "question-3": {
+          "type": "question",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "heading-0",
+        "question-1",
+        "question-2",
+        "question-3"
+      ],
+      "settings": {
+        "height": "margin--small",
+        "bg_color": "#fafafa"
+      }
+    },
+    "faq-third": {
+      "type": "page-faq",
+      "blocks": {
+        "heading-0": {
+          "type": "heading",
+          "settings": {
+            "title": "Returns questions"
+          }
+        },
+        "question-1": {
+          "type": "question",
+          "settings": {}
+        },
+        "question-2": {
+          "type": "question",
+          "settings": {}
+        },
+        "question-3": {
+          "type": "question",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "heading-0",
+        "question-1",
+        "question-2",
+        "question-3"
+      ],
+      "settings": {
+        "height": "margin--small"
+      }
+    },
+    "icons": {
+      "type": "section-text-row",
+      "blocks": {
+        "icon-0": {
+          "type": "text-item",
+          "settings": {
+            "icon_name": "icon-lock-card",
+            "title": "Secure transactions",
+            "text": "Transactions are handled with bank-grade security."
+          }
+        },
+        "icon-1": {
+          "type": "text-item",
+          "settings": {
+            "icon_name": "icon-basket-like",
+            "title": "Simple checkout",
+            "text": "Our secure checkout is quick and easy to use."
+          }
+        },
+        "icon-2": {
+          "type": "text-item",
+          "settings": {
+            "icon_name": "icon-chat",
+            "title": "Get in touch",
+            "text": "Have questions? Get in touch with us at any time."
+          }
+        }
+      },
+      "block_order": [
+        "icon-0",
+        "icon-1",
+        "icon-2"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "faq-first",
+    "faq-second",
+    "faq-third",
+    "icons"
+  ]
+}

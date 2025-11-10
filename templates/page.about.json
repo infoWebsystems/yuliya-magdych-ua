@@ -1,0 +1,119 @@
+{
+  "sections": {
+    "custom-content-1": {
+      "type": "section-custom-content",
+      "blocks": {
+        "image-1-1": {
+          "type": "image",
+          "settings": {
+            "title": "About Us",
+            "description": "",
+            "link_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "image-1-1"
+      ],
+      "settings": {}
+    },
+    "main": {
+      "type": "main-page",
+      "settings": {}
+    },
+    "custom-content-2": {
+      "type": "section-custom-content",
+      "blocks": {
+        "image-2-1": {
+          "type": "image",
+          "settings": {}
+        },
+        "text-2-1": {
+          "type": "text",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "image-2-1",
+        "text-2-1"
+      ],
+      "settings": {}
+    },
+    "custom-content-3": {
+      "type": "section-custom-content",
+      "blocks": {
+        "text-3-1": {
+          "type": "text",
+          "settings": {}
+        },
+        "image-3-1": {
+          "type": "image",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "text-3-1",
+        "image-3-1"
+      ],
+      "settings": {}
+    },
+    "custom-content-4": {
+      "type": "section-custom-content",
+      "blocks": {
+        "text-4-1": {
+          "type": "text",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "text-4-1"
+      ],
+      "settings": {}
+    },
+    "custom-content-5": {
+      "type": "section-custom-content",
+      "blocks": {
+        "image-5-1": {
+          "type": "image",
+          "settings": {}
+        },
+        "image-5-2": {
+          "type": "image",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "image-5-1",
+        "image-5-2"
+      ],
+      "settings": {}
+    },
+    "custom-content-6": {
+      "type": "section-custom-content",
+      "blocks": {
+        "product-6-1": {
+          "type": "product",
+          "settings": {}
+        },
+        "review-6-1": {
+          "type": "review",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "product-6-1",
+        "review-6-1"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "custom-content-1",
+    "main",
+    "custom-content-2",
+    "custom-content-3",
+    "custom-content-4",
+    "custom-content-5",
+    "custom-content-6"
+  ]
+}

@@ -1,0 +1,38 @@
+<!-- /snippets/social-icon.liquid -->
+
+{% comment %}
+    Renders a social icon because render can't accept strings as variables
+
+    Accepts:
+    - filename: {String} name of icon
+
+    Usage:
+    {% render 'header-icon', filename: 'icon-clean-account' %}
+{% endcomment %}
+
+
+{%- case filename -%}
+
+  {%- when 'icon-bold-account' -%}
+    {%- render 'icon-bold-account' -%}
+  {%- when 'icon-bold-cart' -%}
+    {%- render 'icon-bold-cart' -%}
+  {%- when 'icon-bold-search' -%}
+    {%- render 'icon-bold-search' -%}
+
+  {%- when 'icon-clean-account' -%}
+    {%- render 'icon-clean-account' -%}
+  {%- when 'icon-clean-cart' -%}
+    {%- render 'icon-clean-cart' -%}
+  {%- when 'icon-clean-search' -%}
+    {%- render 'icon-clean-search' -%}
+
+  {%- when 'icon-modern-account' -%}
+    {%- render 'icon-modern-account' -%}
+  {%- when 'icon-modern-cart' -%}
+    {%- render 'icon-modern-cart' -%}
+  {%- when 'icon-modern-search' -%}
+    {%- render 'icon-modern-search' -%}
+
+{%- endcase -%}
+

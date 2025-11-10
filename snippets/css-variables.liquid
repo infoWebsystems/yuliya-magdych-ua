@@ -1,0 +1,304 @@
+{% comment %}
+  This is where CSS Variables are set with values from your theme settings.  
+  These values are created in settings_schema.json and stored in settings_data.json.  
+  CSS variables are used to remove liquid code from your CSS file, allowing CSS to load faster.  
+{% endcomment %}
+
+{%- liquid 
+
+  if settings.type_heading_custom_font != "none"
+    assign heading_font = settings.type_heading_custom_font
+  else
+    assign heading_font = settings.type_heading_font
+  endif
+
+  if settings.type_base_custom != "none"
+    assign base_font = settings.type_base_custom
+  else  
+    assign base_font = settings.type_base_font
+  endif
+
+  assign nav_font = settings.type_nav_font
+
+
+  assign heading_font_bold = heading_font | font_modify: 'weight', 'bolder'
+  assign base_font_bold = base_font | font_modify: 'weight', 'bolder'
+
+  assign base_font_100 = base_font | font_modify: 'weight', '+100'
+  assign base_font_200 = base_font | font_modify: 'weight', '+200'
+  assign base_font_300 = base_font | font_modify: 'weight', '+300'
+  assign base_font_400 = base_font | font_modify: 'weight', '+400'  
+  if base_font_100 and base_font_100.weight > base_font.weight
+    assign base_font_bold = base_font_100
+  elsif base_font_200 and base_font_200.weight > base_font.weight
+    assign base_font_bold = base_font_200
+  elsif base_font_300 and base_font_300.weight > base_font.weight
+    assign base_font_bold = base_font_300
+  elsif base_font_400 and base_font_400.weight > base_font.weight
+    assign base_font_bold = base_font_400
+  endif
+
+  assign heading_font_100 = heading_font | font_modify: 'weight', '+100'
+  assign heading_font_200 = heading_font | font_modify: 'weight', '+200'
+  assign heading_font_300 = heading_font | font_modify: 'weight', '+300'
+  assign heading_font_400 = heading_font | font_modify: 'weight', '+400'  
+  if heading_font_100 and heading_font_100.weight > heading_font.weight
+    assign heading_font_bold = heading_font_100
+  elsif heading_font_200 and heading_font_200.weight > heading_font.weight
+    assign heading_font_bold = heading_font_200
+  elsif heading_font_300 and heading_font_300.weight > heading_font.weight
+    assign heading_font_bold = heading_font_300
+  elsif heading_font_400 and heading_font_400.weight > heading_font.weight
+    assign heading_font_bold = heading_font_400
+  endif
+
+  if nav_font == 'heading'
+    assign nav_font = heading_font
+    assign nav_font_bold = heading_font_bold
+  else
+    assign nav_font = base_font
+    assign nav_font_bold = base_font_bold
+  endif
+-%}
+
+{% style %}
+  @font-face {
+    font-family: 'AvenirNextCyr-Regular';
+    src: url("{{ 'AvenirNextCyr-Regular.woff2' | asset_url }}") format('woff2'),
+      url("{{ 'AvenirNextCyr-Regular.woff' | asset_url }}") format('woff'),
+      url("{{ 'AvenirNextCyr-Regular.ttf' | asset_url }}") format('truetype'),
+      url("{{ 'AvenirNextCyr-Regular.svg' | asset_url }}") format('svg');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+  {{ settings.type_base_font | font_face: font_display: 'swap' }}
+
+:root {
+
+  {% comment %}
+    Create an appropriate poster background color
+    based on background color and brightness
+  {% endcomment %}
+  {%- assign color_body_bg = settings.bg_color -%}
+  {%- assign color_body_bg_brightness = color_body_bg | color_brightness -%}
+  {%- if color_body_bg_brightness <= 26 -%}
+    {%- assign background_color_poster = color_body_bg | color_lighten: 10 -%}
+  {%- elsif color_body_bg_brightness <= 65 -%}
+    {%- assign background_color_poster = color_body_bg | color_lighten: 5 -%}
+  {%- else -%}
+    {%- assign background_color_poster = color_body_bg | color_darken: 5 -%}
+  {%- endif -%}
+  ---color-video-bg: {{ background_color_poster }};
+
+
+  ---color-bg: {{ settings.bg_color }};
+  ---color-bg-secondary: {{ settings.secondary_bg_color }};
+  ---color-bg-rgb: {{ settings.bg_color | color_extract: 'red' }}, {{ settings.bg_color | color_extract: 'green' }}, {{ settings.bg_color | color_extract: 'blue' }};
+
+  ---color-text-dark: {{ settings.text_color | color_saturate: 10 | color_darken: 15 }};
+  ---color-text: {{ settings.text_color }};
+  ---color-text-light: {{ settings.text_color | color_mix: settings.bg_color, 70 }};
+
+
+  /* === Opacity shades of grey ===*/
+  ---color-a5:  {{ settings.text_color | color_modify: 'alpha', 0.05 }};
+  ---color-a10: {{ settings.text_color | color_modify: 'alpha', 0.10 }};
+  ---color-a15: {{ settings.text_color | color_modify: 'alpha', 0.15 }};
+  ---color-a20: {{ settings.text_color | color_modify: 'alpha', 0.20 }};
+  ---color-a25: {{ settings.text_color | color_modify: 'alpha', 0.25 }};
+  ---color-a30: {{ settings.text_color | color_modify: 'alpha', 0.30 }};
+  ---color-a35: {{ settings.text_color | color_modify: 'alpha', 0.35 }};
+  ---color-a40: {{ settings.text_color | color_modify: 'alpha', 0.40 }};
+  ---color-a45: {{ settings.text_color | color_modify: 'alpha', 0.45 }};
+  ---color-a50: {{ settings.text_color | color_modify: 'alpha', 0.50 }};
+  ---color-a55: {{ settings.text_color | color_modify: 'alpha', 0.55 }};
+  ---color-a60: {{ settings.text_color | color_modify: 'alpha', 0.60 }};
+  ---color-a65: {{ settings.text_color | color_modify: 'alpha', 0.65 }};
+  ---color-a70: {{ settings.text_color | color_modify: 'alpha', 0.70 }};
+  ---color-a75: {{ settings.text_color | color_modify: 'alpha', 0.75 }};
+  ---color-a80: {{ settings.text_color | color_modify: 'alpha', 0.80 }};
+  ---color-a85: {{ settings.text_color | color_modify: 'alpha', 0.85 }};
+  ---color-a90: {{ settings.text_color | color_modify: 'alpha', 0.90 }};
+  ---color-a95: {{ settings.text_color | color_modify: 'alpha', 0.95 }};
+
+  ---color-border: {{ settings.site_border_color | color_to_rgb }};
+  ---color-border-light: {{ settings.site_border_color | color_mix: settings.bg_color, 60 }};
+  ---color-border-hairline: {{ settings.bg_color | color_darken: 3 }};
+  ---color-border-dark: {{ settings.site_border_color | color_darken: 20 }};
+
+  {%- assign white = settings.bg_color | color_lighten: 100 -%}
+  {%- assign black = settings.bg_color | color_darken: 100 -%}
+  {%- assign contrast_limit = 2 -%}
+  {% if settings.high_contrast %}
+    {%- assign contrast_limit = 3 -%}
+  {%- endif -%}
+
+  /* === Bright color ===*/
+  ---color-primary: {{ settings.accent_bright }};
+  ---color-primary-light: {{ settings.accent_bright | color_saturate: 20 | color_lighten: 30 }};
+  ---color-primary-hover: {{ settings.accent_bright | color_saturate: 10 | color_darken: 15 }};
+  ---color-primary-fade: {{ settings.accent_bright | color_modify: 'alpha', 0.05 }};
+  ---color-primary-fade-hover: {{ settings.accent_bright | color_modify: 'alpha', 0.1 }};
+  {%- assign opposite = white -%}
+  {%- assign contrast_white = settings.accent_bright | color_contrast: white -%}
+  {%- assign contrast_black = settings.accent_bright | color_contrast: black -%}
+  {%- if contrast_white < contrast_limit and contrast_black > contrast_white -%}
+    {%- assign opposite = black -%}
+  {%- endif -%}
+  ---color-primary-opposite: {{ opposite }};
+
+
+  /* === Secondary Color ===*/
+  ---color-secondary: {{ settings.accent_secondary }};
+  ---color-secondary-hover: {{ settings.accent_secondary | color_saturate: 10 | color_darken: 15 }};
+  ---color-secondary-fade: {{ settings.accent_secondary | color_modify: 'alpha', 0.05 }};
+  ---color-secondary-fade-hover: {{ settings.accent_secondary | color_modify: 'alpha', 0.1 }};
+  {%- assign opposite = white -%}
+  {%- assign contrast_white = settings.accent_secondary | color_contrast: white -%}
+  {%- assign contrast_black = settings.accent_secondary | color_contrast: black -%}
+  {%- if contrast_white < contrast_limit and contrast_black > contrast_white -%}
+    {%- assign opposite = black -%}
+  {%- endif -%}
+  ---color-secondary-opposite: {{ opposite }};
+
+
+  /* === link Color ===*/
+  ---color-link: {{ settings.link_color }};
+  ---color-link-hover: {{ settings.link_hover_color }};
+  ---color-link-fade: {{ settings.link_color | color_modify: 'alpha', 0.05 }};
+  ---color-link-fade-hover: {{ settings.link_color | color_modify: 'alpha', 0.1 }};
+  {%- assign opposite = white -%}
+  {%- assign contrast_white = settings.link_color | color_contrast: white -%}
+  {%- assign contrast_black = settings.link_color | color_contrast: black -%}
+  {%- if contrast_white < contrast_limit and contrast_black > contrast_white -%}
+    {%- assign opposite = black -%}
+  {%- endif -%}
+  ---color-link-opposite: {{ opposite }};
+
+  /* === Cart Gradient ===*/
+  {% if settings.free_shipping_gradient != blank %}
+    ---free-shipping-gradient: {{ settings.free_shipping_gradient }};
+  {% else %}
+    ---free-shipping-gradient: linear-gradient(to right, var(--primary-light) 0%, var(--primary) 100%);
+  {% endif %}
+
+  /* === Product grid sale tags ===*/
+  ---color-sale-bg: {{ settings.sale_bg_color }};
+  ---color-sale-text: {{ settings.sale_text_color }};
+  {%- assign sale_text_secondary = settings.sale_bg_color -%}
+  {%- assign sale_text_secondary_downcase = sale_text_secondary | downcase -%}
+  {%- assign bg_color_global_downcase = settings.bg_color | downcase -%}
+  {%- if sale_text_secondary_downcase == bg_color_global_downcase -%}
+    {%- assign sale_text_secondary = settings.text_color -%}
+  {%- endif -%}
+  ---color-sale-text-secondary: {{ sale_text_secondary }};
+
+  /* === Product grid badges ===*/
+  ---color-badge-bg: {{ settings.badge_bg_color }};
+  ---color-badge-text: {{ settings.badge_text_color }};
+
+  /* === Helper colors for form error states ===*/
+  ---color-error: var(---color-primary);
+  ---color-error-bg: var(---color-primary-fade);
+
+
+  {% if settings.button_radius_style == 'rounded' %}
+    ---radius: 3px;
+    ---radius-sm: 3px;
+  {% elsif settings.button_radius_style == 'pill' %}
+    ---radius: 300px;
+    ---radius-sm: 3px;
+  {% else %}
+    ---radius: 0px;
+    ---radius-sm: 0px;
+  {% endif %}
+
+  ---color-announcement-bg: {{ settings.announcement_bg }};
+  ---color-announcement-text: {{ settings.announcement_text }};
+  ---color-announcement-border: {{ settings.announcement_text | color_mix: settings.announcement_bg, 30 }};
+
+  ---color-header-bg: {{ settings.header_bg }};
+  ---color-header-link: {{ settings.header_link }};
+  ---color-header-link-hover: {{ settings.header_link_hover }};
+
+  ---color-menu-bg: {{ settings.menu_bg_color }};
+  ---color-menu-border: {{ settings.menu_border_color }};
+  ---color-menu-link: {{ settings.menu_link_color }};
+  ---color-menu-link-hover: {{ settings.menu_link_hover_color }};
+  ---color-submenu-bg: {{ settings.submenu_bg_color }};
+  ---color-submenu-link: {{ settings.submenu_link_color }};
+  ---color-submenu-link-hover: {{ settings.submenu_link_hover_color }};
+  ---color-menu-transparent: {{ settings.menu_transparent_color }};
+
+  ---color-footer-bg: {{ settings.footer_bg }};
+  ---color-footer-text: {{ settings.footer_text }};
+  ---color-footer-link: {{ settings.footer_link }};
+  ---color-footer-link-hover: {{ settings.footer_link_hover }};
+  ---color-footer-border: {{ settings.footer_border }};
+
+  /* === Custom Cursor ===*/
+
+  --icon-zoom-in: url( "{{ 'icon-zoom-in.svg' | asset_url }}" );
+  --icon-zoom-out: url( "{{ 'icon-zoom-out.svg' | asset_url }}" );
+
+  /* === Typography ===*/
+  ---product-grid-aspect-ratio: {{ settings.product_grid_aspect_ratio | times: 100 }}%;
+  ---product-grid-size-piece: {{ settings.product_grid_aspect_ratio | times: 10 }};
+
+
+  ---font-weight-body: {{ base_font.weight | default: 400 }};
+  ---font-weight-body-bold: {{ base_font_bold.weight | default: 700 }};
+
+  {% if settings.type_base_custom != "none" %}
+    ---font-stack-body: {{ base_font }}, sans-serif;
+  {% else %}  
+    ---font-stack-body: {{ base_font.family }}, {{ base_font.fallback_families }};
+  {% endif %}
+
+  ---font-style-body: {{ base_font.style }};
+  ---font-adjust-body: {{ settings.type_body_size | divided_by: 100.0 }};
+
+  ---font-weight-heading: {{ heading_font.weight | default: 400 }};
+  ---font-weight-heading-bold: {{ heading_font_bold.weight | default: 700 }};
+
+  {% if settings.type_heading_custom_font != "none" %}
+    ---font-stack-heading: {{ heading_font }}, sans-serif;
+  {% else %}
+    ---font-stack-heading: {{ heading_font.family }}, {{ heading_font.fallback_families }};
+  {% endif %}
+
+  ---font-style-heading: {{ heading_font.style }};
+  ---font-adjust-heading: {{ settings.type_heading_size | divided_by: 100.0 }};
+
+  {% if settings.type_heading_custom_font != "none" or settings.type_base_custom != 'none' %}
+    ---font-stack-nav: {{ nav_font }}, sans-serif;
+      ---font-weight-nav: {{ nav_font.weight | default: 300 }};
+  {% else %}
+    ---font-stack-nav: {{ nav_font.family }}, {{ nav_font.fallback_families }};
+    ---font-weight-nav: {{ nav_font.weight | default: 400 }};
+  {% endif %}
+  ---font-style-nav: {{ nav_font.style }};
+  ---font-adjust-nav: {{ settings.type_nav_size | divided_by: 100.0 }};
+
+  ---font-weight-nav-bold: {{ nav_font_bold.weight | default: 700 }};
+
+  ---font-size-base: {{ settings.type_body_size | divided_by: 100.0 | append: 'rem' }};
+  ---font-size-base-percent: {{ settings.type_body_size | divided_by: 100.0 }};
+
+  ---ico-select: url("{{ 'ico-select.svg' | asset_url }}");
+
+
+  /* === Parallax ===*/
+  ---parallax-strength-min: {{ settings.parallax_strength | plus: 100.0 | append: '%' }};
+  ---parallax-strength-max: {{ settings.parallax_strength | plus: 110.0 | append: '%' }};
+
+  {% if settings.high_contrast %}
+    {% render 'css-variables-contrast' %}  
+  {% endif %}
+
+}
+  body {
+    font-family: var(---font-stack-body);
+  }
+{% endstyle %}

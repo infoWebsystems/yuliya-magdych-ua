@@ -1,0 +1,320 @@
+<!-- /sections/blog.liquid -->
+
+{%- assign article_limit = section.settings.grid | times: section.settings.rows -%}
+
+<section class="index-blog blog blog-section" id="blog--{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="blog">
+  {% if section.settings.show_title or section.settings.show_rss %}
+    <h1 class="blog-title">
+      {% if section.settings.show_title %}
+        {{ blog.title }}
+      {% endif %}
+      {% if section.settings.show_rss %}
+        <a class="icon-rss" href="{{ blog.title }}.atom" rel="noopener" target="_blank">
+          {% render 'icon-rss-secondary' %}
+        </a>
+      {% endif %}
+    </h1>
+  {% endif %}
+
+  {% if current_tags and section.settings.show_tag_nav == false %}
+    <h2 class="h5 blog-nav">
+      <a href="{{ blog.url }}" title="{{ 'blogs.article.all' | t }}" class="btn--pill">
+        {{ current_tags.first }}
+        {% render 'icon-close-thick' %}
+      </a>
+    </h2>
+  {% endif %}
+
+  {%- if section.settings.show_tag_nav -%}
+    <ul class="inline-nav capitalize">
+      <li {% if current_tags == blank %} class="inline-nav--active"{% endif %}>
+        <a href="{{ blog.url }}">{{ 'blogs.article.all' | t }}</a>
+      </li>
+      {% for tag in blog.all_tags %}
+        <li {% if current_tags contains tag %}class="inline-nav--active"{% endif %}>
+          {{ tag | link_to_tag: tag }}
+        </li>
+      {% endfor %}
+    </ul>
+  {%- endif -%}
+
+  {% paginate blog.articles by article_limit %}
+    {%- assign grid_list_strings = '' -%}
+
+{%- case section.settings.grid -%}
+  {%- when 1 -%}
+    {%- assign grid_strings = 'large-up--one-half large-up--push-one-quarter medium--one-half medium--push-one-quarter small--one-whole grid__item--no-float' -%}
+    {%- assign grid_list_strings = 'grid--no-float' -%}
+  {%- when 2 -%}
+    {%- assign grid_strings = 'large-up--one-half medium--one-half small--one-whole' -%}
+  {%- when 3 -%}
+    {%- assign grid_strings = 'large-up--one-third medium--one-third small--one-whole' -%}
+  {%- else -%}
+    {%- assign grid_strings = 'large-up--one-quarter medium--one-half small--one-whole' -%}
+{%- endcase -%}
+
+{%- assign blog_articles = blog.articles -%}
+{%- assign article_limit = 4 -%}
+{%- assign article_limit = section.settings.grid | times: section.settings.rows -%}
+{%- assign showAuthor = section.settings.show_author | default: false -%}
+{%- assign showDate = section.settings.show_date | default: false -%}
+{%- assign showButton = section.settings.show_button | default: false -%}
+{%- assign showTags = section.settings.show_tags | default: false -%}
+{%- assign showComments = section.settings.show_comments | default: false -%}
+{%- assign onboarding = false -%}
+{%- assign animation_anchor = '#blog--' | append: section.id -%}
+
+{%- if section.settings.blog_name -%}
+  {%- if section.settings.blog_name != blank and blogs[section.settings.blog_name].articles.size > 0 -%}
+    {%- assign blog_articles = blogs[section.settings.blog_name].articles -%}
+  {%- else -%}
+    {%- assign onboarding = true -%}
+  {%- endif -%}
+{%- endif -%}
+
+<div class="blog-listing-outer">
+  <div class="blog-listing grid grid--uniform {{ grid_list_strings }}{% if settings.product_grid_outline %} blog-listing--bordered{% endif %}">
+   {% if onboarding %}
+      {% for i in (1..article_limit) %}
+        <article class="article article--onboarding grid__item {{ grid_strings }}">
+          <a href="#" title="Article title" aria-label="{{ article.title }}">
+              <div class="article__image svg-placeholder"{% if section.settings.aspect_ratio %} style="height: auto; padding-top: {{ section.settings.aspect_ratio | times: 100 }}%;"{% endif %}>
+                  {{ 'image' | placeholder_svg_tag }}
+
+                  <div class="image-overlay" style="background-color:{{ section.settings.overlay_color }} !important; opacity: {{ section.settings.overlay_opacity | times: 0.01 }};"></div>
+
+                  {% if showTags %}
+                    <div class="article__footer">
+                      <p class="article__tags">
+                        <span class="article__tag">tag</span><span class="article__tag">tag</span>
+                      </p>
+                    </div>
+                  {% endif %}
+              </div>
+          </a>
+
+          <div class="article__text-wrapper">
+
+            <h2 class="article__title"><a href="#" title="Article title">Blog post title</a></h2>
+
+            {% if showDate or showAuthor or showComments %}
+              <p class="article__meta">
+                {% if showDate %}
+                  <time datetime="{{ 'now' | date: format: 'full_date' }}">{{ 'now' | date: format: 'full_date' }}</time>
+                {% endif %}
+
+                {% if showAuthor %}
+                  <span class="article__meta__author">by Author Name</span>
+                {% endif %}
+
+                {% if showComments %}
+                  {% if settings.enable_disqus %}
+                    <span class="comment-count"><em>
+                      <a href="{{ shop.url }}{{ article.url }}" data-disqus-identifier="{{ article.id }}"> </a>
+                    </em></span>
+                  {% elsif article.comments_count > 0 %}
+                    <span class="comment-count"><em>{{ 'blogs.comments.comments_with_count' | t: count: article.comments_count }}</em></span>
+                  {% endif %}
+                {% endif %}
+              </p>
+            {% endif %}
+
+            <p class="article__excerpt">Once you create a blog post, the content will appear here. It will display the first few lines of text here or a summary of the post that could be added from the Excerpt section in Blog posts editor.</p>
+
+            {% if showButton %}
+              <p class="article__link"><a href="#" class="standard__cta caps--large">{{ 'blogs.article.read_more' | t }}</a></p>
+            {% endif %}
+
+          </div>
+        </article>
+      {% endfor %}
+    {% else %}
+      {% for article in blog_articles limit: article_limit %}
+        {% assign grid_int = section.settings.grid | times: 1 %}
+        {% assign animation_delay = forloop.index0 | modulo: grid_int | times: 1 %}
+
+        {%- capture tags -%}
+          {%- if article.tags.size > 0 and showTags -%}
+            <p class="article__tags">
+              {%- for tag in article.tags -%}
+                <a href="{{ blog.url }}/tagged/{{ tag | handle }}" title="{{ blog.title }} tagged {{ tag | escape }}" class="article__tag">{{ tag }}</a>
+              {%- endfor -%}
+            </p>
+          {%- endif -%}
+        {%- endcapture -%}
+
+        <article class="article grid__item {{ grid_strings }}"
+          data-slide="{{ forloop.index0 }}"
+          data-slide-index="{{ forloop.index0 }}">
+          {% if article.image %}
+            <div>
+              <div class="article__image"{% if section.settings.aspect_ratio %} style="height: auto; padding-top: {{ section.settings.aspect_ratio | times: 100 }}%;"{% endif %}>
+                <div class="background-size-cover"
+                  style="background-image: image-set(
+                    url({{ article.image | image_url: 540 }}) 1x,
+                    url({{ article.image | image_url: 1080 }}) 2x
+                  )"
+                      data-aos="img-in"
+                      data-aos-anchor="{{ animation_anchor }}"
+                      data-aos-delay="{{ animation_delay | times: 150 }}"
+                      data-aos-duration="{{ animation_delay | times: 100 | plus: 800 }}"
+                      data-aos-easing="ease-out-quart">
+                  <a href="{{ article.url }}" aria-label="{{ article.title | strip_html | escape }}" class="article__image-link">
+                    <div class="image-overlay" style="background-color:{{ section.settings.overlay_color }} !important; opacity: {{ section.settings.overlay_opacity | times: 0.01 }};"></div>
+                  </a>
+                </div>
+                <noscript>
+                  {{ article.image | image_url: width: 540, height: 540, crop: 'center' | image_tag: alt: article.image.alt, loading: 'lazy' }}
+                </noscript>
+
+                {{ tags }}
+              </div>
+            </div>
+          {% else %}
+            {{ tags }}
+          {% endif %}
+
+          <div class="article__text-wrapper">
+            <h2 class="article__title">
+              <a href="{{ article.url }}" title="{{ article.title | strip_html | escape }}">
+                {{ article.title }}
+              </a>
+            </h2>
+
+            {% if showDate or showAuthor or showComments %}
+              <h3 class="article__meta">
+                {% if showDate %}
+                  {% assign published_at = article.published_at | date: format: 'full_date' %}
+                  <time datetime="{{ published_at }}">{{ published_at }}</time>
+                {% endif %}
+
+                {% if showAuthor %}
+                  <span class="article__meta__author">{{ 'blogs.article.by_author' | t: author: article.author }} </span>
+                {% endif %}
+
+                {% if showComments %}
+                  {% if settings.enable_disqus %}
+                    <span class="comment-count"><em>
+                      <a href="{{ shop.url }}{{ article.url }}" data-disqus-identifier="{{ article.id }}"> </a>
+                    </em></span>
+                  {% elsif article.comments_count > 0 %}
+                    <span class="comment-count"><em>{{ 'blogs.comments.comments_with_count' | t: count: article.comments_count }}</em></span>
+                  {% endif %}
+                {% endif %}
+              </h3>
+            {% endif %}
+
+            <p class="article__excerpt">{{ article.excerpt_or_content | strip_html | truncatewords: 30 }}</p>
+
+            {% if showButton %}
+              <p class="article__link"><a href="{{ article.url }}" class="standard__cta caps--large">{{ 'blogs.article.read_more' | t }}</a></p>
+            {% endif %}
+          </div>
+        </article>
+      {% endfor %}
+    {% endif %}
+  </div>
+</div>
+
+    {% render 'pagination', paginate: paginate %}
+  {% endpaginate %}
+
+  {% if blog.articles_count == 0 %}
+    <div class="collection-error centered">
+      <div class="no-products h4 text-center">{{ 'blogs.article.no_articles' | t }}</div>
+    </div>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Blog pages",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show title",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rss",
+      "label": "Show RSS icon",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_tag_nav",
+      "label": "Show tag navigation",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "grid",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "label": "Articles per row",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "rows",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "label": "Number of rows",
+      "default": 4
+    },
+    {
+      "type": "header",
+      "content": "Articles"
+    },
+    {
+      "type": "range",
+      "id": "aspect_ratio",
+      "min": 0.5,
+      "max": 1.5,
+      "step": 0.1,
+      "unit": ":1",
+      "label": "Article image aspect ratio",
+      "info": "Wide to tall",
+      "default": 1
+    },
+    {
+      "type": "checkbox",
+      "id": "show_tags",
+      "label": "Show tags",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_author",
+      "label": "Show author",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_date",
+      "label": "Show date",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_button",
+      "label": "Show 'Read more' button",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_comments",
+      "label": "Show comment count",
+      "default": false
+    }
+  ]
+}
+{% endschema %}

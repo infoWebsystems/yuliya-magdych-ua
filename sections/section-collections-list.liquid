@@ -1,0 +1,177 @@
+<!-- /sections/section-collections-list.liquid -->
+
+{% case section.blocks.size %}
+  {% when 0 %}
+    {% assign grid_strings = 'one-quarter small--one-whole' %}
+  {% when 1 %}
+    {% assign grid_strings = 'one-third small--one-whole' %}
+  {% when 2 %}
+    {% assign grid_strings = 'one-third small--one-whole' %}
+  {% when 3 %}
+    {% assign grid_strings = 'one-third small--one-whole' %}
+  {% else %}
+    {% assign grid_strings = 'one-quarter small--one-whole' %}
+{% endcase %}
+
+{%- assign mobile_slider = "product-grid--vertical" -%}
+{%- assign block_scroll_attr = '' -%}
+{%- if section.settings.enable_slider -%}
+  {%- assign mobile_slider = "product-grid--mobile-slider" -%}
+  {%- assign block_scroll_attr = 'data-block-scroll' -%}
+{%- endif -%}
+
+{%- assign section_modifier = '' -%}
+{%- assign layout_grid = '' -%}
+{%- assign layout_grid_attributes = '' -%}
+{%- if section.settings.layout == 'slider' -%}
+    {%- assign section_modifier = 'layout--slider' -%}
+    {%- assign layout_grid = 'product-grid--slider flickity-button-circle' -%}
+    {%- assign layout_grid_attributes = 'data-slider="' | append: section.id | append: '" data-infinite="false" data-cell-align="left" data-watch-css="true" data-group-cells="true" data-dots="hidden" data-arrows="true" data-arrow-position-middle' -%}
+  {%- else -%}
+    {%- assign section_modifier = 'layout--grid' -%}
+{%- endif -%}
+
+{%- assign animation_anchor = '#collections-list--' | append: section.id -%}
+
+<section class="index-collections-list {{ section_modifier }}"
+  id="collections-list--{{ section.id }}"
+  data-section-id="{{ section.id }}" 
+  data-section-type="list-collections">
+  <div class="grid-container">
+    {% if section.settings.title != blank or section.settings.description != blank %}
+      {%- assign text_alignment_class = 'text-left' -%}
+      {%- if settings.product_grid_center -%}
+        {%- assign text_alignment_class = 'text-center' -%}
+      {%- endif -%}
+
+      <div class="grid__heading-holder {{ text_alignment_class }}">
+        {%- if section.settings.title != blank -%}
+          <h2 class="grid__heading {{ text_alignment_class }}">{{ section.settings.title }}</h2>
+        {%- endif -%}
+  
+        {%- if section.settings.description != blank -%}
+          <div class="grid__description {{ text_alignment_class }}">
+            {{ section.settings.description }}
+          </div>
+        {%- endif -%}
+      </div>
+    {% endif %}
+    
+    <div class="container">
+      <div class="product-grid-outer collection-list-outer">
+        <div class="collection-list product-grid {{ mobile_slider }} {{ layout_grid }}{% unless settings.product_grid_outline %} product-grid--borderless{% endunless %}" {{ layout_grid_attributes }} {{ block_scroll_attr }}>
+          {% if section.blocks.size > 0 %}
+            {% for block in section.blocks %}
+              {% assign animation_delay = forloop.index0 | times: 1 %}
+              {%- assign layout_slide_attributes = 'data-slide="' | append: block.id | append: '" data-slide-index="' | append: forloop.index0 | append: '"' -%}
+              {% render 'collection-grid-item', block: block, section: section, grid_strings: grid_strings, animation_delay: animation_delay, animation_anchor: animation_anchor, additional_attributes: layout_slide_attributes %}
+            {% endfor %}
+          {% else %}
+            {% for i in (1..4) %}
+              {% assign animation_delay = forloop.index0 | times: 1 %}
+              {%- assign layout_slide_attributes = 'data-slide="' | append: forloop.index0 | append: '" data-slide-index="' | append: forloop.index0 | append: '"' -%}
+              {% render 'collection-grid-item', block: block, section: section, grid_strings: grid_strings, animation_delay: animation_delay, animation_anchor: animation_anchor, additional_attributes: layout_slide_attributes %}
+            {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% schema %}
+{
+  "name": "Collection list",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Collection list"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        {
+          "value": "grid",
+          "label": "Grid"
+        },
+        {
+          "value": "slider",
+          "label": "Slider"
+        }
+      ],
+      "default": "grid"
+    },
+    {
+      "type": "range",
+      "id": "aspect_ratio",
+      "min": 0.5,
+      "max": 1.5,
+      "step": 0.1,
+      "unit": ":1",
+      "label": "Photo aspect ratio",
+      "info": "Wide to tall",
+      "default": 1
+    },
+    {
+      "type": "header",
+      "content": "Mobile"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_slider",
+      "label": "Enable slider",
+      "default": true,
+      "info": "Horizontal slider in mobile layout."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "limit": 8,
+      "settings": [
+        {
+          "label": "Collection",
+          "id": "collection",
+          "type": "collection"
+        },
+        {
+          "label": "Heading",
+          "id": "title",
+          "type": "text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "category": "Collection",
+      "name": "Collection list",
+      "blocks": [
+        {
+          "type": "collection"
+        },
+        {
+          "type": "collection"
+        },
+        {
+          "type": "collection"
+        },
+        {
+          "type": "collection"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

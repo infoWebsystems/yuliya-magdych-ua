@@ -1,0 +1,294 @@
+<!-- /sections/text-promo.liquid -->
+
+{%- liquid
+  assign classes = ""
+  if section.settings.border
+    assign classes = classes | append: " text-promo-inner--border"
+  endif
+
+  if section.settings.image != blank
+    assign classes = classes | append: " lazyload"
+  endif
+-%}
+
+<section class="text-promo {{ section.settings.width }}" data-section-type="promo" data-section-id="{{ section.id }}">
+  <div class="text-promo-inner {{ section.settings.text_color }} {{ classes }}"
+    {% if section.settings.image != blank %}
+      style="
+        background-position: {{ section.settings.bg_position | replace: '-', ' ' }};
+        background-image: image-set(
+          url( {{ section.settings.image | image_url: width: 512 }}) 1x,
+          url( {{ section.settings.image | image_url: width: 1024 }}) 2x
+        )
+      "
+      role="img"
+      aria-label="{{ image.alt | strip_html | escape }}"
+    {% else %}
+      style="background-color: {{ section.settings.bg_color }};"
+    {% endif %}>
+    {% for block in section.blocks %}
+      {%- case block.type -%}
+        {%- when '@app' -%}
+          <div class="standard__app" {{ block.shopify_attributes }}>
+            {% render block %}
+          </div>
+        {%- when 'button' -%}
+          <a href="{{ block.settings.button_url }}"
+            class="standard__cta {{ block.settings.button_style }} {{ block.settings.button_color }}" {{ block.shopify_attributes }}>
+            {{ block.settings.button_text }}
+          </a>
+        {%- when 'heading' -%}
+          <h2 class="h4 standard__heading" {{ block.shopify_attributes }}>
+            {{ block.settings.title }}
+          </h2>
+        {%- when 'text' -%}
+          <div class="standard__rte" {{ block.shopify_attributes }}>
+            {{ block.settings.content }}
+          </div>
+      {% endcase %}
+    {% endfor %}
+
+    {% if section.settings.image != blank %}
+      {% assign overlay_opacity = section.settings.overlay_opacity | times: 0.01 %}
+      <div class="image-overlay" style="background-color:{{ section.settings.overlay_color }} !important; opacity:{{ overlay_opacity }};"></div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Text promo",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "border",
+      "label": "Show border",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#f7f7f7"
+    },
+    {
+      "type": "select",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "text-dark",
+      "options": [
+        {
+          "value": "text-light",
+          "label": "White"
+        },
+        {
+          "value": "text-dark",
+          "label": "Dark"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Width",
+      "default": "wrapper--full",
+      "options": [
+        {
+          "value": "wrapper",
+          "label": "Normal"
+        },
+        {
+          "value": "wrapper--narrow",
+          "label": "Narrow"
+        },
+        {
+          "value": "wrapper--full",
+          "label": "Wide"
+        },
+        {
+          "value": "",
+          "label": "Full"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Background image (optional)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "select",
+      "id": "bg_position",
+      "label": "Position",
+      "default": "center-center",
+      "options": [
+        {
+          "label": "Top",
+          "value": "center-top"
+        },
+        {
+          "label": "Right",
+          "value": "right-center"
+        },
+        {
+          "label": "Center",
+          "value": "center-center"
+        },
+        {
+          "label": "Left",
+          "value": "left-center"
+        },
+        {
+          "label": "Bottom",
+          "value": "center-bottom"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay opacity",
+      "info": "Increase contrast for legible text.",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay color",
+      "default": "#000"
+    }
+  ],
+  "max_blocks": 3,
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "button",
+      "name": "Button",
+      "settings": [
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Text",
+          "default": "Shop now"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Link"
+        },
+        {
+          "type": "select",
+          "id": "button_color",
+          "label": "Color",
+          "default": "btn--neutral",
+          "options": [
+            {
+              "value": "btn--primary",
+              "label": "Bright accent"
+            },
+            {
+              "value": "btn--secondary",
+              "label": "Secondary accent"
+            },
+            {
+              "value": "btn--link",
+              "label": "Link color"
+            },
+            {
+              "value": "btn--neutral",
+              "label": "Text color"
+            },
+            {
+              "value": "btn--black",
+              "label": "Black"
+            },
+            {
+              "value": "btn--white",
+              "label": "White"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "button_style",
+          "label": "Style",
+          "default": "caps--large",
+          "options": [
+            {
+              "value": "caps--large",
+              "label": "Capitalized text"
+            },
+            {
+              "value": "hero__btn btn btn--input caps",
+              "label": "Small button"
+            },
+            {
+              "value": "hero__btn btn btn--large caps",
+              "label": "Large button"
+            },
+            {
+              "value": "hero__btn btn btn--input btn--outline caps",
+              "label": "Small outline button"
+            },
+            {
+              "value": "hero__btn btn btn--large btn--outline caps",
+              "label": "Large outline button"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "name": "Heading",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "title",
+          "label": "Heading",
+          "default": "Text promo"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "content",
+          "label": "Text",
+          "default": "Advertise a promotion or a sale"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "category": "Text",
+      "name": "Text promo",
+      "blocks": [
+        {
+          "type": "heading"
+        },
+        {
+          "type": "text"
+        },
+        {
+          "type": "button"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

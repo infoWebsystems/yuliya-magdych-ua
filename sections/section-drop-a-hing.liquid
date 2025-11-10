@@ -1,0 +1,578 @@
+<style>
+  .drop-hint__modal {
+    position: fixed;
+    background-color: rgb(0 0 0 / 67%);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+  }
+
+  .drop-hint__modal .submit {
+    background-color: black;
+    color: white;
+    font-weight: 700;
+    line-height: 51px;
+    padding: 0 25px;
+    min-width: 200px;
+  }
+
+  .drop-hint__modal .submit:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .drop-hint__modal__content {
+    padding: 3rem;
+    position: fixed;
+    z-index: 1000;
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .drop-hint__modal__content__row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem
+  }
+
+  .drop-hint__button {
+    width: 100%;
+    line-height: 51px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .drop-hint__button i {
+    background-image: url({{ 'btn_icon_animated.gif' | asset_url }});
+    background-size: cover;
+    width: 40px;
+    height: 40px;
+  }
+
+	.drop-hint__modal__image__container img {
+		max-width: 240px;
+		height: auto;
+		margin: 0 auto;
+    display: block;
+	}
+
+	.drop-hint__modal__content [data-name="product-title"] {
+		text-align: center;
+	}
+
+  .drop-hint__modal:after {
+    content: '';
+    display: block;
+    background-color: black
+  }
+
+  .drop-hint__modal__image__container h3 {
+    font-size: 1.5rem
+  }
+
+  .drop-hint__modal__content__card {
+    text-align: center;
+  }
+
+  .drop-hint__modal__content__card p {
+    font-size: 1.3rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .drop-hint__modal__content__card .holder {
+    display: inline-block;
+    font-weight: 700
+  }
+
+  .drop-hint__modal__content__card .holder:empty {
+    border-bottom: 1px solid black;
+    min-width: 100px
+  }
+
+  .drop-hint__modal__content__card .style1,
+  .drop-hint__modal__content__card .style2 {
+    display: block
+  }
+
+  .drop-hint__modal__content__card .style1 {
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    margin: 1.5rem 0 1rem;
+  }
+
+  .drop-hint__modal__content__card .style2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-style: italic;
+    margin: 1.5rem 0 1rem;
+  }
+
+  .drop-hint__modal__content__close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1rem;
+    cursor: pointer;
+    z-index: 5;
+  }
+
+  .drop-hint__modal__content__close i:before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 1px;
+    background-color: black;
+    transform: rotate(45deg);
+    position: relative;
+    top: 1px;
+  }
+
+  .drop-hint__modal__content__close i:after {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 1px;
+    background-color: black;
+    transform: rotate(-45deg);
+  }
+
+  .drop-hint__modal__success__row.hid {
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  :root {
+    --animate-duration: 1s;
+    --animate-delay: 1s;
+    --animate-repeat: 1;
+  }
+
+  .animated {
+    animation-duration: var(--animate-duration);
+    animation-fill-mode: both;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+
+    to {
+      opacity: 0;
+    }
+  }
+
+  .fadeIn {
+    animation-name: fadeIn;
+  }
+
+  .fadeOut {
+    animation-name: fadeOut;
+  }
+
+  input.error {
+    border: 1px solid red !important;
+  }
+
+  @media (max-width: 768px) {
+    .drop-hint__modal__content__row {
+      grid-template-columns: 1fr;
+    }
+    .drop-hint__modal__content {
+      max-width: calc(100vw - 40px);
+      max-height: calc(100vh - 40px);
+      padding: 1rem;
+    }
+    .drop-hint__modal__content__scrol {
+      overflow-y: scroll;
+      max-height: calc(100vh - 80px);
+    }
+    .drop-hint__modal__image__container img {
+      max-width: 120px
+    }
+    .drop-hint__modal__content__form input,
+    .drop-hint__modal__content__form textarea {
+      width: 100%;
+    }
+
+    .drop-hint__modal__content__row {
+      min-width: 300px;
+      gap: 0;
+    }
+
+    .drop-hint__modal__content__card > *:not(h2) {
+      display: none !important;
+    }
+
+    .drop-hint__modal__image__container h3 {
+      font-size: 1rem;
+    }
+
+    .drop-hint__modal__content__form,
+    .drop-hint__modal__success__row {
+      text-align: center;
+    }
+
+  }
+</style>
+<section class="dropHint">
+</section>
+<script>
+
+  const debounce = (fn, delay = 500) => {
+    let timeoutId;
+    return (...args) => {
+        // cancel the previous timer
+        if (timeoutId) {
+            clearTimeout(timeoutId);
+        }
+        // setup a new timer
+        timeoutId = setTimeout(() => {
+            fn.apply(null, args)
+        }, delay);
+    }
+  }
+
+  const dropHint = {
+    selectors: {
+      $body: document.querySelector('body')
+    },
+    createButton() {
+      let $btn = document.createElement('button')
+      $btn.classList.add('drop-hint__button')
+      $btn.innerHTML = "{% if section.settings.button_icon %}<i></i>{% endif %}{{ section.settings.button_text }}"
+      $appendTarget = document.querySelector("{{ section.settings.button_append_selector }}")
+      if (!$appendTarget) {
+        return
+      } else {
+        $appendTarget.after($btn)
+      }
+    },
+    drawModal() {
+      let $modal = document.createElement('div')
+      $modal.classList.add('drop-hint__modal', 'hidden')
+      $modal.innerHTML = `
+        <div class="drop-hint__modal__content animated">
+          <div class="drop-hint__modal__content__close">
+            <i></i>
+          </div>
+          <div class="drop-hint__modal__content__scrol">
+            <div class="drop-hint__modal__content__row">
+              <div class="drop-hint__modal__content__card">
+                <h2>Натяк на подарунок</h2>
+                {% liquid
+                  assign cardTemplate = section.settings.card_template
+                  for block in section.blocks
+                    assign tmp = block.settings.title | handleize | append: '}' | prepend: '{'
+                    assign dn = block.settings.title | handleize | append: '"' | prepend: 'data-name="'
+                    assign cardTemplate = cardTemplate | replace: tmp, '<span class="holder" dataName></span>'
+                    assign cardTemplate = cardTemplate | replace: 'dataName', dn
+                  endfor
+                %}
+                {{ cardTemplate }}
+              </div>
+              <div class="drop-hint__modal__image__container">
+              </div>
+              <div class="drop-hint__modal__content__form">
+                <h2>Натякнути на подарунок</h2>
+                <form class="drop-hint__modal__content__form">
+                  {% for block in section.blocks %}
+                    {% case block.settings.input_type %}
+                      {% when 'text' %}
+                        <input type="text" placeholder="{{ block.settings.title }}" data-target="{{ block.settings.title | handleize }}">
+                      {% when 'email' %}
+                        <input type="email" placeholder="{{ block.settings.title }}" data-target="{{ block.settings.title | handleize }}">
+                      {% when 'textarea' %}
+                        <textarea placeholder="{{ block.settings.title }}" rows="5" cols="33" data-target="{{ block.settings.title | handleize }}"></textarea>
+                    {% endcase %}
+                  {% endfor %}
+                  <button class="submit">Натякнути <span class="target"></span></button>
+                </form>
+              </div>
+            </div>
+          </div>
+					<div class="drop-hint__modal__success__row">
+            <div class="drop-hint__modal__success__content">
+            </div>
+					</div>
+        </div>
+      `
+      this.selectors.$body.appendChild($modal)
+      this.selectors.$modal = $modal
+      this.selectors.$modalInner = $modal.querySelector('.drop-hint__modal__content')
+      this.selectors.$modalClose = $modal.querySelector('.drop-hint__modal__content__close')
+      this.selectors.$modalImage = $modal.querySelector('.drop-hint__modal__image__container')
+      this.selectors.$modalCard = $modal.querySelector('.drop-hint__modal__content__card')
+      this.selectors.$modalForm = $modal.querySelector('.drop-hint__modal__content__form')
+      this.selectors.$submit = $modal.querySelector('.submit')
+      this.selectors.$contenRow = $modal.querySelector('.drop-hint__modal__content__row')
+      this.selectors.$succesRow = $modal.querySelector('.drop-hint__modal__success__row')
+    },
+    clearInputs() {
+      let inputs = this.selectors.$modalForm.querySelectorAll('input, textarea')
+      inputs.forEach(input => {
+        input.value = ''
+      })
+    },
+    showModal() {
+      this.selectors.$modal.classList.remove('hidden')
+      this.selectors.$modalInner.classList.add('fadeIn')
+      let image = document.querySelector('.product__slide.is-selected img')
+      this.selectors.$modalImage.innerHTML = ''
+      this.selectors.$modalImage.appendChild(image.cloneNode(true))
+      let url = new URL(location.href)
+      let curVariant = url.searchParams.get('variant')
+      let curTitle = meta.product.variants.find(v => v.id == curVariant).name
+      let $title = document.createElement('h3')
+      $title.setAttribute('data-name', 'product-title')
+      $title.innerHTML = curTitle
+      this.selectors.$modalImage.appendChild($title)
+    },
+    hideModal() {
+      this.selectors.$modalInner.classList.remove('fadeIn')
+      setTimeout(() => {
+        this.selectors.$modal.classList.add('hidden')
+        this.selectors.$succesRow.innerHTML = ''
+        this.selectors.$contenRow.classList.remove('animated', 'fadeOut')
+        this.selectors.$succesRow.classList.remove('animated', 'fadeIn', 'hid')
+      }, 300)
+    },
+    bindEvents() {
+      document.querySelector('.drop-hint__button').addEventListener('click', (e) => {
+        e.preventDefault()
+        this.showModal()
+      })
+      this.selectors.$modal.addEventListener('click', (e) => {
+        e.preventDefault()
+        if(e.target.classList.contains('drop-hint__modal')) {
+          this.hideModal()
+        }
+      })
+      this.selectors.$modalClose.addEventListener('click', (e) => {
+        e.preventDefault()
+        this.hideModal()
+      })
+      let inputs = this.selectors.$modalForm.querySelectorAll('input, textarea')
+      inputs.forEach(input => {
+        input.addEventListener('input', (e) => {
+          let $target = this.selectors.$modalCard.querySelector(`[data-name="${e.target.dataset.target}"]`)
+          if ($target)
+            $target.innerHTML = e.target.value
+          if(e.target.dataset.target === 'recipients-name') {
+            this.selectors.$submit.querySelector('.target').innerHTML = e.target.value
+          }
+        })
+      })
+      this.selectors.$submit.addEventListener('click', (e) => {
+        e.preventDefault()
+        if (!this.checkInputs()) {
+          return
+        }
+
+        const options = {
+          method: 'POST',
+          headers: {accept: 'application/json', 'content-type': 'application/json'},
+          body: JSON.stringify({
+						"data": {
+							"type": "event",
+							"attributes": {
+								"profile": {
+										"email": this.selectors.$modalInner.querySelector('[data-target="email-одержувача"]').value
+								},
+								"metric": {
+									"name": "Got a Hint "
+								},
+								"properties": {
+										"hint_reciever_name": this.selectors.$modalInner.querySelector('[data-target="імя-одержувача"]').value,
+										"product_title": this.selectors.$modalInner.querySelector('[data-name="product-title"]').innerHTML,
+										"hint_sender": this.selectors.$modalInner.querySelector('[data-target="ваша-електронна-пошта"]').value,
+										"hint_sender_name": this.selectors.$modalInner.querySelector('[data-target="ваше-імя"]').value,
+										"hint_sender_ps": this.selectors.$modalInner.querySelector('[data-target="ваше-повідомлення"]').value,
+										"product_image":  this.selectors.$modalInner.querySelector('img').src,
+										"product_url": location.href
+								}
+							}
+						}
+					})
+        };
+
+        fetch('https://hint-a-gift.herokuapp.com/klaviyo/ua/event/create', options)
+          .then(response => response.json())
+          .then(
+            response => {
+              this.selectors.$contenRow.classList.add('animated', 'fadeOut')
+              this.selectors.$succesRow.innerHTML =
+                `<h3>Your Hint has been sent to </br>${this.selectors.$modalInner.querySelector('[data-target="email-одержувача"]').value}</h3>`
+              this.selectors.$succesRow.appendChild(this.selectors.$modalImage.cloneNode(true))
+              this.selectors.$succesRow.classList.add('animated', 'fadeIn', 'hid')
+              this.clearInputs()
+            }
+          )
+          .catch(err => console.error(err));
+      })
+    },
+    bindValidation() {
+      let inputs = this.selectors.$modalInner.querySelectorAll('input, textarea')
+      inputs.forEach(input => {
+        input.addEventListener('input', debounce(function(e){
+          switch (e.target.type) {
+            case 'email':
+              if (e.target.value.match(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/)) {
+                e.target.classList.remove('error')
+              } else {
+                e.target.classList.add('error')
+              }
+              break
+            case 'text':
+              if (e.target.value.length > 0) {
+                e.target.classList.remove('error')
+              } else {
+                e.target.classList.add('error')
+              }
+              break
+          }
+        }))
+      })
+    },
+    checkInputs() {
+      let inputs =  this.selectors.$modalInner.querySelectorAll('input')
+      let errors = 0
+      inputs.forEach(input => {
+        if (input.classList.contains('error') || input.value.length === 0) {
+          input.classList.add('error')
+          errors++
+        }
+      })
+      if (errors > 0) {
+        return false
+      } else {
+        return true
+      }
+    },
+    init() {
+      this.createButton()
+      this.drawModal()
+      this.bindEvents()
+      this.bindValidation()
+    }
+  };
+
+  dropHint.init()
+
+</script>
+
+{% schema %}
+{
+  "name": "Drop a Hint",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Button Settings"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "HINT AT A GIFT"
+    },
+    {
+      "type": "checkbox",
+      "id": "button_icon",
+      "label": "Show animated icon",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "button_append_selector",
+      "label": "Append button after selector"
+    },
+    {
+      "type": "html",
+      "id": "card_template",
+      "label": "Card Template"
+    },
+    {
+      "type": "header",
+      "content": "Klavio Settings"
+    },
+    {
+      "type": "text",
+      "id": "klavio_api_key",
+      "label": "Klavio API"
+    },
+    {
+      "type": "text",
+      "id": "klavio_send_list_id",
+      "label": "Klavio Send HINT List ID"
+    },
+    {
+      "type": "text",
+      "id": "klavio_recive_list_id",
+      "label": "Klavio Recive HINT List ID"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "input",
+      "name": "Input",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Input Text",
+          "default": "Input Text"
+        },
+        {
+          "type": "select",
+          "id": "input_type",
+          "label": "Input Type",
+          "options": [
+            {
+              "value": "text",
+              "label": "Text"
+            },
+            {
+              "value": "select",
+              "label": "Select"
+            },
+            {
+              "value": "email",
+              "label": "Email"
+            },
+            {
+              "value": "textarea",
+              "label": "Textarea"
+            }
+          ],
+          "default": "text"
+        }
+
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Drop a Hint",
+      "category": "product"
+    }
+  ]
+}
+{% endschema %}

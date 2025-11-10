@@ -1,0 +1,1018 @@
+{
+  "colors": [
+    {
+      "mega blue": "super_blue.png"
+    },
+    {
+      "Demo Image": "blank.svg"
+    },
+    {
+      "ash": "#a3a3a3"
+    },
+    {
+      "sky": "#4cbbb8"
+    },
+    {
+      "pop": "#e43e23"
+    },
+    {
+      "red": "#e52824"
+    },
+    {
+      "jet": "#000000"
+    },
+    {
+      "gum": "#eb5799"
+    },
+    {
+      "hot": "#ff0073"
+    },
+    {
+      "mud": "#4a342c"
+    },
+    {
+      "tan": "#d2b48c"
+    },
+    {
+      "ruby": "#e32040"
+    },
+    {
+      "jade": "#1b5c1d"
+    },
+    {
+      "vert": "#489c4a"
+    },
+    {
+      "bone": "#dedbbf"
+    },
+    {
+      "aqua": "#00ffff"
+    },
+    {
+      "blue": "#1d5caa"
+    },
+    {
+      "cyan": "#00ffff"
+    },
+    {
+      "dirt": "#a54400"
+    },
+    {
+      "Золотистий": "#D4AF37"
+    },
+    {
+      "gray": "#808080"
+    },
+    {
+      "grey": "#808080"
+    },
+    {
+      "lime": "#00ff00"
+    },
+    {
+      "navy": "#000080"
+    },
+    {
+      "nude": "#E3BC9A"
+    },
+    {
+      "mint": "#b6e4d0"
+    },
+    {
+      "milk": "#f6f2e8"
+    },
+    {
+      "wine": "#533230"
+    },
+    {
+      "coal": "#060d11"
+    },
+    {
+      "snow": "#dddddd"
+    },
+    {
+      "dash": "#234d90"
+    },
+    {
+      "moss": "#40592f"
+    },
+    {
+      "peel": "#ffd322"
+    },
+    {
+      "sand": "#e0c389"
+    },
+    {
+      "onyx": "#323737"
+    },
+    {
+      "silk": "#d1c4bb"
+    },
+    {
+      "peru": "#cd853f"
+    },
+    {
+      "pink": "#ffc0cb"
+    },
+    {
+      "plum": "#8a3340"
+    },
+    {
+      "rust": "#b7410e"
+    },
+    {
+      "teal": "#008080"
+    },
+    {
+      "tile": "#b9b6a1"
+    },
+    {
+      "azure": "#f0ffff"
+    },
+    {
+      "Бежевий": "#f5f5dc"
+    },
+    {
+      "black": "#000000"
+    },
+    {
+      "brown": "#804020"
+    },
+    {
+      "cream": "#ddd7cb"
+    },
+    {
+      "terra": "#b7a282"
+    },
+    {
+      "slate": "#4f4f4f"
+    },
+    {
+      "olive": "#40483f"
+    },
+    {
+      "coral": "#ff7f50"
+    },
+    {
+      "green": "#008000"
+    },
+    {
+      "ivory": "#f5ecda"
+    },
+    {
+      "khaki": "#f0e68c"
+    },
+    {
+      "linen": "#faf0e6"
+    },
+    {
+      "mauve": "#e0b0ff"
+    },
+    {
+      "wheat": "#f5deb3"
+    },
+    {
+      "white": "#ffffff"
+    },
+    {
+      "sienna": "#9f6a51"
+    },
+    {
+      "bisque": "#ffe4c4"
+    },
+    {
+      "indigo": "#4b0082"
+    },
+    {
+      "maroon": "#800000"
+    },
+    {
+      "orange": "#ffa500"
+    },
+    {
+      "orchid": "#da70d6"
+    },
+    {
+      "purple": "#800080"
+    },
+    {
+      "salmon": "#fa8072"
+    },
+    {
+      "silver": "#c0c0c0"
+    },
+    {
+      "shadow": "#5c534f"
+    },
+    {
+      "tomato": "#ff6347"
+    },
+    {
+      "violet": "#ee82ee"
+    },
+    {
+      "yellow": "#ffff00"
+    },
+    {
+      "natural": "#b7ac9a"
+    },
+    {
+      "crimson": "#dc143c"
+    },
+    {
+      "fuchsia": "#ff00ff"
+    },
+    {
+      "magenta": "#ff00ff"
+    },
+    {
+      "thistle": "#d8bfd8"
+    },
+    {
+      "hot pink": "#ff69b4"
+    },
+    {
+      "sky blue": "#87ceeb"
+    },
+    {
+      "dark red": "#8b0000"
+    },
+    {
+      "cornsilk": "#fff8dc"
+    },
+    {
+      "honeydew": "#f0fff0"
+    },
+    {
+      "lavender": "#e6e6fa"
+    },
+    {
+      "moccasin": "#ffe4b5"
+    },
+    {
+      "midnight": "#383863"
+    },
+    {
+      "seashell": "#fff5ee"
+    },
+    {
+      "sea green": "#2e8b57"
+    },
+    {
+      "rose gold": "#cf9fa6"
+    },
+    {
+      "dark blue": "#00008b"
+    },
+    {
+      "dark cyan": "#008b8b"
+    },
+    {
+      "cool grey": "#b9c1c9"
+    },
+    {
+      "dark gray": "#a9a9a9"
+    },
+    {
+      "dark grey": "#a9a9a9"
+    },
+    {
+      "deep pink": "#ff1493"
+    },
+    {
+      "chocolate": "#d2691e"
+    },
+    {
+      "gainsboro": "#dcdcdc"
+    },
+    {
+      "steelblue": "#4682b4"
+    },
+    {
+      "turquoise": "#40e0d0"
+    },
+    {
+      "alabaster": "#e8e7df"
+    },
+    {
+      "dark green": "#006400"
+    },
+    {
+      "dark khaki": "#bdb76b"
+    },
+    {
+      "light blue": "#add8e6"
+    },
+    {
+      "light cyan": "#e0ffff"
+    },
+    {
+      "light gray": "#d3d3d3"
+    },
+    {
+      "light grey": "#d3d3d3"
+    },
+    {
+      "light pink": "#ffb6c1"
+    },
+    {
+      "lime green": "#32cd32"
+    },
+    {
+      "mint cream": "#f5fffa"
+    },
+    {
+      "royal blue": "#4169e1"
+    },
+    {
+      "slate blue": "#6a5acd"
+    },
+    {
+      "slate gray": "#708090"
+    },
+    {
+      "slate grey": "#708090"
+    },
+    {
+      "aquamarine": "#7fffd4"
+    },
+    {
+      "chartreuse": "#7fff00"
+    },
+    {
+      "dark orange": "#ff8c00"
+    },
+    {
+      "dark salmon": "#e9967a"
+    },
+    {
+      "dark violet": "#9400d3"
+    },
+    {
+      "light coral": "#f08080"
+    },
+    {
+      "light green": "#90ee90"
+    },
+    {
+      "Зелений\/Бордовий": "Green_Red.png"
+    },
+    {
+      "Black\/Blue": "Black_Blue.png"
+    },
+    {
+      "Black\/Fushsia": "Black_Fushsia.png"
+    },
+    {
+      "Чорний\/Золотистий": "Black_Gold.png"
+    },
+    {
+      "Чорний\/Помаранчевий": "Black_Orange.png"
+    },
+    {
+      "Чорний\/Пастельний": "Black_Pastel.png"
+    },
+    {
+      "Black\/Silver": "Black_Silver.png"
+    },
+    {
+      "Чорний\/Білий": "Black_White.png"
+    },
+    {
+      "Блакитний": "Blue_Blue.png"
+    },
+    {
+      "Blue\/Brown": "Blue_Brown.png"
+    },
+    {
+      "Блакитний\/Фуксія": "Blue_Fuchsia.png"
+    },
+    {
+      "Синій\/Золотистий": "Blue_Gold.png"
+    },
+    {
+      "Блакитний\/Золотистий": "Blue_Gold.png"
+    },
+    {
+      "Синій\/Помаранчевий": "Blue_Orange.png"
+    },
+    {
+      "Блакитний\/Помаранчевий": "Blue_Orange.png"
+    },
+    {
+      "Blue\/Silver": "Blue_Silver.png"
+    },
+    {
+      "Brown\/Pastel": "Brown_Pastel.png"
+    },
+    {
+      "Світло-рожевий\/Ліловий": "Dolce_rose_Lilac.png"
+    },
+    {
+      "Dolce rose\/Olive": "Dolce_rose_Olive.png"
+    },
+    {
+      "GreenMulti": "Green_Multi.png"
+    },
+    {
+      "Grey\/Multicolor": "Grey_Multicolor.png"
+    },
+    {
+      "Grey\/White": "Grey_White.png"
+    },
+    {
+      "Хакі\/Помаранчевий": "Khaki_Orange.png"
+    },
+    {
+      "Лимонний\/Пастельний": "Lemon_Pastel.png"
+    },
+    {
+      "Ліловий\/Чорний": "Lilac_Black.png"
+    },
+    {
+      "Lilac\/Olive": "Lilac_Olive.png"
+    },
+    {
+      "Lilac\/Pastel": "Lilac_Pastel.png"
+    },
+    {
+      "Ліловий\/Жовтий": "Lilac_Yellow.png"
+    },
+    {
+      "Mint\/Multi": "Mint_Multi.png"
+    },
+    {
+      "Navy blue\/Blue": "Navy_blue_Blue.png"
+    },
+    {
+      "Темно-синій\/Фуксія": "Navy_blue_Fuchsia.png"
+    },
+    {
+      "Navy blue\/Gold": "Navy_blue_Gold.png"
+    },
+    {
+      "Nude\/Multi": "Nude_Multi.png"
+    },
+    {
+      "Оливковий\/Зелений": "Olive_Green.png"
+    },
+    {
+      "Помаранчевий\/Чорний": "Orange_Black.png"
+    },
+    {
+      "Orange\/Multi": "Orange_Multi.png"
+    },
+    {
+      "Фісташковий\/Блакитний": "Pistachio_Blue.png"
+    },
+    {
+      "Pistachio\/Fuchsia": "Pistachio_Fuchsia.png"
+    },
+    {
+      "Pistachio\/Lilac": "Pistachio_Lilac.png"
+    },
+    {
+      "Pistachio\/Multi": "Pistachio_Multi.png"
+    },
+    {
+      "Puple\/Green": "Puple_Green.png"
+    },
+    {
+      "Raspberry\/Multi": "Raspberry_Multi.png"
+    },
+    {
+      "Red\/Blue": "Red_Blue.png"
+    },
+    {
+      "Red\/Red": "Red_Red.png"
+    },
+    {
+      "Red\/White": "Red_White.png"
+    },
+    {
+      "Salmon\/Multi": "Salmon_Multi.png"
+    },
+    {
+      "Turquoise\/Fuchsia": "Turquoise_Fuchsia.png"
+    },
+    {
+      "Лазуровий\/Помаранчевий": "Turquoise_Orange.png"
+    },
+    {
+      "Turquoise\/Red": "Turquoise_Red.png"
+    },
+    {
+      "Білий\/Бежевий": "White_Beige.png"
+    },
+    {
+      "Білий\/Чорний": "White_Black.png"
+    },
+    {
+      "Білий\/Блакитний": "White_Blue.png"
+    },
+    {
+      "Білий\/Фуксія": "White_Fuchsia.png"
+    },
+    {
+      "Білий\/Золотистий": "White_Gold.png"
+    },
+    {
+      "White\/Lilac": "White_Lilac.png"
+    },
+    {
+      "White\/Multi": "White_Multi.png"
+    },
+    {
+      "White\/Neon": "White_Neon.png"
+    },
+    {
+      "Білий\/Червоний": "White_Red.png"
+    },
+    {
+      "Білий": "White_White.png"
+    },
+    {
+      "Білий\/Жовтий": "White_Yellow.png"
+    },
+    {
+      "Жовтий\/Чорний": "Yellow_Black.png"
+    },
+    {
+      "Жовтий\/Блакитний": "Yellow_Blue.png"
+    },
+    {
+      "Жовтий\/Синій": "Yellow_Blue.png"
+    },
+    {
+      "Yellow\/Lilac": "Yellow_Lilac.png"
+    },
+    {
+      "Жовтий\/Пастельний": "Yellow_Pastel.png"
+    },
+    {
+      "Yellow\/Purple": "Yellow_Purple.png"
+    },
+    {
+      "Жовтий": "Yellow_Yellow.png"
+    },
+    {
+      "Violet\/Neon": "Violet_Neon.png"
+    },
+    {
+      "Multicolour": "Multicolour.png"
+    },
+    {
+      "Lilac\/Blue": "Lilac_Blue.png"
+    },
+    {
+      "Green\/Red": "Green_Red.png"
+    },
+    {
+      "Ліловий\/Неоновий Жовтий": "Violet_Neon_Yellow.png"
+    },
+    {
+      "Blue\/LightBlue": "Blue_Light_Blue.png"
+    },
+    {
+      "Світло-рожевий\/Лазуровий": "Dolce_Rose_Turquoise.png"
+    },
+    {
+      "Dark Grey\/Grey": "Dark_Grey_Grey.png"
+    },
+    {
+      "Grey\/Grey": "Grey_Grey.png"
+    },
+    {
+      "Чорний\/Різнокольоровий": "Black_Multicolor.png"
+    },
+    {
+      "Блакитний\/Жовтий": "Blue_Yellow.png"
+    },
+    {
+      "Beige\/Blue": "Beige_Blue.png"
+    },
+    {
+      "Black\/Pink": "Black_Pink.png"
+    },
+    {
+      "Blue\/Light Blue": "Blue_Light_Blue.png"
+    },
+    {
+      "Brown": "Brown.png"
+    },
+    {
+      "Синій\/Різнокольоровий": "Blue_Multicolor.png"
+    },
+    {
+      "Блакитний\/Рожевий": "Blue_Pink.png"
+    },
+    {
+      "Fluorescent Fuchsia\/Multicolor": "Fluorescent_Fuchsia_Multicolor.png"
+    },
+    {
+      "Зелений\/Різнокольоровий": "Green_Multicolor.png"
+    },
+    {
+      "Grey\/Black": "Grey_Black.png"
+    },
+    {
+      "Fuchsia\/Neon": "Fuchsia_Neon.png"
+    },
+    {
+      "Dolce Pink\/Purple": "Dolce_Pink_Purple.png"
+    },
+    {
+      "Хакі": "Khaki_Khaki.png"
+    },
+    {
+      "Fuchsia\/Black": "Fuchsia_Black.png"
+    },
+    {
+      "Кораловий\/Різнокольоровий": "Salmon_Multicolor.png"
+    },
+    {
+      "White\/Blue\/Yellow": "White_Blue_Yellow.png"
+    },
+    {
+      "Білий\/Синій": "White_Blue.png"
+    },
+    {
+      "Ruby\/Black": "Ruby_Black.png"
+    },
+    {
+      "Біла\/Світло-рожева": "White_Dolce_pink.png"
+    },
+    {
+      "Білий\/Світло-блакитний": "White_Light_Blue.png"
+    },
+    {
+      "White\/Multicolor": "White_Multicolor.png"
+    },
+    {
+      "Малиновий\/Різнокольоровий": "Raspberry_Magnoli.png"
+    },
+    {
+      "Червоний\/зелений": "Red_Green.png"
+    },
+    {
+      "Фіолетовий\/Різнокольоровий": "Purple_Multicolor.png"
+    },
+    {
+      "Червоний\/Рожевий": "Red_Pink.png"
+    },
+    {
+      "Фісташковий\/Різнокольоровий": "Pistachio_Multicolor.png"
+    },
+    {
+      "Бузковий\/Багатобарвний": "Lilac_Multicolor.png"
+    },
+    {
+      "Помаранчевий\/Різнокольоровий": "Orange_Multicolor.png"
+    },
+    {
+      "Ментоловий\/Різнокольоровий": "Mint_Multicolor.png"
+    },
+    {
+      "Помаранчевий\/Багатобарвний": "Orange_Multicolor.png"
+    },
+    {
+      "Бежевий\/Різнокольоровий": "Nude_Multicolor.png"
+    },
+    {
+      "Нюдовий\/Багатобарвний": "Nude_Multicolor.png"
+    },
+    {
+      "Чорний\/Неон": "Black_Neon.png"
+    },
+    {
+      "Бежевий\/Білий": "Beige_White.png"
+    },
+    {
+      "Пастельний жовтий\/Сріблястий": "Pastel_Yellow_Silver.png"
+    },
+    {
+      "Жовтий\/Жовтий": "Yellow_Yellow.png"
+    },
+    {
+      "Синій\/Синій": "Blue_Blue.png"
+    },
+    {
+      "Червоний\/Червоний": "Red_Red.png"
+    },
+    {
+      "Світло-рожевий\/Синій": "Light_Pink_Blue.png"
+    },
+    {
+      "Помаранчевий": "Orange_Orange.png"
+    },
+    {
+      "Світло Блакитний\/Пастельний Жовтий": "Light_Blue_Pastel_Yellow.png"
+    },
+    {
+      "Пастельний Жовтий\/Жовтий": "Pastel_Yellow_Yellow.png"
+    },
+    {
+      "Світло-Блакитний\/Помаранчевий": "Light_Blue_Orange.png"
+    },
+    {
+      "Білий\/Білий": "White_White.png"
+    },
+    {
+      "Світло-жовтий\/Ліловий": "Light_Yellow_Lilac.png"
+    },
+    {
+      "Чорний\/Світло-рожевий": "Black_Light_Pink.png"
+    },
+    {
+      "Білий\/Рожевий": "White_Pink.png"
+    },
+    {
+      "Зелений\/Світло-рожевий": "Green_Light_Pink.png"
+    },
+    {
+      "Бежевий\/Різнокольоровий": "Beige_Multicolor.png"
+    },
+    {
+      "Ліловий\/Різнокольоровий": "Lilac_Multicolor.png"
+    },
+    {
+      "Ліловий\/Помаранчевий": "Lilac_Orange.png"
+    },
+    {
+      "Фуксія\/Різнокольоровий": "Fuchsia_Multicolor.png"
+    },
+    {
+      "Жовтий\/Різнокольоровий": "Yellow_Multicolor.png"
+    },
+    {
+      "Сірий": "Grey_Grey.png"
+    },
+    {
+      "Світло-Рожевий\/Ліловий": "Light_Pink_Lilac.png"
+    },
+    {
+      "Рожевий\/Блакитний": "Pink_Blue.png"
+    },
+    {
+      "Світло-блакитний\/Золотистий": "Light_Blue_Golden.png"
+    },
+    {
+      "Кремовий\/Золотистий": "Cream_Golden.png"
+    },
+    {
+      "Темно-Синій\/Різнокольоровий": "Navy_Multicolor.png"
+    },
+    {
+      "Теракотовий\/Фіолетовий": "Terracota_Violet.png"
+    },
+    {
+      "Сірий\/Золотистий": "Grey_Golden.png"
+    },
+    {
+      "Синій\/Золотистий": "Blue_Golden.png"
+    },
+    {
+      "Світло-рожевий\/Фіолетовий": "Light_Pink_Violet.png"
+    },
+    {
+      "Блакитний\/Різнокольоровий": "Light_Blue_Multicolor.png"
+    },
+    {
+      "Коричневий\/Пастельний": "Brown_Pastel.png"
+    },
+    {
+      "Фіолетовий\/Зелений": "Violet_Green.png"
+    },
+    {
+      "Бордовий\/Різнокольоровий": "Bordeaux_Multicolor.png"
+    },
+    {
+      "Ліловий\/Лазуровий": "Lilac_Turquoise.png"
+    },
+    {
+      "Чорний\/Фуксія": "Black_Fuchsia.png"
+    },
+    {
+      "Хакі\/Різнокольоровий": "Khaki_Multicolor.png"
+    },
+    {
+      "Білий\/Різнокольоровий": "White_Multicolor.png"
+    },
+    {
+      "Ментоловий": "Menthol.png"
+    },
+    {
+      "Червоний\/Блакитний": "Red_Light_Bue.png"
+    },
+    {
+      "Червоний\/Сріблястий": "Red_Silver.png"
+    },
+    {
+      "Сірий\/Світло-рожевий": "Grey_Light_Pink.png"
+    },
+    {
+      "Світло-рожевий\/Чорний": "Light_Pink_Black.png"
+    },
+    {
+      "Чорний\/Неоновий": "Black_Neon.png"
+    },
+    {
+      "Жовтий\/Ліловий": "Yellow_Lilac.png"
+    },
+    {
+      "Ліловий\/Оливковий": "Lilac_Olive.png"
+    },
+    {
+      "Червоний": "Red.png"
+    },
+    {
+      "Лазуровий\/Червоний": "Turquoise_Red.png"
+    },
+    {
+      "Білий\/Ліловий": "White_Lilac.png"
+    },
+    {
+      "Світло-рожевий\/Різнокольоровий": "Light_Pink_Multicolor.png"
+    },
+    {
+      "Світло-блакитний\/Блакитний": "Light_Blue_Blue.png"
+    },
+    {
+      "Світло-блакитний\/Різнокольоровий": "Dolce_Blue_Multicolor.png"
+    },
+    {
+      "Сірий\/Чорний": "Grey_Black.png"
+    },
+    {
+      "Чорний\/Блакитний": "Black_Blue.png"
+    },
+    {
+      "Коричневий": "Brown.png"
+    },
+    {
+      "Сірий\/Сірий": "Grey_Grey.png"
+    },
+    {
+      "Кремовий\/Синій": "Cream_Blue.png"
+    },
+    {
+      "Зелений\/Золотистий": "Green_Gold.png"
+    },
+    {
+      "Бірюзовий\/Бірюзовий": "Turquoise_Turquoise.png"
+    },
+    {
+      "Зелений\/Хакі": "Green_Khaki.png"
+    },
+    {
+      "Хакі\/Хакі": "Khaki_Khaki.png"
+    },
+    {
+      "Бірюзовий\/Синій": "Turquoise_Blue.png"
+    },
+    {
+      "Чорний\/Чорний": "Black_Black.png"
+    },
+    {
+      "Світло-рожевий\/Золотистий": "Rose_Gold_Shiny.png"
+    },
+    {
+      "Темно-синій\/Синій": "Navy_Blue.png"
+    },
+    {
+      "Бордовий\/Золотистий": "Burgundy_Gold.png"
+    },
+    {
+      "Чорний\/Жовтий": "Black_Yellow.png"
+    },
+    {
+      "Світло-блакитний\/Сріблястий": "Dolce_Blue_Silver.png"
+    },
+    {
+      "Бордовий\/Бордовий": "Burgundy_Burgundy.png"
+    },
+    {
+      "Чорний\/Блакитний\/Жовтий": "Black_Blue_Yellow.png"
+    },
+    {
+      "Тауповий\/Жовтий": "Taupe_Tangerine.png"
+    },
+    {
+      "Червоний\/Золотистий": "Red_Gold.png"
+    },
+    {
+      "Коричневий\/Коричневий": "Brown_Brwon.png"
+    },
+    {
+      "Чорний\/Бірюзовий": "Black_Turquoise.png"
+    },
+    {
+      "Ліловий\/Неоновий Зелений": "Lilac_Neon_Green.png"
+    },
+    {
+      "Ліловий\/Ліловий": "Purple_Purple.png"
+    },
+    {
+      "Кремовий": "Cream_Cream.png"
+    },
+    {
+      "Світло-рожевий\/Рожевий": "Dolce_Pink_Pink.png"
+    },
+    {
+      "Бузковий\/Синій": "Purple_Blue.png"
+    },
+    {
+      "Білий\/Помаранчевий\/Фіолетовий": "White_Yellow_Violet.png"
+    },
+    {
+      "Салатовий\/Бежевий": "Green_Beige.png"
+    },
+    {
+      "Бузковий\/Бордовий": "Purple_Burgundy.png"
+    },
+    {
+      "Бордовий\/Червоний": "Burgundy_Red.png"
+    },
+    {
+      "Ультрамариновий\/Ультрамариновий": "Ultramarine_Ultramarine.png"
+    },
+    {
+      "Білий\/Сірий": "White_Grey.png"
+    },
+    {
+      "Синій\/Сірий": "Blue_Grey.png"
+    },
+    {
+      "Блакитний\/Блакитний": "Blakytny_Blakytny.png"
+    },
+    {
+      "Бордовий": "Burgundy.png"
+    },
+    {
+      "Рожевий": "Pink.png"
+    },
+    {
+      "Блакитний\/Синій\/Золотистий": "Blakytny_Blue_Gold.png"
+    },
+    {
+      "Рожевий\/Пурпуровий": "Pink_Purple.png"
+    },
+    {
+      "Бежевий\/Пастельний": "Beige_Pastel.png"
+    },
+    {
+      "Синій\/Бежевий": "Blue_Beige.png"
+    },
+    {
+      "Фісташковий\/Рожевий": "Pistachio_Pink.png"
+    },
+    {
+      "Сірий\/Рожевий": "Grey_Pink.png"
+    },
+    {
+      "Чорний\/Бузковий": "Black_Lilac.png"
+    },
+    {
+      "Червоний\/Бордовий": "Red_Burgundy.png"
+    },
+    {
+      "Темно-синій\/Золотистий": "Navy_Gold.png"
+    },
+    {
+      "Ультрамариновий\/Золотистий": "Ultramarine_Gold.png"
+    },
+    {
+      "Червоний\/Помаранчевий": "Red_Orange.png"
+    },
+    {
+      "Бежевий\/Ліловий": "Beige_Lilac.png"
+    },
+    {
+      "Фісташковий\/Фісташковий": "Pistachio_Pistachio.png"
+    },
+    {
+      "Фіолетовий\/Фіолетовий": "Violet_Violet.png"
+    },
+    {
+      "Білий\/Бордовий": "White_Burgundy.png"
+    },
+    {
+      "Мʼятний\/Мʼятний": "Minty_Minty.png"
+    },
+    {
+      "Світло-жовтий\/Світло-жовтий": "By_By.png"
+    },
+    {
+      "Світло-жовтий\/Бузковий": "Butter_Lilac.png"
+    },
+    {
+      "Світло-блакитний\/Лазуровий": "Blue_Turquoise.png"
+    },
+    {
+      "Білий\/Блакитний\/Фіолетовий": "W_B_V.png"
+    },
+    {
+      "Коричневий\/Кремовий\/Бузковий": "B_C_P.png"
+    }
+  ]
+}

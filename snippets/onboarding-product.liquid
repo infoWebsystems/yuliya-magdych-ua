@@ -1,0 +1,132 @@
+<!-- /snippets/onboarding-product.liquid -->
+{% comment %}
+    Renders an empty product
+
+    Accepts:
+    - section: {Object} section contianer with settings and blocks (optional)
+
+    Usage:
+    {% render 'onboarding-product', section: section, unique: unique %}
+{% endcomment %}
+
+{%- assign unique = unique | default: '' -%}
+
+<div class="product__wrapper">
+  <div class="grid product__page">
+    <div class="grid__item medium-up--one-half">
+      <div class="product__slides product-single__photos">
+        <div class="product__photo product__photo--{{ image_size }}">
+          {{ 'product-5' | placeholder_svg_tag: 'placeholder-svg' }}
+        </div>
+      </div>
+    </div>
+    <div class="grid__item medium-up--one-half">
+      <div class="form__wrapper">
+        <div class="form__inner__wrapper">
+          <div class="form__width">
+            {%- for block in section.blocks -%}
+              {%- case block.type -%}
+                {%- when 'price_and_title' -%}
+                  <div class="product__title__wrapper" {{ block.shopify_attributes }}>
+                    <h1 class="product__title">{{ 'home_page.onboarding.product_title' | t }}</h1>
+                    <div class="product__price__wrap">
+                      <div class="h5--body product__price">
+                        <span>{{ '1999' | money }}</span>
+                      </div>
+                    </div>
+                  </div>
+                {%- when 'form' -%}
+                  <div class="product__form" {{ block.shopify_attributes }}>
+                    <div class="select__fieldset">
+                      <span class="select__label{% unless settings.variant_lines %} is-hidden hidden{% endunless %}" id="{{ unique }}-select-quantity-label">{{ 'products.product.quantity' | t }}</span>
+      
+                      <div class="select-popout select-popout--small" data-popout data-popout-prevent="true">
+                        <button type="button" class="select-popout__toggle" aria-expanded="false" aria-controls="{{ unique }}-select-quantity-onboarding" aria-labelledby="{{ unique }}-select-quantity-label" data-popout-toggle>
+                          1
+                        </button>
+      
+                        <ul id="{{ unique }}-select-quantity-onboarding" class="select-popout__list" data-popout-list>
+                          {% for idx in (1..10) %}
+                            <li class="select-popout__item {% if forloop.index == 1 %}select-popout__item--current{% endif %}">
+                              <a class="select-popout__option" href="#" {% if forloop.index == 1 %}aria-current="true"{% endif %} data-value="{{ forloop.index }}" data-popout-option>
+                                <span>
+                                  {{ forloop.index }} {% if forloop.last %}+{% endif %}
+                                </span>
+                              </a>
+                            </li>
+                          {%- endfor -%}
+                        </ul>
+      
+                        <div class="quantity-selector" data-quantity-holder>
+                          <label for="Quantity" class="label-hidden">{{ 'products.product.quantity' | t }}</label>
+      
+                          <button type="button" class="quantity__minus" data-quantity-minus data-quantity-button tabindex="0" 
+                          title="{{ 'cart.general.decrease_quantity_label' | t }} - {{ product.title | strip_html -}}">{% render "icon-minus" %}</button>
+                          
+                          <input data-popout-input type="number" class="quantity__input" value="1" min="1" aria-label="quantity" autocomplete="off" name="quantity" data-quantity-field title="{{- 'cart.general.quantity_field_label' | t }} - {{ product.title | strip_html -}}" />
+                          
+                          <button type="button" class="quantity__plus" data-quantity-plus data-quantity-button tabindex="0" title="
+                            {{- 'cart.general.increase_quantity_label' | t }} - {{ product.title | strip_html -}}">{% render "icon-plus" %}</button>
+                        </div>
+                      </div>
+                    </div>
+      
+                    <div class="product__submit product__submit--spb">
+                      <div class="product__submit__buttons">
+                        <div class="product__submit__item">
+                          <button class="btn product__submit__add">
+                              <span>{{ 'products.product.add_to_cart' | t }}</span>
+                          </button>
+                        </div>
+      
+                        {% if block.settings.show_payment_button %}
+                          <div class="product__submit__item">
+                            <div class="shopify-payment-button">
+                              <div>
+                                <div>
+                                  <div>
+                                    <button type="button" class="btn shopify-payment-button__button shopify-payment-button__button--unbranded">Buy it now</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        {% endif %}
+                      </div>
+                    </div>
+                  </div>
+                {%- when 'tab_richtext' -%}
+                  {%- assign product_description_content = 'home_page.onboarding.no_description' | t -%}
+
+                  {%- if block.settings.style == 'inline' -%}
+                    <div class="product-description gutter-top rte" {{ block.shopify_attributes }}>
+                      {{ product_description_content }}
+                    </div>
+                  {%- endif -%}
+      
+                  {%- if block.settings.style != 'inline' -%}
+                    <div class="tabs-wrapper productTabsWrapper{% if block.settings.style == 'tabs' %} productTabsWrapper--tabs{% elsif block.settings.style == 'accordions' %} productTabsWrapper--accordion{% endif %}" {{ block.shopify_attributes }}>
+                      {% render 'product-tabs', block: block %}
+                    </div>
+                  {%- endif -%}
+                {%- when 'sharing' -%}
+                  {% if block.settings.show_share_buttons %}
+                    {%- assign share_product_link = shop.url | append: product.url -%}
+                    <div class="product__sharing" {{ block.shopify_attributes }}>
+                      <button type="button" class="product__sharing-button" data-product-share="{{ share_product_link }}" data-product-share-title="{{ product.title }}" aria-label="{{ 'general.social.share_on_facebook' | t }}">
+                        {% render 'icon-share' %}
+                        <span class="product__sharing-button-text">{{ 'general.social.share_on_facebook' | t }}</span>
+                      </button>
+      
+                      {% capture share_svg %}{{ 'product-5' | placeholder_svg_tag: 'placeholder-svg' }}{% endcapture %}
+                      {% render 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: share_svg, share_link: share_product_link %}
+                    </div>
+                  {% endif %}
+              {%- endcase -%}              
+            {%- endfor -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

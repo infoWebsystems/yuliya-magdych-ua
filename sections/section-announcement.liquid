@@ -1,0 +1,300 @@
+{%- render 'announcement' section: section, is_top: false -%}
+
+{% schema %}
+{
+  "name": "Announcement bar",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background",
+      "default": "#f7f7f7"
+    },
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Text",
+      "default": "#545454"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "default": "marquee",
+      "options": [
+        {
+          "value": "slider",
+          "label": "Slider"
+        },
+        {
+          "value": "marquee",
+          "label": "Marquee"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Slider"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Autoplay speed",
+      "unit": "sec",
+      "min": 5,
+      "max": 20,
+      "step": 1,
+      "default": 7
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Text announcement",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p><strong>Make an announcement</strong> | More info</p>"
+        },
+        {
+          "type": "header",
+          "content": "Target page"
+        },
+        {
+          "id": "target_url_enabled",
+          "type": "checkbox",
+          "label": "Limit to specific page"
+        },
+        {
+          "id": "target_url",
+          "type": "url",
+          "label": "Targeted page"
+        },
+        {
+          "type": "header",
+          "content": "Target referrer"
+        },
+        {
+          "id": "target_referrer_enabled",
+          "type": "checkbox",
+          "label": "Limit to specific referrer path"
+        },
+        {
+          "id": "target_referrer",
+          "type": "text",
+          "label": "Targeted referrer"
+        },
+        {
+          "type": "header",
+          "content": "Target device"
+        },
+        {
+          "id": "target_device_enabled",
+          "type": "checkbox",
+          "label": "Limit to desktop or mobile"
+        },
+        {
+          "type": "select",
+          "id": "target_device",
+          "label": "Device ",
+          "default": "mobile",
+          "options": [
+            {
+              "value": "mobile",
+              "label": "Only show on mobile"
+            },
+            {
+              "value": "desktop",
+              "label": "Only show on desktop"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "name": "Free shipping message",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_wheel",
+          "label": "Show progress wheel",
+          "default": true
+        },
+        {
+          "type": "textarea",
+          "id": "message",
+          "label": "Message",
+          "info": "Use ||amount|| to display progress towards free shipping.",
+          "default": "Spend ||amount|| more for free shipping."
+        },
+        {
+          "type": "paragraph",
+          "content": "Navigate to Theme settings -> \"Cart -> Free shipping message\" to set the amount."
+        },
+        {
+          "type": "header",
+          "content": "Target page"
+        },
+        {
+          "id": "target_url_enabled",
+          "type": "checkbox",
+          "label": "Limit to specific page"
+        },
+        {
+          "id": "target_url",
+          "type": "url",
+          "label": "Targeted page"
+        },
+        {
+          "type": "header",
+          "content": "Target referrer"
+        },
+        {
+          "id": "target_referrer_enabled",
+          "type": "checkbox",
+          "label": "Limit to specific referrer path"
+        },
+        {
+          "id": "target_referrer",
+          "type": "text",
+          "label": "Targeted referrer"
+        },
+        {
+          "type": "header",
+          "content": "Target device"
+        },
+        {
+          "id": "target_device_enabled",
+          "type": "checkbox",
+          "label": "Limit to desktop or mobile"
+        },
+        {
+          "type": "select",
+          "id": "target_device",
+          "label": "Device ",
+          "default": "mobile",
+          "options": [
+            {
+              "value": "mobile",
+              "label": "Only show on mobile"
+            },
+            {
+              "value": "desktop",
+              "label": "Only show on desktop"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "custom",
+      "name": "Custom HTML",
+      "settings": [
+        {
+          "type": "html",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Custom HTML</p>"
+        },
+        {
+          "type": "header",
+          "content": "Target page"
+        },
+        {
+          "id": "target_url_enabled",
+          "type": "checkbox",
+          "label": "Limit to specific page"
+        },
+        {
+          "id": "target_url",
+          "type": "url",
+          "label": "Targeted page"
+        },
+        {
+          "type": "header",
+          "content": "Target referrer"
+        },
+        {
+          "id": "target_referrer_enabled",
+          "type": "checkbox",
+          "label": "Limit to specific referrer path"
+        },
+        {
+          "id": "target_referrer",
+          "type": "text",
+          "label": "Targeted referrer"
+        },
+        {
+          "type": "header",
+          "content": "Target device"
+        },
+        {
+          "id": "target_device_enabled",
+          "type": "checkbox",
+          "label": "Limit to desktop or mobile"
+        },
+        {
+          "type": "select",
+          "id": "target_device",
+          "label": "Device ",
+          "default": "mobile",
+          "options": [
+            {
+              "value": "mobile",
+              "label": "Only show on mobile"
+            },
+            {
+              "value": "desktop",
+              "label": "Only show on desktop"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Announcement bar",
+      "category": "Text",
+      "blocks": [
+        {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Make an announcement</strong> | Target to specific devices or referrers</p>"
+          }
+        },
+        {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Create a free shipping countdown</strong></p>"
+          }
+        },
+        {
+          "type": "message",
+          "settings": {
+            "show_wheel": false
+          }
+        },
+        {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Create a scrolling marquee or a simple announcement</strong></p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

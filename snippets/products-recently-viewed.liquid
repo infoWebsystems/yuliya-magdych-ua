@@ -1,0 +1,29 @@
+<!-- /snippets/products-recently-viewed.liquid -->
+{% comment %}
+    Renders list of recently viewed products in grid layout
+
+    Accepts:
+    - product: {Object} product (required)
+    - grid_strings: {String} contains a string of grid classes
+    - heading_title: {String} contains a string from section settings
+
+    Usage:
+    {% render 'products-recently-viewed', product: product, grid_strings: grid_strings, heading_title: section.settings.product_recently_heading %}
+{% endcomment %}
+
+{%- assign limit = limit | default: 4 -%}
+
+<div class="recent__wrapper" id="RecentlyViewed-{{ section.id }}" data-recent-wrapper data-limit="{{ limit }}" data-minimum="{{ product_recently_minimum }}">
+  <div class="product-grid-outer">
+    <div class="recent__content product-grid{% unless settings.product_grid_outline %} product-grid--borderless{% endunless %} flickity-button-circle product-grid--mobile-slider" id="recently-viewed-products-{{ section.id }}" style="display:none" data-slider data-watch-css="true" data-cell-align="left" data-adaptive-height="false" data-dots="hidden" data-arrows="true" data-arrow-position-middle data-equalize-height="true" data-infinite="false">
+    </div>
+  </div>
+</div>
+
+<script defer>
+  setTimeout(() => {
+    
+    document.dispatchEvent(new CustomEvent("swym:collections-loaded"));
+  }, 1000);
+
+</script>

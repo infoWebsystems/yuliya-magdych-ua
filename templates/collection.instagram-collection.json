@@ -1,0 +1,45 @@
+{
+  "sections": {
+    "hero": {
+      "type": "collection-image-with-title",
+      "settings": {
+        "show_title": true,
+        "show_description": true,
+        "text_color": "text-dark",
+        "flex_align": "align--middle-left",
+        "transparent": false,
+        "show_image": true,
+        "banner_layout": "overlay",
+        "height": "screen-height-one-third",
+        "overlay_opacity": 0,
+        "overlay_color": "#000000"
+      }
+    },
+    "subcollections": {
+      "type": "subcollections",
+      "disabled": true,
+      "settings": {
+        "subcollection_layout": "grid",
+        "subcollection_description": false,
+        "select_image": "collection"
+      }
+    },
+    "main": {
+      "type": "collection",
+      "settings": {
+        "enable_sort": false,
+        "enable_filters": false,
+        "filter_layout": "inline-closed",
+        "grid": 4,
+        "grid_mobile": "2",
+        "product_limit": 36,
+        "aspect_ratio": 100
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "subcollections",
+    "main"
+  ]
+}

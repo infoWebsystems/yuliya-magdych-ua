@@ -1,0 +1,189 @@
+<!-- /sections/list-collections.liquid -->
+
+{% liquid
+  
+  assign mobile_class = 'small--one-whole'
+  if section.settings.layout_mobile == '2'
+  assign mobile_class = 'small--one-half'
+  endif
+
+  case section.settings.grid
+    when 1
+      assign grid_strings = 'large-up--one-half medium--one-half ' | append: mobile_class
+    when 2
+      assign grid_strings = 'large-up--one-half medium--one-half ' | append: mobile_class
+    when 3
+      assign grid_strings = 'large-up--one-third medium--one-third ' | append: mobile_class
+    when 4
+      assign grid_strings = 'large-up--one-quarter medium--one-half ' | append: mobile_class
+    when 5
+      assign grid_strings = 'large-up--one-fifth medium--one-third ' | append: mobile_class
+    else
+      assign grid_strings = 'large-up--one-sixth medium--one-third ' | append: mobile_class
+  endcase
+
+  assign limit = section.settings.grid | times: section.settings.rows
+  assign heading = section.settings.title
+%}
+
+<div class="index-list-collections" data-section-id="{{ section.id }}" data-section-type="list-collections">
+  {%- if heading != blank -%}
+  <h2 class="grid__heading">{{ heading }}</h2>
+  {%- endif -%}
+
+  <div class="container">
+    <div class="collection-list">
+      {%- if section.settings.display_type == 'all' -%}
+        {%- for collection in collections -%}
+          {% if collection.handle != 'frontpage' and collection.products.size > 0 %}
+            <div class="collection-block__wrapper collection-block__wrapper--{{ collection.handle }}">
+              {%- render 'collection-block', section: section, collection: collection, block: block, grid_strings: grid_strings, limit: limit -%}
+            </div>
+          {% endif %}
+        {%- endfor -%}
+      {%- else -%}
+        {%- for block in section.blocks -%}
+          {%- assign collection = collections[block.settings.collection] -%}
+
+          <div class="collection-block__wrapper collection-block__wrapper--{{ block.id }}" {{ block.shopify_attributes }}>
+            {%- render 'collection-block', section: section, collection: collection, block: block, grid_strings: grid_strings, limit: limit -%}
+          </div>
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Collection list",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "All of your collections are listed by default. To customize your list, choose 'Selected' and add collections."
+    },
+    {
+      "type": "radio",
+      "id": "display_type",
+      "label": "Select collections to show",
+      "default": "all",
+      "options": [
+        {
+          "value": "all",
+          "label": "All"
+        },
+        {
+          "value": "selected",
+          "label": "Selected"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Collections"
+    },
+    {
+      "type": "header",
+      "content": "Product grid"
+    },
+    {
+      "type": "range",
+      "id": "grid",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "label": "Products per row",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "rows",
+      "min": 1,
+      "max": 8,
+      "step": 1,
+      "label": "Number of rows",
+      "default": 1
+    },
+    {
+      "type": "header",
+      "content": "Mobile"
+    },
+    {
+      "type": "select",
+      "id": "layout_mobile",
+      "label": "Layout",
+      "options": [
+        {
+          "value": "1",
+          "label": "1 product per row"
+        },
+        {
+          "value": "2",
+          "label": "2 products per row"
+        },
+        {
+          "value": "carousel",
+          "label": "Carousel"
+        }
+      ],
+      "default": "carousel"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "label": "Collection",
+          "id": "collection",
+          "type": "collection"
+        },
+        {
+          "label": "Collection name",
+          "id": "collection_name",
+          "type": "text",
+          "info": "Replace the collection name with custom text"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "Replace the collection image with a custom image"
+        },
+        {
+          "type": "select",
+          "id": "bg_position",
+          "label": "Position",
+          "default": "center-center",
+          "options": [
+            {
+              "label": "Top",
+              "value": "center-top"
+            },
+            {
+              "label": "Right",
+              "value": "right-center"
+            },
+            {
+              "label": "Center",
+              "value": "center-center"
+            },
+            {
+              "label": "Left",
+              "value": "left-center"
+            },
+            {
+              "label": "Bottom",
+              "value": "center-bottom"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,80 @@
+<!-- /snippets/collection-filters-sidebar.liquid -->
+{% comment %}
+  The collection sidebar containing tag filering and link-based navigation
+
+  * collection {object} - The current collection
+  * section {object} - The current section
+
+  {% render 'collection-filters-sidebar', section: section, collection: collection %}
+{% endcomment %}
+
+{%- assign sort_by_string = '' -%}
+{%- assign sort_by = search.sort_by | default: collection.sort_by -%}
+{%- assign string_connector = '?' -%}
+{%- if sort_by != blank -%}
+  {%- assign sort_by_string = '?sort_by=' | append: sort_by -%}
+  {%- assign string_connector = '&' -%}
+{%- endif -%}
+{%- assign filters_default = search.filters | default: collection.filters -%}
+{%- assign filters_url = request.path | append: sort_by_string -%}
+
+{%- if template.name == 'search' and search.performed -%}
+  {%- assign filters_url = filters_url | append: string_connector | append: 'type=product&q=' | append: search.terms -%}
+{%- endif -%}
+
+{%- assign filter_count = 0 -%}
+{%- assign filter_active_count = 0 -%}
+{%- assign filter_exist = false -%}
+{%- capture filter_clears -%}
+  {%- for filter in filters_default -%}
+    {%- assign filter_active_count = filter_active_count | plus: filter.active_values.size -%}
+    {%- assign filter_exist = true -%}
+    {% if filter.type == "price_range" %}
+      {%- if filter.min_value.value != nil or filter.max_value.value != nil -%}
+        {%- assign filter_count = filter_count | plus: 1 -%}
+        <a class="active__filters__remove" href="{{ filter.url_to_remove }}" data-filter-update-url>
+          <small>
+            {%- assign min_value = filter.min_value.value | default: 0 -%}
+            {%- assign max_value = filter.max_value.value | default: filter.range_max -%}
+            {{ min_value | money_without_trailing_zeros }} - {{ max_value | money_without_trailing_zeros }}
+          </small>
+          <span class="filter__x">✕</span>
+        </a>
+      {%- endif -%}
+    {% else %}
+      {%- for filter_value in filter.active_values -%}
+        {%- assign filter_count = filter_count | plus: 1 -%}
+        <a class="active__filters__remove" href="{{ filter_value.url_to_remove }}" data-filter-update-url>
+          <small>{{ filter_value.label }}</small> <span class="filter__x">✕</span>
+        </a>
+      {%- endfor -%}
+    {% endif %}
+  {%- endfor -%}
+{%- endcapture -%}
+
+<div class="collection__sidebar{% if filter_count > 0 %} collection__sidebar--has-buttons{% endif %}" {% if section.settings.filter_layout == 'slide-out' %}data-collection-sidebar-slide-out{% else %}data-collection-sidebar-slider{% endif %} data-active-filters-count="{{ filter_active_count }}">
+  {%- if filter_count > 0 -%}
+    <div class="collection__active__filters">
+      {%- if filter_count > 1 -%}
+        <a href="{{ filters_url }}" class="active__filters__clear" data-filter-update-url><small>{{ 'collections.general.clear_filters' | t }}</small></a>
+      {%- endif -%}
+      {{ filter_clears }}
+    </div>
+  {%- endif -%}
+  
+  {% render 'filters' %}
+
+  {%- unless filter_exist -%}
+    <div class="no-results">
+      <p><strong>{{ 'collections.general.no_filters' | t }}</strong></p>
+    </div>
+  {%- endunless -%}
+</div>
+
+{%- if filter_count > 0 -%}
+  <div class="collection__sidebar__buttons">
+    <a class="btn btn--outline btn--full" href="{{ filters_url }}" data-filter-update-url>
+      <span>{{ 'collections.general.reset' | t }}</span>
+    </a>
+  </div>
+{%- endif -%}

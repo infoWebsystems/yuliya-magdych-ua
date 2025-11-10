@@ -1,0 +1,181 @@
+<!-- /sections/section-collection.liquid -->
+
+{%- render 'products-layout' section: section -%}
+
+{% schema %}
+{
+  "name": "Featured collection",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "label": "Heading",
+      "id": "heading",
+      "type": "text"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Text"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "inline",
+          "label": "In-line"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Text"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link"
+    },
+    {
+      "type": "select",
+      "id": "button_color",
+      "label": "Color",
+      "default": "btn--black",
+      "options": [
+        {
+          "value": "btn--primary",
+          "label": "Bright accent"
+        },
+        {
+          "value": "btn--secondary",
+          "label": "Secondary accent"
+        },
+        {
+          "value": "btn--link",
+          "label": "Link color"
+        },
+        {
+          "value": "btn--neutral",
+          "label": "Text color"
+        },
+        {
+          "value": "btn--black",
+          "label": "Black"
+        },
+        {
+          "value": "btn--white",
+          "label": "White"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "button_style",
+      "label": "Style",
+      "default": "hero__btn btn btn--input btn--outline caps",
+      "options": [
+        {
+          "value": "caps--large",
+          "label": "Capitalized text"
+        },
+        {
+          "value": "hero__btn btn btn--input caps",
+          "label": "Small button"
+        },
+        {
+          "value": "hero__btn btn btn--large caps",
+          "label": "Large button"
+        },
+        {
+          "value": "hero__btn btn btn--input btn--outline caps",
+          "label": "Small outline button"
+        },
+        {
+          "value": "hero__btn btn btn--large btn--outline caps",
+          "label": "Large outline button"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Products"
+    },
+    {
+      "type": "collection",
+      "id": "featured_collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "grid",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "label": "Products per row",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "rows",
+      "min": 1,
+      "max": 8,
+      "step": 1,
+      "label": "Number of rows",
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "aspect_ratio",
+      "min": 100,
+      "max": 200,
+      "step": 10,
+      "label": "Aspect ratio",
+      "default": 150
+    },
+    {
+      "type": "header",
+      "content": "Mobile"
+    },
+    {
+      "type": "select",
+      "id": "layout_mobile",
+      "label": "Layout",
+      "options": [
+        {
+          "value": "1",
+          "label": "1 product per row"
+        },
+        {
+          "value": "2",
+          "label": "2 products per row"
+        },
+        {
+          "value": "carousel",
+          "label": "Carousel"
+        }
+      ],
+      "default": "carousel"
+    }
+  ],
+  "presets": [
+    {
+      "category": "Collection",
+      "name": "Featured collection"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,93 @@
+<div id="search-popdown" class="search-popdown">
+  <div class="search__popdown__outer">
+    <div class="search__popdown__upper" data-search-title-wrap>
+      <span></span>
+    </div>
+    <div class="wrapper">
+      <div class="search__popdown__main">
+        <form class="search__popdown__form"
+            action="{{ routes.search_url }}"
+            method="get"
+            role="search">
+          <button class="search__popdown__form__button" type="submit">
+            <span class="visually-hidden">{{ 'general.search.submit' | t }}</span>
+            {% render 'header-icon', filename: icon_string_search %}
+          </button>
+          <input type="search"
+          data-predictive-search-input="search-popdown-results"
+          name="q" 
+          value="" 
+          placeholder="{{ 'general.search.submit' | t }}" 
+          aria-label="{{ 'general.search.placeholder' | t }}">
+        </form>
+        <div class="search__popdown__close">
+          <button type="button" class="search__popdown__close__inner" data-close-popdown title="{{- 'general.accessibility.close' | t -}}">
+            {% render 'icon-close' %}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="header__search__results" id="search-popdown-results">
+    <div class="search__results__outer">
+      <div class="search__results__products" data-product-wrap-outer>
+        <div class="loader search__loader"><div class="loader-indeterminate"></div></div>
+
+        <div class="search__results__products__list{% unless settings.product_grid_outline %} search__results__products__list--borderless{% endunless %}" data-product-wrap>
+          {% comment %} product-grid-item-template results append here {% endcomment %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script data-predictive-search-title-template type="text/x-template">
+  <div aria-live="polite">
+    <span class="announcement__more">{% raw %}{{ it.title }}{% endraw %}</span>
+    <span class="announcement__main">{% raw %}{{ it.query }}{% endraw %}</span>
+  </div>
+</script>
+
+{% assign border_class = '' -%}
+{%- if settings.product_grid_outline == false -%}
+  {% assign border_class = 'product-item--borderless' -%}
+{%- endif -%}
+
+{% assign alignment_class = '' -%}
+{%- if settings.product_grid_center == true -%}
+  {% assign alignment_class = 'product-item--centered' -%}
+{%- endif -%}
+
+<script product-grid-item-template type="text/x-template">
+  <div class="product-item {{ border_class }} {{ alignment_class }}">
+    {% raw %}
+      <a href="{{ it.product.url }}" class="product-link" aria-label='{{ it.product.title }}'>
+        <div class="product-item__image {{it.product.double_class}}">
+          <div class="product-item__bg" 
+            aria-label="{{ it.product.image.alt }}" 
+            style="background-image: url('{{ it.product.image.thumb }}');"></div>
+          {{@if(it.product.secondImage)}}
+            <div class="product-item__bg__under" 
+              aria-label="{{ it.product.secondImage.alt }}" 
+              style="background-image: url('{{ it.product.secondImage.thumb }}');"></div>
+          {{/if}}
+        </div>
+        <div class="product-information">
+          <p class="product__grid__title">{{ it.product.title }}</p>
+          <span class="price {{ it.product.classes }}">
+            {{@if(it.product.available)}}
+              <span class="new-price">{{ it.product.price_with_from | safe }}</span>
+              {{@if(it.product.compare_at_price > it.product.price)}}
+                <span class="old-price">{{ it.product.compare_at_price | safe }}</span>
+              {{/if}}
+            {{#else}}
+              <br /><em>{{ it.product.sold_out_translation }}</em>
+            {{/if}}
+          </span>
+        </div>
+      </a>
+    {% endraw %}
+  </div>
+</script>
+
+

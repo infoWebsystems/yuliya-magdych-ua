@@ -1,0 +1,130 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "subheading": "",
+        "show_title": true,
+        "show_content": true,
+        "text_size": 2,
+        "align_text": "text-left",
+        "height": "margin--medium",
+        "width": "wrapper",
+        "text_color": "text-dark",
+        "bg_color": "#ffffff"
+      }
+    },
+    "1647435988d11832ae": {
+      "type": "section-custom-content",
+      "blocks": {
+        "1647435988877ff3ac-0": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/bane2.jpg",
+            "bg_position": "right-center",
+            "overlay_opacity": 0,
+            "overlay_color": "#000000",
+            "title": "",
+            "description": "",
+            "flex_align": "align--middle-center",
+            "text_color": "text-light",
+            "transparent": true,
+            "link_text": "",
+            "link": "",
+            "button_color": "btn--white",
+            "button_style": "hero__btn btn btn--large btn--outline caps"
+          }
+        },
+        "503a119d-2c21-4492-bb73-1edf1ac9010b": {
+          "type": "text",
+          "settings": {
+            "subheading": "YULIA MAGDYCH",
+            "title": "ПРЕС-РЕЛІЗИ ПРО БРЕНД",
+            "text": "<p><a href=\"https:\/\/www.dontdiewondering.com\/meet-yuliya-magdych-inspired-by-ukraine-sartorial-heritage\/\" target=\"_blank\" title=\"https:\/\/www.dontdiewondering.com\/meet-yuliya-magdych-inspired-by-ukraine-sartorial-heritage\/\">Don't Die Wondering | Meet Yuliya Magdych Inspired by Ukraine Sartorial Heritage<\/a><\/p><p><a href=\"https:\/\/observer.com\/2016\/08\/ukrainian-designer-yuliya-magdych-has-designed-the-perfect-vacation-frock\/\" target=\"_blank\" title=\"https:\/\/observer.com\/2016\/08\/ukrainian-designer-yuliya-magdych-has-designed-the-perfect-vacation-frock\/\">Observer.com | Ukrainian Designer Yuliya Magdych Has Designed the Perfect Vacation Frock<\/a><a href=\"https:\/\/jetsetter.ua\/event\/prezentatsiya-novoj-kollektsii-vyshivanok-yulii-magdych-2\/\" target=\"_blank\" title=\"https:\/\/jetsetter.ua\/event\/prezentatsiya-novoj-kollektsii-vyshivanok-yulii-magdych-2\/\"><br\/><br\/><\/a><a href=\"https:\/\/www.vogue.com\/article\/yuliya-magdych-ukrainian-fashion-designer-vyshyvanka\" title=\"https:\/\/www.vogue.com\/article\/yuliya-magdych-ukrainian-fashion-designer-vyshyvanka\">Vogue.com | How One Ukrainian Designer Is Stitching Revolution Into Her Clothes<\/a><a href=\"https:\/\/observer.com\/2016\/08\/ukrainian-designer-yuliya-magdych-has-designed-the-perfect-vacation-frock\/\" target=\"_blank\" title=\"https:\/\/observer.com\/2016\/08\/ukrainian-designer-yuliya-magdych-has-designed-the-perfect-vacation-frock\/\"><br\/><\/a><\/p><p><a href=\"https:\/\/vogue.ua\/article\/fashion\/obraz-dnya-kyara-ferrani-v-yulia-magdych6697.html\" title=\"https:\/\/vogue.ua\/article\/fashion\/obraz-dnya-kyara-ferrani-v-yulia-magdych6697.html\">Vogue.ua | Образ дня: Кьяра Ферраньи в Yulia Magdych<\/a><\/p><p><\/p><p><a href=\"https:\/\/vogue.ua\/article\/fashion\/brend\/obraz-dnya-kelli-osborn-v-vyshivanke-yuliya-magdych.html\" target=\"_blank\" title=\"https:\/\/vogue.ua\/article\/fashion\/brend\/obraz-dnya-kelli-osborn-v-vyshivanke-yuliya-magdych.html\">Vogue.ua | Образ дня: Келли Осборн в вышиванке Yuliya Magdych<\/a><\/p><p><\/p><p><a href=\"https:\/\/jetsetter.ua\/event\/prezentatsiya-novoj-kollektsii-vyshivanok-yulii-magdych-2\/\" target=\"_blank\" title=\"https:\/\/jetsetter.ua\/event\/prezentatsiya-novoj-kollektsii-vyshivanok-yulii-magdych-2\/\">Jetsetter.ua | Презентация новой коллекции вышиванок Юлии Магдыч<\/a><a href=\"https:\/\/observer.com\/2016\/08\/ukrainian-designer-yuliya-magdych-has-designed-the-perfect-vacation-frock\/\" target=\"_blank\" title=\"https:\/\/observer.com\/2016\/08\/ukrainian-designer-yuliya-magdych-has-designed-the-perfect-vacation-frock\/\"><br\/><\/a><\/p>",
+            "text_size": 2,
+            "text_columns": 1,
+            "align_text": "text-left",
+            "text_color": "text-dark",
+            "bg_color": "#ffffff",
+            "button_text": "",
+            "button_url": "",
+            "button_color": "btn--neutral",
+            "button_style": "hero__btn btn btn--large btn--outline caps"
+          }
+        }
+      },
+      "block_order": [
+        "1647435988877ff3ac-0",
+        "503a119d-2c21-4492-bb73-1edf1ac9010b"
+      ],
+      "settings": {
+        "height": "screen-height-one-half",
+        "padding": false,
+        "borders": false,
+        "wrapper": false
+      }
+    },
+    "1648028798da468267": {
+      "type": "section-logo-list",
+      "blocks": {
+        "5be8b64a-342c-44ca-b6d3-412440862279": {
+          "type": "logo-item",
+          "settings": {
+            "logo": "shopify:\/\/shop_images\/2023-03-02_095750739.png",
+            "logo_width": 100,
+            "link": ""
+          }
+        },
+        "1648028798777b60e9-2": {
+          "type": "logo-item",
+          "settings": {
+            "logo": "shopify:\/\/shop_images\/2023-03-02_095910531.png",
+            "logo_width": 100,
+            "link": ""
+          }
+        },
+        "1648028798777b60e9-0": {
+          "type": "logo-item",
+          "settings": {
+            "logo": "shopify:\/\/shop_images\/2023-03-02_100036600.png",
+            "logo_width": 100,
+            "link": ""
+          }
+        },
+        "1648028798777b60e9-1": {
+          "type": "logo-item",
+          "settings": {
+            "logo": "shopify:\/\/shop_images\/2023-03-02_100127656.png",
+            "logo_width": 100,
+            "link": ""
+          }
+        },
+        "93a10b2f-9ef9-4524-876d-b7985292b699": {
+          "type": "logo-item",
+          "settings": {
+            "logo": "shopify:\/\/shop_images\/2023-03-02_095939624.png",
+            "logo_width": 100,
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "5be8b64a-342c-44ca-b6d3-412440862279",
+        "1648028798777b60e9-2",
+        "1648028798777b60e9-0",
+        "1648028798777b60e9-1",
+        "93a10b2f-9ef9-4524-876d-b7985292b699"
+      ],
+      "settings": {
+        "title": "",
+        "text_color": "text-dark",
+        "bg_color": "#fafafa"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "1647435988d11832ae",
+    "1648028798da468267"
+  ]
+}

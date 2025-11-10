@@ -1,0 +1,61 @@
+{% comment %}
+    Renders an empty product grid item
+
+    Accepts:
+    - last_element (optional)
+    - grid_strings: {String} contains a string of grid classes (optional)
+    - index: element index in the loop
+
+    Usage:
+    {% render 'onboarding-product-grid-item', last_element: lastElement, grid_strings: grid_strings, index: index, placeholder: 'product-3', placeholder_root: 'product-', title: 'Fancy title', animation_delay: animatino_delay, index: index %}
+{% endcomment %}
+
+{%- assign additional_attributes = additional_attributes | default: '' -%}
+
+{%- unless grid_strings -%}
+  {% assign grid_strings = "one-whole" %}
+{%- endunless -%}
+
+{% assign border_class = '' -%}
+{%- if settings.product_grid_outline == false -%}
+  {% assign border_class = 'product-item--borderless' -%}
+{%- endif -%}
+
+{% assign alignment_class = '' -%}
+{%- if settings.product_grid_center == true -%}
+  {% assign alignment_class = 'product-item--centered' -%}
+{%- endif -%}
+
+{%- capture item_unique -%}product-item--{{ section.id }}-{{ index }}{%- endcapture -%}
+{%- assign animation_anchor = '.' | append: item_unique -%}
+
+<div class="product-item {{ grid_strings }} {{ border_class }} {{ alignment_class }} {{ item_unique }}" {{ additional_attributes }}>
+  <div class="product-item__image" data-product-image>
+    <div class="svg-placeholder"
+      data-aos="img-in"
+      data-aos-delay="{{ animation_delay | times: 150 }}"
+      data-aos-duration="{{ animation_delay | times: 100 | plus: 800 }}"
+      data-aos-anchor="{{ animation_anchor }}"
+      data-aos-easing="ease-out-quart">
+      {%- liquid
+        assign index = index | default: 1
+        assign index = index | modulo: 6 | floor | plus: 1
+        assign placeholder_root = placeholder_root | default: 'collection-'
+        assign svg_default =  placeholder_root | append: index
+        assign placeholder = placeholder | default: svg_default
+      -%}
+      {{ placeholder | placeholder_svg_tag }}
+    </div>
+  </div>
+  <div class="product-information"
+    data-aos="fade"
+    data-aos-delay="{{ animation_delay | times: 150 }}"
+    data-aos-duration="{{ animation_delay | times: 50 | plus: 800 }}"
+    data-aos-anchor="{{ animation_anchor }}">
+    <a href="#" class="product-link">
+      {% assign default_title = 'home_page.onboarding.product_title' | t %}
+      <p class="product__grid__title">{{ title | default: default_title }}</p>
+      <span class="price">{{ 9900 | money }}</span>
+    </a>
+  </div>
+</div>

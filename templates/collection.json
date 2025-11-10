@@ -1,0 +1,83 @@
+{
+  "sections": {
+    "hero": {
+      "type": "collection-image-with-title",
+      "settings": {
+        "show_title": true,
+        "show_description": true,
+        "text_color": "text-dark",
+        "flex_align": "align--middle-left",
+        "transparent": false,
+        "show_image": true,
+        "banner_layout": "overlay",
+        "height": "screen-height-one-third",
+        "overlay_opacity": 0,
+        "overlay_color": "#000000"
+      }
+    },
+    "subcollections": {
+      "type": "subcollections",
+      "disabled": true,
+      "settings": {
+        "subcollection_layout": "grid",
+        "subcollection_description": false,
+        "select_image": "collection"
+      }
+    },
+    "filter-and-search": {
+      "type": "filter-and-search",
+      "blocks": {
+        "16dfebed-2d3e-425a-971d-50e4cded5f29": {
+          "type": "filters",
+          "settings": {
+            "filter_type": "option",
+            "filters": "Color"
+          }
+        },
+        "f25aaec9-4482-41ef-a102-483f55941024": {
+          "type": "filters",
+          "settings": {
+            "filter_type": "tag",
+            "filters": "Linen, length, type"
+          }
+        },
+        "3620f6b1-04ec-4d8c-b94f-45465b82f0b8": {
+          "type": "filters",
+          "settings": {
+            "filter_type": "option",
+            "filters": "Price"
+          }
+        }
+      },
+      "block_order": [
+        "16dfebed-2d3e-425a-971d-50e4cded5f29",
+        "f25aaec9-4482-41ef-a102-483f55941024",
+        "3620f6b1-04ec-4d8c-b94f-45465b82f0b8"
+      ],
+      "settings": {
+        "enable_filtering": true,
+        "enable_sorting": true,
+        "drawer_pos": "left",
+        "hide_empty": true
+      }
+    },
+    "main": {
+      "type": "collection",
+      "settings": {
+        "enable_sort": false,
+        "enable_filters": false,
+        "filter_layout": "slide-out",
+        "grid": 4,
+        "grid_mobile": "2",
+        "product_limit": 38,
+        "aspect_ratio": 150
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "subcollections",
+    "filter-and-search",
+    "main"
+  ]
+}

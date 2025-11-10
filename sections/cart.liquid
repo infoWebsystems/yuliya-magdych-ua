@@ -1,0 +1,330 @@
+<!-- /templates/cart.liquid -->
+{%- assign subtotal = cart.total_price | plus: 0 -%}
+{%- assign original_subtotal = cart.original_total_price | plus: 0 -%}
+{%- assign cart_items_size = cart.item_count | plus: 0 -%}
+{%- assign cart_discount_size = cart.cart_level_discount_applications.size -%}
+{%- assign out_of_stock_product_title = '' -%}
+
+{% capture cart_items %}
+  {%- render 'cart-line-items' cart: cart -%}
+{% endcapture %}
+
+{% if cart_items contains '<p class="hide is-hidden" data-out-of-stock-title>' %}
+  {%- assign out_of_stock_product_title = cart_items | split: '<p class="hide is-hidden" data-out-of-stock-title>' | last | split: '</p>' | first -%}
+
+  <script>
+    window.theme.outOfStockProductTitle = {{ out_of_stock_product_title | json }};
+  </script>
+{% endif %}
+
+<div class="cart">
+  <div class="cart__form">
+    <form action="{{ routes.cart_url }}" method="post" novalidate>
+      <div class="cart__empty {% if cart_items_size > 0 %} is-hidden {% endif %}" data-empty-message>
+        <h1 class="cart__title">{{ 'cart.general.title' | t }}</h1>
+
+        <p>{{ 'cart.general.empty' | t }}</p>
+
+        <a href="{{- routes.all_products_collection_url -}}" class="btn btn--large btn--outline">{{ 'cart.general.continue_shopping' | t }}</a>
+      </div>
+
+      {{ form.errors | default_errors }}
+
+      <div class="cart__inner">
+        <div class="cart__content">
+          <h1 class="cart__title">{{ 'cart.general.title' | t }}</h1>
+
+          <a class="btn btn--outline" href="{{- routes.all_products_collection_url -}}">{{ 'cart.general.continue_shopping' | t }}</a>
+
+          <div class="cart__errors" data-cart-errors>
+            <h5 class="cart__errors__heading">{{- 'cart.general.limit_message' | t -}}</h5>
+
+            <p class="cart__errors__content" data-error-message></p>
+
+            <button type="button" data-cart-error-close aria-label="{{ 'general.accessibility.close' | t }} {{ 'cart.general.title' | t }}">
+              <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-close-thin" viewBox="0 0 27 27">
+                <g stroke="#979797" fill="none" fill-rule="evenodd" stroke-linecap="square">
+                  <path d="M.5.5l26 26M26.5.5l-26 26"></path>
+                </g>
+              </svg>
+            </button>
+          </div>
+
+          <div class="cart__items" data-items-holder>
+            {{ cart_items }}
+          </div>
+        </div>
+
+        <div class="cart__aside{% if cart_items_size == 0 %} is-hidden{% endif %}" data-foot-holder>
+          {% assign free_shipping_text = block.settings.message | default: settings.message %}
+{% assign is_enable = false %}
+{% assign show_wheel = true %}
+
+{% if block.settings.show_wheel == false %}
+  {% assign show_wheel = false %}
+{% endif %}
+
+{% if block.settings.message != blank %}
+  {% assign is_enable = true %}
+{% endif %}
+
+{% if settings.show_free_shipping_message and settings.free_shipping_limit != blank and free_shipping_text != blank %}
+  {% assign is_enable = true %}
+{% endif %}
+
+{% if is_enable %}
+  {% assign limit = settings.free_shipping_limit | plus: 0 %}
+  {% assign limit_currency = limit | times: 100 %}
+  {% assign subtotal_without_currency = cart.total_price | plus: 0 | divided_by: 100 %}
+
+  {% capture left_to_spend %}
+    <span data-left-to-spend>{{ limit_currency | minus: cart.total_price | money_without_trailing_zeros }}</span>
+  {% endcapture %}
+
+  {% assign free_shipping_message = free_shipping_text | replace: '||amount||', left_to_spend %}
+  {% assign qualified_shipping_message = 'cart.general.qualified_shipping_message' | t %}
+  {% assign class_message = '' %}
+
+  {% if subtotal_without_currency >= limit %}
+    {% if qualified_shipping_message != blank %}
+      {% assign class_message = 'is-success' %}
+    {% else %}
+      {% assign class_message = 'is-hidden' %}
+    {% endif %}
+  {% elsif subtotal_without_currency == 0 %}
+    {% assign class_message = 'is-hidden' %}
+  {% endif %}
+
+  <p class="cart-dropdown__message cart__message {{ class_message }}" {{ block_attibutes }} data-cart-message="{% if qualified_shipping_message != blank %}true{% else %}false{% endif %}" data-limit="{{ limit }}">
+    {% if show_wheel %}  
+      {% assign percent = limit | minus: subtotal_without_currency | times: 100 | divided_by: limit %}
+      {% assign percent = 100 | minus: percent %}
+
+      {% if percent > 100 %}
+        {% assign percent = 100 %}
+      {% endif %}
+
+      <small class="cart__graph">
+        <small class="cart__graph-dot cart__graph-dot--1"></small>
+        <small class="cart__graph-dot cart__graph-dot--2"></small>
+        <small class="cart__graph-dot cart__graph-dot--3"></small>
+        <small class="cart__graph-dot cart__graph-dot--4"></small>
+        <small class="cart__graph-dot cart__graph-dot--5"></small>
+        <small class="cart__graph-dot cart__graph-dot--6"></small>
+        
+        <svg height="18" width="18">
+          <circle r="7" cx="9" cy="9" />
+          <circle class="cart__graph-progress" stroke-dasharray="87.96459430051421 87.96459430051421" style="stroke-dashoffset: 87.96459430051421" data-cart-progress data-percent="{{- percent -}}" r="7" cx="9" cy="9" />
+        </svg>
+      </small>
+    {% endif %}
+
+    {% if qualified_shipping_message != blank %}
+      <span class="cart__message-success">{{ qualified_shipping_message }}</span>
+    {% endif %}
+
+    <span class="cart__message-default">
+      {{ free_shipping_message }}
+    </span>
+  </p>
+{% endif %}
+
+          <div class="cart__total{% if original_subtotal < subtotal or cart_discount_size == 0 %} is-hidden{% endif %}" data-cart-original-total>
+            <span>{{- 'cart.general.subtotal_items' | t -}}</span>
+
+            <span data-cart-original-total-price>
+              {%- if original_subtotal == 0 -%}
+                {{ 'general.money.free' | t }}
+              {%- else -%}
+                {{- original_subtotal | money -}}
+              {%- endif -%}
+            </span>
+          </div>
+
+          <div class="cart__discounts{% if cart_discount_size == 0 %} is-hidden{% endif %}" data-cart-discounts-holder>
+            {%- if cart.cart_level_discount_applications.size > 0 -%}
+              {%- for discount in cart.cart_level_discount_applications -%}
+                <div class="cart__total" data-cart-discount>
+                  <span data-cart-discount-title>
+                    {{- discount.title -}}
+                  </span>
+
+                  <span data-cart-discount-price>
+                    -{{- discount.total_allocated_amount | money -}}
+                  </span>
+                </div>
+              {%- endfor -%}
+            {%- endif -%}
+          </div>
+
+          <div class="cart__total">
+            <span>{{- 'cart.general.subtotal' | t -}}</span>
+
+            <span data-cart-total class="cart__total__money">
+              {%- if subtotal == 0 -%}
+                {{ 'general.money.free' | t }}
+              {%- else -%}
+                {{- subtotal | money -}}
+              {%- endif -%}
+            </span>
+          </div>
+
+          {%- for block in section.blocks -%}
+            {%- render block -%}
+          {%- endfor -%}
+
+          {% if settings.enable_order_notes %}
+            <div class="cart__widget" data-cart-widget>
+              <a href="#notes" data-expand-button>
+                {{- 'cart.general.cart_notes_label' | t -}}
+              </a>
+
+              <div class="cart__widget-content" id="notes">
+                <label for="note">{{ 'cart.general.customer_note' | t }}</label>
+
+                <textarea id="note" name="note" class="cart__field cart__field--textarea"  aria-label="{{ 'cart.general.customer_note' | t }}">{{- cart.note -}}</textarea>
+              </div>
+            </div>
+          {% endif %}
+
+          {% if settings.enable_gift_notes %}
+            <div class="cart__widget" data-cart-widget>
+              <a href="#gift-notes" data-expand-button>
+                {{- 'cart.general.gift_notes_label' | t -}}
+              </a>
+    
+              <div class="cart__widget-content" id="gift-notes">
+                {%- assign gift_note_attribute = 'cart.general.gift_note_attribute' | t -%}
+                <label for="gift-note">{{ 'cart.general.customer_note' | t }}</label>
+    
+                <textarea id="gift-note" name="attributes[{{ gift_note_attribute }}]" class="cart__field cart__field--textarea" aria-label="{{ 'cart.general.customer_note' | t }}">{{ cart.attributes[gift_note_attribute] }}</textarea>
+              </div>
+            </div>
+          {% endif %}
+
+          {%- if settings.enable_estimate_shipping -%}
+            <div class="cart__widget js" data-cart-widget>
+              <a href="#estimate-shipping-calculator" data-expand-button>
+                {{- 'cart.general.estimate_shipping_label' | t -}}
+              </a>
+
+              <div class="cart__widget-content" id="estimate-shipping-calculator">
+                <!-- /partials/cart-shipping-calculator.liquid -->
+{% assign calculate_shipping_btn = 'cart.shipping_calculator.calculate_shipping' | t %}
+
+<div id="shipping-calculator" class="shipping-calculator">
+  <div class="shipping-calculator__container" id="address_container">
+    <div class="is-hidden">
+      <label for="AddressFirstName">{{ 'customer.addresses.first_name' | t }}</label>
+      <input type="text" id="AddressFirstName" name="address[first_name]" value="{{ form.first_name }}">
+    </div>
+
+    <div class="is-hidden">
+      <label for="AddressLastName">{{ 'customer.addresses.last_name' | t }}</label>
+      <input type="text" id="AddressLastName" name="address[last_name]" value="{{ form.last_name }}">
+    </div>
+
+    <div class="is-hidden">
+      <label for="AddressCompany">{{ 'customer.addresses.company' | t }}</label>
+      <input type="text" id="AddressCompany" name="address[company]" value="{{ form.company }}">
+    </div>
+
+    <div class="is-hidden">
+      <label for="AddressAddress1">{{ 'customer.addresses.address1' | t }}</label>
+      <input type="text" id="AddressAddress1" name="address[address1]" value="{{ form.address1 }}">
+    </div>
+
+    <div class="is-hidden">
+      <label for="AddressAddress2">{{ 'customer.addresses.address2' | t }}</label>
+      <input type="text" id="AddressAddress2" name="address[address2]" value="{{ form.address2 }}">
+    </div>
+
+    <div class="is-hidden">
+      <label for="AddressCity">{{ 'customer.addresses.city' | t }}</label>
+      <input type="text" id="AddressCity" name="address[city]" value="{{ form.city }}">
+    </div>
+
+    <div class="p">
+      <label for="address_country">{{ 'customer.addresses.country' | t }}</label>
+      <select id="address_country" name="address[country]" class="cart__field" {% if shop.customer_accounts_enabled and customer %}data-default="{{ customer.default_address.country_code }}" data-default-fullname="{{ customer.default_address.country }}"{% else %}data-default="{{ default_country.iso_code }}" data-default-fullname="{{ default_country }}"{% endif %}></select>
+    </div>
+
+    <div id="address_province_container"  class="p shipping-calculator__province">
+      <label for="address_province" id="address_province_label">{{ 'customer.addresses.province' | t }}</label>
+      <select id="address_province" class="address_form cart__field" name="address[province]" {% if shop.customer_accounts_enabled and customer and customer.default_address.province != '' %}data-default="{{ customer.default_address.province_code }}" data-default-fullname="{{ customer.default_address.province }}"{% endif %}></select>
+    </div>
+
+    <div class="p">
+      <label for="address_zip">{{ 'customer.addresses.zip' | t }}</label>
+      <input type="text" id="address_zip" class="cart__field" name="address[zip]"{% if shop.customer_accounts_enabled and customer %} value="{{ customer.default_address.zip }}"{% endif %} />
+    </div>
+
+    <div class="is-hidden">
+      <label for="AddressPhone">{{ 'customer.addresses.phone' | t }}</label>
+      <input type="tel" id="AddressPhone" name="address[phone]" value="{{ form.phone }}">
+    </div>
+  </div>
+  
+  <div id="wrapper-response"></div>
+
+  <input type="button" class="get-rates{% if cart.item_count > 0 %} get-rates--trigger{% endif %} btn btn--outline btn--input btn--full" value="{{ calculate_shipping_btn }}" />
+</div>
+
+<script id="shipping-calculator-response-template" type="text/template">
+  <p id="shipping-rates-feedback" class="{% raw %}||successClass||{% endraw %}" data-template-no-shipping="{{ 'cart.shipping_calculator.no_shipping_available' | t }}">
+    {% raw %}||ratesText||{% endraw %}
+  </p>
+
+  <ul id="shipping-rates">
+    [<li><span>{% raw %}||rateName||{% endraw %}</span> <span>{% raw %}||ratePrice||{% endraw %}</span></li>]
+    {% raw %}||ratesList||{% endraw %}
+  </ul>
+</script>
+
+              </div>
+            </div>
+          {%- endif -%}
+
+          <div class="cart__foot-inner cart__foot-inner--alt">
+            <button type="submit" name="update" class="btn btn--full btn--large btn--outline cart__checkout no-js">
+              {{- 'cart.general.update' | t -}}
+            </button>
+
+            <button type="submit" name="checkout" class="btn btn--full btn--large cart__checkout">
+              {{- 'cart.general.checkout' | t -}}
+            </button>
+
+            <em>{{- 'cart.general.subtotal_note' | t -}}</em>
+          </div>
+
+          {%- if settings.enable_additional_buttons and additional_checkout_buttons -%}
+            <span class="cart__or">&mdash; {{ 'cart.general.or' | t }} &mdash;</span>
+
+            <div class="additional-checkout-buttons">
+              {{- content_for_additional_checkout_buttons -}}
+            </div>
+          {%- endif -%}
+
+          <div class="cart__widget cart__widget--products is-hidden" data-pair-products-holder>
+            <p>{{- 'cart.general.pair_products' | t -}}</p>
+
+            <div class="cart__widget-content">
+              <div class="cart__widget-content-inner" data-pair-products></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Cart",
+  "blocks": [
+    {
+      "type": "@app"
+    }
+  ]
+}
+{% endschema %}

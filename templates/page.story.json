@@ -1,0 +1,192 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "subheading": "",
+        "show_title": true,
+        "show_content": true,
+        "text_size": 2,
+        "align_text": "text-left",
+        "height": "margin--medium",
+        "width": "wrapper",
+        "text_color": "text-dark",
+        "bg_color": "#ffffff"
+      }
+    },
+    "custom-content-1": {
+      "type": "section-custom-content",
+      "blocks": {
+        "f603effc-2e88-4012-9299-c36615d6ffb8": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/IMG_0413_1.png",
+            "bg_position": "center-center",
+            "overlay_opacity": 0,
+            "overlay_color": "#000000",
+            "title": "",
+            "description": "",
+            "flex_align": "align--middle-center",
+            "text_color": "text-light",
+            "transparent": true,
+            "link_text": "",
+            "link": "",
+            "button_color": "btn--white",
+            "button_style": "hero__btn btn btn--large btn--outline caps"
+          }
+        },
+        "a3a25175-a0e3-41fb-82c3-915706bf8d9b": {
+          "type": "text",
+          "settings": {
+            "subheading": "",
+            "title": "Our Story",
+            "text": "<p><strong>Yuliya Magdych<\/strong> is a fashion designer who combines Ukrainian traditions and modernity in the namesake ready-to-wear and demi-couture brand, which is inspired by Ukrainian sartorial heritage and its recent political history.<\/p><p><\/p><p>Yuliya launched the brand in 2013 in times of Revolution that stoked nationalist sentiment as well as a worldwide revived interest in the <a href=\"http:\/\/www.vogue.com\/13257041\/ukrainian-traditional-costumes-in-fashion\/\"><span style=\"text-decoration:underline\"><em>vyshyvanka<\/em><\/span><\/a> — the traditional Ukrainian embroidered shirt. <\/p>",
+            "text_size": 2,
+            "text_columns": 1,
+            "align_text": "text-left",
+            "text_color": "text-dark",
+            "bg_color": "#ffffff",
+            "button_text": "",
+            "button_url": "",
+            "button_color": "btn--neutral",
+            "button_style": "hero__btn btn btn--large btn--outline caps"
+          }
+        }
+      },
+      "block_order": [
+        "f603effc-2e88-4012-9299-c36615d6ffb8",
+        "a3a25175-a0e3-41fb-82c3-915706bf8d9b"
+      ],
+      "settings": {
+        "height": "image-height",
+        "padding": false,
+        "borders": false,
+        "wrapper": true
+      }
+    },
+    "164736270880476c90": {
+      "type": "section-rich-text",
+      "settings": {
+        "subheading": "",
+        "title": "",
+        "text": "<p>The brand’s hallmark is technically sophisticated ethnic 3D embroidery developed based on the patterns found in museums, private collections, and research travels across Ukraine.<\/p><p>So the family tradition, a vibrant personal style, and a desire to rethink Ukrainian national costume aesthetics were at the root of Yuliya’s newfound inspiration to create her fashion brand.<\/p><p>Starting with ethnic Ukrainian motifs and silhouettes, the designer soon moved to her patterns that no longer reflected the authentic motives but preserved the general impression of traditional embroidery. <\/p><p>The designer has expanded from classic dress and caftan silhouettes, which she describes as “cosmopolitan,” to include rompers, coats, and capes. What she’s after, though, isn’t a novelty, but timelessness: “We don’t have old collections and new collections; we don’t use these terms,” she says.<\/p>",
+        "text_size": 2,
+        "text_columns": 1,
+        "align_text": "text-left",
+        "button_text": "",
+        "button_url": "",
+        "button_color": "btn--neutral",
+        "button_style": "caps--large",
+        "height": "margin--medium",
+        "width": "wrapper",
+        "text_color": "text-dark",
+        "bg_color": "#ffffff"
+      }
+    },
+    "164736286677a1f6ab": {
+      "type": "section-video",
+      "settings": {
+        "video_link_bg": "https:\/\/cdn.shopify.com\/s\/files\/1\/0629\/9969\/1501\/files\/magdych.mp4?v=1647366044",
+        "video_link": "https:\/\/cdn.shopify.com\/s\/files\/1\/0629\/9969\/1501\/files\/vid.mp4?v=1647366456",
+        "bg_position": "center-center",
+        "height": "screen-height-two-thirds",
+        "overlay_opacity": 0,
+        "overlay_color": "#000000",
+        "title": "",
+        "description": "",
+        "flex_align": "align--middle-center",
+        "text_color": "text-light",
+        "transparent": true,
+        "link_text": "View products",
+        "link": "",
+        "button_color": "btn--white",
+        "button_style": "hero__btn btn btn--large btn--outline caps"
+      }
+    },
+    "164736665285c9f648": {
+      "type": "section-rich-text",
+      "settings": {
+        "subheading": "",
+        "title": "",
+        "text": "<p>The designer has expanded from classic dress and caftan silhouettes, which she describes as “cosmopolitan,” to include rompers, coats, and capes. What she’s after, though, isn’t a novelty, but timelessness: “We don’t have old collections and new collections; we don’t use these terms,” she says.<\/p><p>Yuliya Magdych was the first Ukrainian brand to be presented in Selfridges, London. The brand is also available at <a href=\"https:\/\/www.farfetch.com\/ua\/shopping\/women\/yuliya-magdych\/items.aspx\"><span style=\"text-decoration:underline\">Farfetch<\/span><\/a> and became the first Ukrainian brand working with this luxury platform directly.<\/p><p><em>Yuliya Magdych is presented in more than 50 countries. Such magazines as <\/em><a href=\"https:\/\/www.vogue.com\/article\/yuliya-magdych-ukrainian-fashion-designer-vyshyvanka\"><span style=\"text-decoration:underline\"><em>Vogue,<\/em><\/span><\/a><em> <\/em><a href=\"https:\/\/wwd.com\/fashion-news\/fashion-features\/yuliya-magdych-us-handbag-scarves-bridal-10445420\/\"><span style=\"text-decoration:underline\"><em>WWD<\/em><\/span><\/a><em>, <\/em><a href=\"http:\/\/www.buro247.sg\/fashion\/buro-loves\/ukranian-designer-yuliya-magdych-kaftans.html\"><span style=\"text-decoration:underline\"><em>Buro<\/em><\/span><\/a><em>, <\/em><a href=\"https:\/\/observer.com\/2016\/08\/ukrainian-designer-yuliya-magdych-has-designed-the-perfect-vacation-frock\/\"><span style=\"text-decoration:underline\"><em>Observer<\/em><\/span><\/a><em>, <\/em><a href=\"http:\/\/bazaar.ru\/fashion\/collections\/yuliya-magdych-cruise-2016\/\"><span style=\"text-decoration:underline\"><em>Harper's Bazaar <\/em><\/span><\/a><em>and many others wrote about the brand. Spotted wearing the brand were such celebrities as Patricia Kaas, Catherine Zeta-Jones, Kelly Osbourne.<\/em><\/p>",
+        "text_size": 2,
+        "text_columns": 1,
+        "align_text": "text-left",
+        "button_text": "Learn more",
+        "button_url": "",
+        "button_color": "btn--neutral",
+        "button_style": "caps--large",
+        "height": "margin--medium",
+        "width": "wrapper",
+        "text_color": "text-dark",
+        "bg_color": "#ffffff"
+      }
+    },
+    "164736415369bdd8cf": {
+      "type": "section-logo-list",
+      "blocks": {
+        "164736415390147399-0": {
+          "type": "logo-item",
+          "settings": {
+            "logo": "shopify:\/\/shop_images\/1200px-VOGUE_revista_-_logo.png",
+            "logo_width": 150,
+            "link": ""
+          }
+        },
+        "164736415390147399-1": {
+          "type": "logo-item",
+          "settings": {
+            "logo": "shopify:\/\/shop_images\/WWD_logo_logotype.png",
+            "logo_width": 150,
+            "link": ""
+          }
+        },
+        "164736415390147399-2": {
+          "type": "logo-item",
+          "settings": {
+            "logo": "shopify:\/\/shop_images\/Harpers_logo.png",
+            "logo_width": 150,
+            "link": ""
+          }
+        },
+        "346b8887-7efd-4d29-b0d6-b0abc110405f": {
+          "type": "logo-item",
+          "settings": {
+            "logo": "shopify:\/\/shop_images\/logo-observer.png",
+            "logo_width": 150,
+            "link": ""
+          }
+        },
+        "49cb4211-6dfb-471a-933d-17c7c582a0c1": {
+          "type": "logo-item",
+          "settings": {
+            "logo": "shopify:\/\/shop_images\/logo_1.png",
+            "logo_width": 150,
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "164736415390147399-0",
+        "164736415390147399-1",
+        "164736415390147399-2",
+        "346b8887-7efd-4d29-b0d6-b0abc110405f",
+        "49cb4211-6dfb-471a-933d-17c7c582a0c1"
+      ],
+      "settings": {
+        "title": "As seen on",
+        "text_color": "text-dark",
+        "bg_color": "rgba(0,0,0,0)"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "custom-content-1",
+    "164736270880476c90",
+    "164736286677a1f6ab",
+    "164736665285c9f648",
+    "164736415369bdd8cf"
+  ]
+}
