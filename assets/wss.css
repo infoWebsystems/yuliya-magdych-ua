@@ -19,6 +19,9 @@ span.ks-chart-modal-link:hover {
     padding: 0 1.75rem;
     transition: .5s ease;
 }
+.header__wrapper.meganav--visible {
+    transition: .5s ease;
+}
 .header__wrapper.meganav--visible .header__desktop__left,
 .header__wrapper.js__header__stuck__backdrop .header__desktop__left {
     grid-template-columns: 2fr 1fr;
@@ -55,6 +58,9 @@ span.ks-chart-modal-link:hover {
 }
 .js__header__stuck__backdrop .header__desktop__left .header__desktop__bar__menu {
     margin-left: 3px;
+}
+.header__desktop__left .header__logo__link {
+    transition: .7s ease;
 }
 @media (min-width: 480px) {
     .header__wrapper .header__desktop__left .header__logo__link {

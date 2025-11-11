@@ -8221,9 +8221,8 @@
       this.trigger.setAttribute('aria-haspopup', true);
       this.trigger.setAttribute('aria-expanded', false);
       this.trigger.setAttribute('aria-controls', this.key);
-      this.handleOutsideClick = this.handleOutsideClick.bind(this);
 
-      this.connectToggleHandlers();
+      this.connectHoverToggle();
       this.handleTablets();
       this.staggerChildAnimations();
     }
@@ -8241,10 +8240,10 @@
     }
 
     showDisclosure(e) {
-      if (e && e.type && e.type === 'click') {
+      if (e && e.type && e.type === 'mouseenter') {
         this.wrapper.classList.add(classes$c.meganavIsTransitioning);
       }
-      this.wrapper.classList.add(classes$c.meganavVisible);
+
       if (this.grandparent || this.parent) {
         this.wrapper.classList.add(classes$c.meganavVisible);
       } else {
@@ -8261,59 +8260,13 @@
       this.transitionTimeout = setTimeout(() => {
         this.wrapper.classList.remove(classes$c.meganavIsTransitioning);
       }, 200);
-      document.addEventListener('click', this.handleOutsideClick);
     }
 
     hideDisclosure() {
       this.disclosure.classList.remove(classes$c.isVisible);
       this.trigger.classList.remove(classes$c.isVisible);
       this.trigger.setAttribute('aria-expanded', false);
-      this.wrapper.classList.remove(classes$c.meganavIsTransitioning);
-
-      const isAnyOtherMenuStillOpen = Object.values(sections$c).flat().some(disclosureInstance => 
-          disclosureInstance !== this && disclosureInstance.disclosure.classList.contains(classes$c.isVisible)
-      );
-
-      if (!isAnyOtherMenuStillOpen) {
-          this.wrapper.classList.remove(classes$c.meganavVisible); 
-
-          const isAtTheTop = window.scrollY === 0 || document.documentElement.scrollTop === 0;
-          if (isAtTheTop) {
-            this.wrapper.classList.remove(classes$b.stuck, classes$b.stuckBackdrop);
-          }
-      }
-
-      document.removeEventListener('click', this.handleOutsideClick);
-    }
-
-    handleOutsideClick(e) {
-        const isClickInsideTrigger = this.trigger.contains(e.target);
-        const isClickInsideDisclosure = this.disclosure.contains(e.target);
-        const isOpen = this.disclosure.classList.contains(classes$c.isVisible);
-
-        if (isOpen && !isClickInsideTrigger && !isClickInsideDisclosure) {
-            this.hideDisclosure();
-        }
-    }
-
-    toggleDisclosure(e) {
-        e.preventDefault(); 
-        e.stopPropagation(); 
-
-        const isOpen = this.disclosure.classList.contains(classes$c.isVisible);
-
-        Object.values(sections$c).flat().forEach(disclosureInstance => {
-            if (disclosureInstance !== this && disclosureInstance.disclosure.classList.contains(classes$c.isVisible)) {
-                disclosureInstance.hideDisclosure();
-            }
-        });
-
-        if (isOpen) {
-          this.hideDisclosure();
-        } else {
-          this.wrapper.classList.add(classes$b.stuck, classes$b.stuckBackdrop);
-          this.showDisclosure(e);
-        }
+      this.wrapper.classList.remove(classes$c.meganavVisible, classes$c.meganavIsTransitioning);
     }
 
     staggerChildAnimations() {
@@ -8342,16 +8295,18 @@
           const isOpen = this.disclosure.classList.contains(classes$c.isVisible);
           if (!isOpen) {
             e.preventDefault();
-            this.toggleDisclosure(e); 
+            this.showDisclosure(e);
           }
-        }.bind(this)
+        }.bind(this),
+        {passive: true}
       );
     }
 
-    connectToggleHandlers() {
-      this.trigger.addEventListener('click', (e) => this.toggleDisclosure(e));
+    connectHoverToggle() {
+      this.trigger.addEventListener('mouseenter', (e) => this.showDisclosure(e));
       this.link.addEventListener('focus', (e) => this.showDisclosure(e));
 
+      this.trigger.addEventListener('mouseleave', () => this.hideDisclosure());
       this.trigger.addEventListener('focusout', (e) => {
         const inMenu = this.trigger.contains(e.relatedTarget);
         if (!inMenu) {
