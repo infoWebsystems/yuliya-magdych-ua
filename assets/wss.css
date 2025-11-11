@@ -345,7 +345,7 @@ span.ks-chart-modal-link:hover {
     left: 0;
     right: 0;
     width: 100%;
-    padding: 2.3rem 2rem 1.3rem;
+    padding: 2rem 2rem 1.3rem;
     z-index: 5;
     top: 85%;
 }
@@ -371,7 +371,16 @@ span.ks-chart-modal-link:hover {
 .header__desktop__left .menu__block--narrow:last-of-type {
     grid-area: c;
 }
-
+@media (min-width: 1800px) {
+    .header__desktop__left .menu__block--narrow {
+        max-height: 600px;
+    }
+}
+@media (min-width: 2100px) {
+    .header__desktop__left .menu__block--narrow {
+        max-height: 800px;
+    }
+}
 .header__dropdown__image .hero__content {
     position: static;
     width: 100%;

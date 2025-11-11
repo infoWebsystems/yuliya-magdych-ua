@@ -8216,6 +8216,7 @@
       this.link = this.trigger.querySelector(selectors$o.link);
       this.grandparent = this.trigger.classList.contains('grandparent');
       this.parent = this.trigger.classList.contains('parent');
+      this.child = this.trigger.classList.contains('child');
       this.transitionTimeout = 0;
 
       this.trigger.setAttribute('aria-haspopup', true);
@@ -8244,7 +8245,7 @@
         this.wrapper.classList.add(classes$c.meganavIsTransitioning);
       }
 
-      if (this.grandparent || this.parent) {
+      if (this.grandparent || this.parent || this.child) {
         this.wrapper.classList.add(classes$c.meganavVisible);
       } else {
         this.wrapper.classList.remove(classes$c.meganavVisible);
