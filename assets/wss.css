@@ -19,8 +19,9 @@ span.ks-chart-modal-link:hover {
     padding: 0 1.75rem;
     transition: .5s ease;
 }
+.header__wrapper,
 .header__wrapper.meganav--visible {
-    transition: .5s ease;
+    transition: .7s ease;
 }
 .header__wrapper.meganav--visible .header__desktop__left,
 .header__wrapper.js__header__stuck__backdrop .header__desktop__left {
@@ -91,10 +92,10 @@ span.ks-chart-modal-link:hover {
     letter-spacing: 0.04em;
 }
 .header__desktop__left .navlink--toplevel {
-    padding: 19px 4px;
+    padding: 19px 14px;
 }
 .js__header__stuck .header__desktop__left .navlink--toplevel {
-    padding: 22px 4px;
+    padding: 22px 14px;
 }
 .js__header__stuck .header__desktop__left .navlink--toplevel .navtext::after,
 .meganav--visible .header__desktop__left .navlink--toplevel .navtext::after,
@@ -139,19 +140,17 @@ span.ks-chart-modal-link:hover {
 .header__desktop__left .navlink--toplevel svg path {
     stroke: #000;
 }
-.header__desktop__left .grandparent .navlink--toplevel,
+/* .header__desktop__left .grandparent .navlink--toplevel,
 .header__desktop__left .parent .navlink--toplevel {
     pointer-events: none;
-}
+} */
 .header__desktop__left .grandparent,
 .header__desktop__left .parent {
     cursor: pointer;
 }
 .header__desktop__left .parent .header__dropdown {
     margin-left: 0;
-}
-.header__desktop__left .header__menu__inner {
-    gap: 1.46rem;
+    transition: .5s ease;
 }
 .header__desktop--icons .icon {
     height: 18px;
@@ -349,6 +348,17 @@ span.ks-chart-modal-link:hover {
     width: 100%;
     padding: 1.3rem 2rem;
 }
+.header__desktop__left .header__dropdown::before {
+    content: "";
+    position: absolute;
+    top: -39%;
+    background: transparent;
+    height: 200px;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    z-index: 0;
+}
 .header__desktop__left .grandparent .header__dropdown__inner {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -365,6 +375,8 @@ span.ks-chart-modal-link:hover {
 }
 .header__desktop__left .menu__block--narrow {
     grid-area: b;
+    height: 100%;
+    max-height: 400px;
 }
 .header__desktop__left .menu__block--narrow:last-of-type {
     grid-area: c;
