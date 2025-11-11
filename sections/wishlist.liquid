@@ -107,20 +107,24 @@
   }
 
   .counter {
-    background-color: orange;
-    width: 20px;
-    height: 20px;
+    background-color: black;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
     color: white;
     line-height: 20px;
     text-align: center;
     position: absolute;
-    top: 0;
+    top: 20%;
     left: 30px;
   }
   .mobile_counter {
-    top: 10px;
-    left: 20px;
+    top: 30%;
+    left: 23px;
+  }
+
+  .hidden {
+    display: none;
   }
 
   .ws-btn {
@@ -409,8 +413,14 @@
   let mobileCounter = document.createElement("div");
   counter.classList.add("counter");
   mobileCounter.classList.add("counter", "mobile_counter");
-  counter.innerText = wishlist.length;
-  mobileCounter.innerText = wishlist.length;
+  {% comment %} counter.innerText = wishlist.length;
+  mobileCounter.innerText = wishlist.length; {% endcomment %}
+
+  if (wishlist.length === 0) {
+    counter.classList.add('hidden');
+    mobileCounter.classList.add('hidden');
+  }
+
   document.addEventListener("DOMContentLoaded", function(event) {
     if ("{{ page.id }}" === "{{ section.settings.page.id }}") {
       getContent();
@@ -446,8 +456,10 @@
             }, index * 200);
           });
           setButtons();
-          counter.innerText = wishlist.length;
-          mobileCounter.innerText = wishlist.length;
+          {% comment %} counter.innerText = wishlist.length;
+          mobileCounter.innerText = wishlist.length; {% endcomment %}
+          counter.classList.add('hidden');
+          mobileCounter.classList.add('hidden');
         });
 
 
@@ -607,8 +619,12 @@
         popup.removeEventListener("click", poputOpenPage);
         wishlist.push(slug);
         icon.classList.add("active_icon");
-        counter.innerText = wishlist.length;
-        mobileCounter.innerText = wishlist.length;
+
+        {% comment %} counter.innerText = wishlist.length;
+        mobileCounter.innerText = wishlist.length; {% endcomment %}
+        counter.classList.remove('hidden');
+        mobileCounter.classList.remove('hidden');
+        
         let isOpen = popup.classList.contains("wishlist_popup_open");
         popup.classList.remove("wishlist_popup_open");
         clearTimeout(timerHandle);
@@ -639,8 +655,14 @@
           }
         }, 1000)
       }
-      counter.innerText = wishlist.length;
-      mobileCounter.innerText = wishlist.length;
+      {% comment %} counter.innerText = wishlist.length;
+      mobileCounter.innerText = wishlist.length; {% endcomment %}
+
+      if (wishlist.length === 0) { 
+        counter.classList.add('hidden');
+        mobileCounter.classList.add('hidden');
+      }
+
     }
     localStorage.setItem("wishlist", JSON.stringify(wishlist));
     setButtons();
