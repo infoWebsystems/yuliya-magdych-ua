@@ -150,7 +150,6 @@ span.ks-chart-modal-link:hover {
 }
 .header__desktop__left .parent .header__dropdown {
     margin-left: 0;
-    transition: .5s ease;
 }
 .header__desktop--icons .icon {
     height: 18px;
@@ -346,18 +345,9 @@ span.ks-chart-modal-link:hover {
     left: 0;
     right: 0;
     width: 100%;
-    padding: 1.3rem 2rem;
-}
-.header__desktop__left .header__dropdown::before {
-    content: "";
-    position: absolute;
-    top: -39%;
-    background: transparent;
-    height: 200px;
-    bottom: 0;
-    width: 100%;
-    left: 0;
-    z-index: 0;
+    padding: 2.3rem 2rem 1.3rem;
+    z-index: 5;
+    top: 85%;
 }
 .header__desktop__left .grandparent .header__dropdown__inner {
     display: grid;
