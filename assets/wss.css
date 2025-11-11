@@ -398,6 +398,7 @@ span.ks-chart-modal-link:hover {
     transition: .2s ease;
     display: block;
     letter-spacing: 0.02em;
+    width: fit-content;
 }
 .header__desktop__left .header__dropdown__inner .navlink:hover {
     border-color: #000;

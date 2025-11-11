@@ -8318,9 +8318,9 @@
 
     staggerChildAnimations() {
       const simple = this.disclosure.querySelectorAll(selectors$o.stagger);
-      simple.forEach((el, index) => {
-        el.style.transitionDelay = `${index * 50 + 10}ms`;
-      });
+      // simple.forEach((el, index) => {
+      //   el.style.transitionDelay = `${index * 50 + 10}ms`;
+      // });
 
       const pairs = this.disclosure.querySelectorAll(selectors$o.staggerPair);
       pairs.forEach((child, i) => {
