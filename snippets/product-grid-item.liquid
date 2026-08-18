@@ -254,7 +254,7 @@
             <span class="old-price">{{ product.compare_at_price | money }}</span>
             {% assign discount_amount = product.compare_at_price | minus: product.price %}
             {% assign discount_percentage = discount_amount | times: 100.0 | divided_by: product.compare_at_price | round %}
-            <span class="product__discount-percentage">-{{ discount_percentage }}%</span>
+            <span class="product__discount-percentage" style="color: #d60000;">-{{ discount_percentage }}%</span>
           {% endif %}
         {% else %}
           <span class="sold-out">{{ 'products.product.sold_out' | t }}</span>
