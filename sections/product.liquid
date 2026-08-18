@@ -203,7 +203,11 @@
           {% endif %}
         </s>
       {% endif %}
-
+      {%- if current_variant.compare_at_price > current_variant.price -%}
+        {%- assign discount_amount = current_variant.compare_at_price | minus: current_variant.price -%}
+        {%- assign discount_percentage = discount_amount | times: 100.0 | divided_by: current_variant.compare_at_price | round -%}
+        <span class="product__discount-percentage">-{{ discount_percentage }}%</span>
+      {%- endif -%}
       {% liquid
         assign units = product.variants | map: 'unit_price'
         if units[0]
@@ -428,7 +432,7 @@
                   url({{ upsell_variant_image.preview_image.src | image_url: 720 }}) 1x,
                   url({{ upsell_variant_image.preview_image.src | image_url: 1440 }}) 2x
                 )"
-                >
+                ">
                 <noscript>
                   {{ upsell_variant_image.preview_image.src | image_url: 720 | image_tag: loading: 'lazy', width: upsell_variant_image.preview_image.width, height: upsell_variant_image.preview_image.height, alt: upsell_variant_image.alt }}
                 </noscript>
