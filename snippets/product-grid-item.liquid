@@ -123,10 +123,6 @@
       <span class="badge-box">{{ badge }}</span>
     {%- elsif preorder and sold_out == false -%}
       <span class="preorder-box">{{ 'products.product.pre_order' | t }}</span>
-        {%- elsif on_sale and sold_out == false -%}
-      {%- assign discount_amount = product.compare_at_price | minus: product.price -%}
-      {%- assign discount_percentage = discount_amount | times: 100.0 | divided_by: product.compare_at_price | round -%}
-      <span class="sale-box">-{{ discount_percentage }}%</span>
     {%- endif -%}
 
     {%- if settings.quickview_enable and current_variant -%}
@@ -254,8 +250,11 @@
               {{ product.price_min | money }}
             {%- endif -%}
           </span>
-          {% if product.compare_at_price > product.price %}
+                    {% if product.compare_at_price > product.price %}
             <span class="old-price">{{ product.compare_at_price | money }}</span>
+            {% assign discount_amount = product.compare_at_price | minus: product.price %}
+            {% assign discount_percentage = discount_amount | times: 100.0 | divided_by: product.compare_at_price | round %}
+            <span class="product__discount-percentage">-{{ discount_percentage }}%</span>
           {% endif %}
         {% else %}
           <span class="sold-out">{{ 'products.product.sold_out' | t }}</span>
