@@ -428,7 +428,7 @@
                   url({{ upsell_variant_image.preview_image.src | image_url: 720 }}) 1x,
                   url({{ upsell_variant_image.preview_image.src | image_url: 1440 }}) 2x
                 )"
-                ">
+                >
                 <noscript>
                   {{ upsell_variant_image.preview_image.src | image_url: 720 | image_tag: loading: 'lazy', width: upsell_variant_image.preview_image.width, height: upsell_variant_image.preview_image.height, alt: upsell_variant_image.alt }}
                 </noscript>
