@@ -206,7 +206,7 @@
       {%- if current_variant.compare_at_price > current_variant.price -%}
         {%- assign discount_amount = current_variant.compare_at_price | minus: current_variant.price -%}
         {%- assign discount_percentage = discount_amount | times: 100.0 | divided_by: current_variant.compare_at_price | round -%}
-        <span class="product__discount-percentage">-{{ discount_percentage }}%</span>
+        <span class="product__discount-percentage" style="color: #d60000;">-{{ discount_percentage }}%</span>
       {%- endif -%}
       {% liquid
         assign units = product.variants | map: 'unit_price'
