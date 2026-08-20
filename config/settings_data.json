@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "current": {
     "text_color": "#212121",
@@ -37,9 +46,9 @@
     "parallax_enable": false,
     "product_grid_outline": false,
     "show_scroll_top_button": true,
-    "instagram_link": "https:\/\/instagram.com\/yuliya_magdych\/",
-    "facebook_link": "https:\/\/www.facebook.com\/Yuliya-Magdych-100998811521811\/",
-    "pinterest_link": "https:\/\/www.pinterest.com\/pin\/yuliya-magdych-online-shop--541839398921707423\/",
+    "instagram_link": "https://instagram.com/yuliya_magdych/",
+    "facebook_link": "https://www.facebook.com/Yuliya-Magdych-100998811521811/",
+    "pinterest_link": "https://www.pinterest.com/pin/yuliya-magdych-online-shop--541839398921707423/",
     "product_grid_center": false,
     "product_grid_aspect_ratio": 1.5,
     "sale_tags_enable": false,
@@ -52,7 +61,7 @@
     "variant_lines": false,
     "color_swatches": true,
     "product_grid_show_rating": false,
-    "favicon": "shopify:\/\/shop_images\/Group_27.png",
+    "favicon": "shopify://shop_images/Group_27.png",
     "enable_cart_dropdown": true,
     "enable_estimate_shipping": false,
     "enable_additional_buttons": true,
@@ -60,7 +69,7 @@
     "show_free_shipping_message": false,
     "message": "Spend ||amount|| for free shipping",
     "free_shipping_limit": "",
-    "checkout_logo_image": "shopify:\/\/shop_images\/logobl.png",
+    "checkout_logo_image": "shopify://shop_images/logobl.png",
     "checkout_logo_position": "center",
     "checkout_logo_size": "medium",
     "checkout_body_background_color": "#fff",
@@ -82,8 +91,8 @@
         "settings": {
           "header_style": "logo_above",
           "icon_family": "modern",
-          "logo": "shopify:\/\/shop_images\/2023-02-15_160224907.png",
-          "logo_mob": "shopify:\/\/shop_images\/magdych_mob_black.png",
+          "logo": "shopify://shop_images/2023-02-15_160224907.png",
+          "logo_mob": "shopify://shop_images/magdych_mob_black.png",
           "logo_max_limit": 220,
           "logo_max_limit_mob": 110,
           "main_menu_linklist": "",
@@ -93,8 +102,8 @@
           "transparent_home": true,
           "transparent_collection": false,
           "transparent_article": false,
-          "transparent_logo": "shopify:\/\/shop_images\/2023-02-15_160247162.png",
-          "transparent_logo_mob": "shopify:\/\/shop_images\/logo_mobile.png",
+          "transparent_logo": "shopify://shop_images/2023-02-15_160247162.png",
+          "transparent_logo_mob": "shopify://shop_images/logo_mobile.png",
           "secondary_menu_linklist": ""
         }
       },
@@ -125,7 +134,7 @@
           "aba61145-967b-4995-9ff5-2167b8229b91": {
             "type": "newsletter",
             "settings": {
-              "richtext": "<p>Залишайтеся на зв'язку<\/p>",
+              "richtext": "<p>Залишайтеся на зв'язку</p>",
               "enable_name": false
             }
           }
@@ -173,7 +182,7 @@
         "settings": {
           "bg_color": "#212121",
           "color": "#ffffff",
-          "text_top": "БЕЗКОШТОВНА ДОСТАВКА ПО УКРАЇНІ",
+          "text_top": "ЗНИЖКИ ДО ДНЯ НЕЗАЛЕЖНОСТІ | ДО -70% НА ОБРАНІ ТОВАРИ",
           "text_button": "",
           "title_bottom": "",
           "text_bottom": "",
@@ -189,13 +198,13 @@
           "card_button": ".product-item__image",
           "header_button": ".header__desktop__buttons",
           "header_button_position": "before",
-          "icon": "<svg id=\"heart\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewbox=\"0 0 612 792\"><path d=\"M611.721,288.299c-2.258-42.176-20.114-81.782-50.287-111.524c-30.557-30.119-70.43-46.708-112.27-46.708    c-62.267,0-107.396,49.233-131.641,75.684c-3.743,4.085-8.13,8.87-11.183,11.79c-2.444-2.529-5.756-6.3-8.803-9.768    c-22.142-25.222-68.223-77.704-134.688-77.704c-41.84,0-81.711,16.588-112.268,46.708C20.408,206.517,2.547,246.121,0.29,288.299    c-2.248,42.107,8.521,78.746,34.92,118.803c20.888,31.701,75.961,93.605,133.927,150.543c29.856,29.326,57.336,54.18,79.466,71.873    c35.936,28.729,49.7,32.413,57.674,32.413c7.476,0,21.614-3.352,57.895-32.332c22.079-17.637,49.463-42.451,79.194-71.76    c57.445-56.63,112.318-118.617,133.443-150.743C594.576,380.072,614.6,342.151,611.721,288.299z\"><\/path><\/svg>",
+          "icon": "<svg id=\"heart\" xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 612 792\"><path d=\"M611.721,288.299c-2.258-42.176-20.114-81.782-50.287-111.524c-30.557-30.119-70.43-46.708-112.27-46.708    c-62.267,0-107.396,49.233-131.641,75.684c-3.743,4.085-8.13,8.87-11.183,11.79c-2.444-2.529-5.756-6.3-8.803-9.768    c-22.142-25.222-68.223-77.704-134.688-77.704c-41.84,0-81.711,16.588-112.268,46.708C20.408,206.517,2.547,246.121,0.29,288.299    c-2.248,42.107,8.521,78.746,34.92,118.803c20.888,31.701,75.961,93.605,133.927,150.543c29.856,29.326,57.336,54.18,79.466,71.873    c35.936,28.729,49.7,32.413,57.674,32.413c7.476,0,21.614-3.352,57.895-32.332c22.079-17.637,49.463-42.451,79.194-71.76    c57.445-56.63,112.318-118.617,133.443-150.743C594.576,380.072,614.6,342.151,611.721,288.299z\"></path></svg>",
           "is_counter": true,
           "max_item": 12,
           "page": "contact-us",
-          "empty_text": "<p>Your wishlist is empty<\/p>",
+          "empty_text": "<p>Your wishlist is empty</p>",
           "button_text": "Сontinue shopping",
-          "button_url": "shopify:\/\/collections\/all",
+          "button_url": "shopify://collections/all",
           "clear_button_text": "Clear wishlist",
           "is_modal": true,
           "product_page_selector": ".product__submit__item"
@@ -205,20 +214,20 @@
     "content_for_index": [],
     "blocks": {
       "855628211100114053": {
-        "type": "shopify:\/\/apps\/klaviyo-email-marketing-sms\/blocks\/klaviyo-onsite-embed\/2632fe16-c075-4321-a88b-50b567f42507",
+        "type": "shopify://apps/klaviyo-email-marketing-sms/blocks/klaviyo-onsite-embed/2632fe16-c075-4321-a88b-50b567f42507",
         "disabled": false,
         "settings": {}
       },
       "15683396631634586217": {
-        "type": "shopify:\/\/apps\/inbox\/blocks\/chat\/841fc607-4181-4ad1-842d-e24d7f8bad6b",
+        "type": "shopify://apps/inbox/blocks/chat/841fc607-4181-4ad1-842d-e24d7f8bad6b",
         "disabled": false,
         "settings": {
+          "greeting_message": "👋 Hi, message us with any questions. We're happy to help!",
           "button_color": "#000000",
           "button_icon": "chat_bubble",
           "button_text": "chat_with_us",
           "button_horizontal_position": "bottom_right",
-          "button_vertical_position": "lowest",
-          "greeting_message": "👋 Hi, message us with any questions. We're happy to help!"
+          "button_vertical_position": "lowest"
         }
       }
     }
@@ -307,13 +316,13 @@
               "type": "social",
               "settings": {
                 "title": "Social",
-                "richtext": "<p>Stay current with updates from our social channels.<\/p>"
+                "richtext": "<p>Stay current with updates from our social channels.</p>"
               }
             },
             "footer-2": {
               "type": "newsletter",
               "settings": {
-                "richtext": "<p>Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.<\/p>",
+                "richtext": "<p>Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.</p>",
                 "enable_name": false
               }
             }
@@ -433,13 +442,13 @@
               "type": "social",
               "settings": {
                 "title": "Social",
-                "richtext": "<p>Stay current with updates from our social channels.<\/p>"
+                "richtext": "<p>Stay current with updates from our social channels.</p>"
               }
             },
             "footer-2": {
               "type": "newsletter",
               "settings": {
-                "richtext": "<p>Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.<\/p>",
+                "richtext": "<p>Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.</p>",
                 "enable_name": false
               }
             }
@@ -554,13 +563,13 @@
               "type": "social",
               "settings": {
                 "title": "Social",
-                "richtext": "<p>Stay current with updates from our social channels.<\/p>"
+                "richtext": "<p>Stay current with updates from our social channels.</p>"
               }
             },
             "footer-2": {
               "type": "newsletter",
               "settings": {
-                "richtext": "<p>Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.<\/p>",
+                "richtext": "<p>Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.</p>",
                 "enable_name": false
               }
             }
