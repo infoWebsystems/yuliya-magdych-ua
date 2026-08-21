@@ -179,6 +179,9 @@
       },
       "announcement": {
         "type": "announcement",
+        "custom_css": [
+          "a,a:visited,a:hover,a:focus {color: #ffffff !important;}"
+        ],
         "settings": {
           "bg_color": "#212121",
           "color": "#ffffff",
@@ -186,8 +189,8 @@
           "text_button": "",
           "title_bottom": "",
           "text_bottom": "",
-          "text_bottom_button": "",
-          "link_bottom_button": ""
+          "text_bottom_button": "ПЕРЕЙТИ ДО КОЛЕКЦІЇ",
+          "link_bottom_button": "shopify://collections/день-незалежності-2026"
         }
       },
       "wishlist": {
