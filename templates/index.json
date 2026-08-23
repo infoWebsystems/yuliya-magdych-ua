@@ -1,10 +1,19 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "1648716423cfb494fc": {
       "type": "section-video",
       "settings": {
-        "video_link_bg": "https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/f8fcced69f6b425a9fda3edd8872b65f.mp4",
-        "video_link_bg_mob": "https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/c6f1747d12b04534864042cd91c9c275.mp4",
+        "video_link_bg": "https://cdn.shopify.com/videos/c/o/v/f8fcced69f6b425a9fda3edd8872b65f.mp4",
+        "video_link_bg_mob": "https://cdn.shopify.com/videos/c/o/v/c6f1747d12b04534864042cd91c9c275.mp4",
         "video_link": "",
         "bg_position": "center-center",
         "height": "sixty-fifty-height-hero",
@@ -16,7 +25,7 @@
         "text_color": "text-light",
         "transparent": true,
         "link_text": "ПЕРЕЙТИ ДО КОЛЕКЦІЇ",
-        "link": "shopify:\/\/collections\/whats-new",
+        "link": "shopify://collections/whats-new",
         "button_color": "btn--white",
         "button_style": "hero__btn btn btn--large btn--outline caps"
       }
@@ -27,23 +36,23 @@
         "9131dcbf-32ce-4851-bb35-497890626133": {
           "type": "logo-item",
           "settings": {
-            "logo": "shopify:\/\/shop_images\/2023-03-02_095750739.png",
+            "logo": "shopify://shop_images/2023-03-02_095750739.png",
             "logo_width": 150,
-            "link": "https:\/\/www.vogue.com\/article\/yuliya-magdych-ukrainian-fashion-designer-vyshyvanka"
+            "link": "https://www.vogue.com/article/yuliya-magdych-ukrainian-fashion-designer-vyshyvanka"
           }
         },
         "16475084766838061c-2": {
           "type": "logo-item",
           "settings": {
-            "logo": "shopify:\/\/shop_images\/2023-03-02_095939624.png",
+            "logo": "shopify://shop_images/2023-03-02_095939624.png",
             "logo_width": 150,
-            "link": "https:\/\/wwd.com\/fashion-news\/fashion-features\/yuliya-magdych-us-handbag-scarves-bridal-10445420\/"
+            "link": "https://wwd.com/fashion-news/fashion-features/yuliya-magdych-us-handbag-scarves-bridal-10445420/"
           }
         },
         "16475084766838061c-0": {
           "type": "logo-item",
           "settings": {
-            "logo": "shopify:\/\/shop_images\/2023-03-02_100036600.png",
+            "logo": "shopify://shop_images/2023-03-02_100036600.png",
             "logo_width": 150,
             "link": ""
           }
@@ -51,9 +60,9 @@
         "907dad57-c75d-46a8-916c-5739894b454f": {
           "type": "logo-item",
           "settings": {
-            "logo": "shopify:\/\/shop_images\/2023-03-02_100127656.png",
+            "logo": "shopify://shop_images/2023-03-02_100127656.png",
             "logo_width": 150,
-            "link": "https:\/\/observer.com\/2016\/08\/ukrainian-designer-yuliya-magdych-has-designed-the-perfect-vacation-frock\/"
+            "link": "https://observer.com/2016/08/ukrainian-designer-yuliya-magdych-has-designed-the-perfect-vacation-frock/"
           }
         }
       },
@@ -75,7 +84,7 @@
         "template--21338157580599__28a6abf3-bd68-4b90-8853-7314b20a04f1-image-1": {
           "type": "image",
           "settings": {
-            "image": "shopify:\/\/shop_images\/offset_269536.jpg",
+            "image": "shopify://shop_images/offset_269536.jpg",
             "bg_position": "center-center",
             "overlay_opacity": 0,
             "overlay_color": "#000000",
@@ -95,7 +104,7 @@
         "d3bcfb16-c618-4c94-83a6-14b1ec9b931f": {
           "type": "image",
           "settings": {
-            "image": "shopify:\/\/shop_images\/images.jpg",
+            "image": "shopify://shop_images/images.jpg",
             "bg_position": "center-center",
             "overlay_opacity": 0,
             "overlay_color": "#000000",
@@ -164,11 +173,10 @@
       "blocks": {
         "image_Vtapgz": {
           "type": "image",
-          "disabled": true,
           "settings": {
             "bg_position": "center-center",
-            "image": "shopify:\/\/shop_images\/White_Aesthetic_Photo_Sale_Instagram_Story_2.png",
-            "mobile_image": "shopify:\/\/shop_images\/White_Aesthetic_Photo_Sale_Instagram_Story.png",
+            "image": "shopify://shop_images/White_Aesthetic_Photo_Sale_Instagram_Story_2.png",
+            "mobile_image": "shopify://shop_images/White_Aesthetic_Photo_Sale_Instagram_Story.png",
             "overlay_opacity": 5,
             "overlay_color": "#000000",
             "title": "ДО ДНЯ НЕЗАЛЕЖНОСТІ",
@@ -177,7 +185,7 @@
             "text_color": "text-light",
             "transparent": true,
             "link_text": "ПЕРЕЙТИ ДО ПОКУПКИ",
-            "link": "shopify:\/\/collections\/made-in-ua",
+            "link": "shopify://collections/день-незалежності-2026",
             "button_color": "btn--white",
             "button_style": "hero__btn btn btn--large btn--outline caps"
           }
@@ -186,8 +194,8 @@
           "type": "image",
           "settings": {
             "bg_position": "center-center",
-            "image": "shopify:\/\/shop_images\/photo_2025-09-15_13.43.07.jpg",
-            "mobile_image": "shopify:\/\/shop_images\/photo_2025-09-15_13.46.39.jpg",
+            "image": "shopify://shop_images/photo_2025-09-15_13.43.07.jpg",
+            "mobile_image": "shopify://shop_images/photo_2025-09-15_13.46.39.jpg",
             "overlay_opacity": 15,
             "overlay_color": "#000000",
             "title": "ПІВОНІЇ",
@@ -196,7 +204,7 @@
             "text_color": "text-light",
             "transparent": true,
             "link_text": "ПЕРЕЙТИ ДО ПОКУПКИ",
-            "link": "shopify:\/\/collections\/півонії",
+            "link": "shopify://collections/півонії",
             "button_color": "btn--white",
             "button_style": "hero__btn btn btn--large btn--outline caps"
           }
@@ -205,8 +213,8 @@
           "type": "image",
           "settings": {
             "bg_position": "center-center",
-            "image": "shopify:\/\/shop_images\/photo_2024-10-02_21.49.13.jpg",
-            "mobile_image": "shopify:\/\/shop_images\/photo_2024-08-18_23.32.31.jpg",
+            "image": "shopify://shop_images/photo_2024-10-02_21.49.13.jpg",
+            "mobile_image": "shopify://shop_images/photo_2024-08-18_23.32.31.jpg",
             "overlay_opacity": 15,
             "overlay_color": "#000000",
             "title": "БЕСТСЕЛЕРИ",
@@ -215,7 +223,7 @@
             "text_color": "text-light",
             "transparent": true,
             "link_text": "ПЕРЕЙТИ ДО ПОКУПКИ",
-            "link": "shopify:\/\/collections\/best-sellers",
+            "link": "shopify://collections/best-sellers",
             "button_color": "btn--white",
             "button_style": "hero__btn btn btn--large btn--outline caps"
           }
@@ -242,8 +250,8 @@
           "type": "image",
           "settings": {
             "bg_position": "center-center",
-            "image": "shopify:\/\/shop_images\/IMG_3525.jpg",
-            "mobile_image": "shopify:\/\/shop_images\/photo_2024-10-02_22.04.39.jpg",
+            "image": "shopify://shop_images/IMG_3525.jpg",
+            "mobile_image": "shopify://shop_images/photo_2024-10-02_22.04.39.jpg",
             "overlay_opacity": 10,
             "overlay_color": "#000000",
             "title": "ONE OF A KIND",
@@ -252,7 +260,7 @@
             "text_color": "text-light",
             "transparent": true,
             "link_text": "ПЕРЕЙТИ ДО ПОКУПКИ",
-            "link": "shopify:\/\/collections\/one-of-a-kind",
+            "link": "shopify://collections/one-of-a-kind",
             "button_color": "btn--white",
             "button_style": "hero__btn btn btn--large btn--outline caps"
           }
@@ -262,8 +270,8 @@
           "disabled": true,
           "settings": {
             "bg_position": "center-center",
-            "image": "shopify:\/\/shop_images\/photo_2024-10-02_22.15.46.jpg",
-            "mobile_image": "shopify:\/\/shop_images\/photo_2024-10-02_22.15.52.jpg",
+            "image": "shopify://shop_images/photo_2024-10-02_22.15.46.jpg",
+            "mobile_image": "shopify://shop_images/photo_2024-10-02_22.15.52.jpg",
             "overlay_opacity": 20,
             "overlay_color": "#000000",
             "title": "БЛУЗИ",
@@ -272,7 +280,7 @@
             "text_color": "text-light",
             "transparent": true,
             "link_text": "ПЕРЕЙТИ ДО ПОКУПКИ",
-            "link": "shopify:\/\/collections\/вишиті-сорочки",
+            "link": "shopify://collections/вишиті-сорочки",
             "button_color": "btn--white",
             "button_style": "hero__btn btn btn--large btn--outline caps"
           }
@@ -282,8 +290,8 @@
           "disabled": true,
           "settings": {
             "bg_position": "center-center",
-            "image": "shopify:\/\/shop_images\/IMG_3526.jpg",
-            "mobile_image": "shopify:\/\/shop_images\/photo_2024-08-07_16.36.38.jpg",
+            "image": "shopify://shop_images/IMG_3526.jpg",
+            "mobile_image": "shopify://shop_images/photo_2024-08-07_16.36.38.jpg",
             "overlay_opacity": 10,
             "overlay_color": "#000000",
             "title": "HIGH SUMMER",
@@ -292,7 +300,7 @@
             "text_color": "text-light",
             "transparent": true,
             "link_text": "View products",
-            "link": "shopify:\/\/collections\/high-summer",
+            "link": "shopify://collections/high-summer",
             "button_color": "btn--white",
             "button_style": "hero__btn btn btn--large btn--outline caps"
           }
@@ -320,7 +328,7 @@
         "description": "",
         "text_alignment": "center",
         "link_text": "ПЕРЕГЛЯНУТИ",
-        "link_url": "shopify:\/\/collections\/вишиванки",
+        "link_url": "shopify://collections/вишиванки",
         "button_color": "btn--black",
         "button_style": "hero__btn btn btn--input btn--outline caps",
         "featured_collection": "вишиванки",
@@ -337,8 +345,8 @@
           "type": "image",
           "settings": {
             "bg_position": "center-center",
-            "image": "shopify:\/\/shop_images\/fd62caae5aa7446bb57d5b51c2852f45-ezgif.com-video-to-gif-converter.gif",
-            "mobile_image": "shopify:\/\/shop_images\/fd62caae5aa7446bb57d5b51c2852f45-ezgif.com-video-to-gif-converter.gif",
+            "image": "shopify://shop_images/fd62caae5aa7446bb57d5b51c2852f45-ezgif.com-video-to-gif-converter.gif",
+            "mobile_image": "shopify://shop_images/fd62caae5aa7446bb57d5b51c2852f45-ezgif.com-video-to-gif-converter.gif",
             "overlay_opacity": 0,
             "overlay_color": "#000000",
             "title": "ПАЛЬТА",
@@ -347,7 +355,7 @@
             "text_color": "text-light",
             "transparent": true,
             "link_text": "ПЕРЕЙТИ ДО ПОКУПКИ",
-            "link": "shopify:\/\/collections\/пальта",
+            "link": "shopify://collections/пальта",
             "button_color": "btn--white",
             "button_style": "hero__btn btn btn--large btn--outline caps"
           }
@@ -357,8 +365,8 @@
           "disabled": true,
           "settings": {
             "bg_position": "center-center",
-            "image": "shopify:\/\/shop_images\/photo_2024-10-02_22.15.46.jpg",
-            "mobile_image": "shopify:\/\/shop_images\/photo_2024-10-02_22.15.52.jpg",
+            "image": "shopify://shop_images/photo_2024-10-02_22.15.46.jpg",
+            "mobile_image": "shopify://shop_images/photo_2024-10-02_22.15.52.jpg",
             "overlay_opacity": 0,
             "overlay_color": "#000000",
             "title": "Image slide",
@@ -409,7 +417,7 @@
       "disabled": true,
       "settings": {
         "heading": "DISCOVER BEST SELLERS",
-        "description": "<p>Swipe left to see more →<\/p>",
+        "description": "<p>Swipe left to see more →</p>",
         "text_alignment": "inline",
         "link_text": "",
         "link_url": "",
@@ -513,7 +521,7 @@
             "text_color": "text-dark",
             "transparent": true,
             "link_text": "SHOP NOW",
-            "link": "shopify:\/\/collections\/wedding-collection",
+            "link": "shopify://collections/wedding-collection",
             "button_color": "btn--black",
             "button_style": "hero__btn btn btn--large btn--outline caps"
           }
@@ -540,7 +548,7 @@
         "description": "",
         "text_alignment": "center",
         "link_text": "DISCOVER NOW",
-        "link_url": "shopify:\/\/collections\/best-sellers",
+        "link_url": "shopify://collections/best-sellers",
         "button_color": "btn--black",
         "button_style": "hero__btn btn btn--input btn--outline caps",
         "featured_collection": "best-sellers",
@@ -556,11 +564,11 @@
         "1647089230e6c7943b-0": {
           "type": "text_block",
           "settings": {
-            "image": "shopify:\/\/shop_images\/6_6317e5d7-5ccc-4fcc-800b-db0b0a961da0.png",
+            "image": "shopify://shop_images/6_6317e5d7-5ccc-4fcc-800b-db0b0a961da0.png",
             "bg_position": "center-center",
             "title": "Collection",
             "heading_size": 7,
-            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<\/p>",
+            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>",
             "text_size": 3,
             "button_text": "SHOP NOW",
             "button_url": "",
@@ -572,11 +580,11 @@
         "1647089230e6c7943b-1": {
           "type": "text_block",
           "settings": {
-            "image": "shopify:\/\/shop_images\/mag176261_1.jpg",
+            "image": "shopify://shop_images/mag176261_1.jpg",
             "bg_position": "center-center",
             "title": "Heading",
             "heading_size": 7,
-            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<\/p>",
+            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>",
             "text_size": 3,
             "button_text": "SHOP NOW",
             "button_url": "",
@@ -588,11 +596,11 @@
         "1647089230e6c7943b-2": {
           "type": "text_block",
           "settings": {
-            "image": "shopify:\/\/shop_images\/mag17440.jpg",
+            "image": "shopify://shop_images/mag17440.jpg",
             "bg_position": "center-center",
             "title": "Bestseller",
             "heading_size": 7,
-            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<\/p>",
+            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>",
             "text_size": 3,
             "button_text": "SHOP NOW",
             "button_url": "",
@@ -604,11 +612,11 @@
         "2be5b393-bb1d-4f47-8c17-704eb3f7d8b8": {
           "type": "text_block",
           "settings": {
-            "image": "shopify:\/\/shop_images\/mag17414.jpg",
+            "image": "shopify://shop_images/mag17414.jpg",
             "bg_position": "center-center",
             "title": "Heading",
             "heading_size": 7,
-            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<\/p>",
+            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>",
             "text_size": 3,
             "button_text": "SHOP NOW",
             "button_url": "",
@@ -691,7 +699,7 @@
         "164691402165b17bb7-0": {
           "type": "featured_post",
           "settings": {
-            "featured_post": "news\/paris-fashion-week-is-calling",
+            "featured_post": "news/paris-fashion-week-is-calling",
             "subheading": "Featured post",
             "bg_position": "center-center"
           }
