@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -31,15 +40,7 @@
           "type": "collection",
           "settings": {
             "collection": "vechornitzi",
-            "collection_name": "Вечорниці",
-            "bg_position": "center-center"
-          }
-        },
-        "collection_Wjzgnq": {
-          "type": "collection",
-          "settings": {
-            "collection": "pixel-flowers",
-            "collection_name": "ПІКСЕЛЬНІ КВІТИ",
+            "collection_name": "ВЕЧОРНИЦІ",
             "bg_position": "center-center"
           }
         },
@@ -89,7 +90,6 @@
         "fc0f655d-e0ae-423a-8aa2-3eaa8d47f879",
         "d45016bb-a843-447a-a41c-1ac699a7349d",
         "64674e34-e6e5-4ca1-8920-7b567cfe436b",
-        "collection_Wjzgnq",
         "collection_fydyBN",
         "69ed2947-df8b-403a-867f-f6b091fd9482",
         "c0249838-b0b5-4c00-900a-c2588ac379b0",
