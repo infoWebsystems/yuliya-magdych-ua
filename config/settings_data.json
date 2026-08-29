@@ -185,11 +185,11 @@
         "settings": {
           "bg_color": "#212121",
           "color": "#ffffff",
-          "text_top": "ЗНИЖКИ ДО ДНЯ НЕЗАЛЕЖНОСТІ | ДО -70% НА ОБРАНІ ТОВАРИ",
+          "text_top": "БЕЗКОШТОВНА ДОСТАВКА ПО УКРАЇНІ",
           "text_button": "",
           "title_bottom": "",
           "text_bottom": "",
-          "text_bottom_button": "ПЕРЕЙТИ ДО КОЛЕКЦІЇ",
+          "text_bottom_button": "",
           "link_bottom_button": "shopify://collections/день-незалежності-2026"
         }
       },
