@@ -171,6 +171,42 @@
     "16487157483894b2a4": {
       "type": "section-slideshow",
       "blocks": {
+        "image_EjLYLK": {
+          "type": "image",
+          "settings": {
+            "bg_position": "center-center",
+            "image": "shopify://shop_images/Untitled_design_3.png",
+            "mobile_image": "shopify://shop_images/Untitled_design.png",
+            "overlay_opacity": 5,
+            "overlay_color": "#000000",
+            "title": "BLACK FRIDAY",
+            "description": "",
+            "flex_align": "align--middle-center",
+            "text_color": "text-light",
+            "transparent": true,
+            "link_text": "ПЕРЕЙТИ ДО КОЛЕКЦІІ",
+            "link": "shopify://collections/black-friday-26",
+            "button_color": "btn--white",
+            "button_style": "hero__btn btn btn--large btn--outline caps"
+          }
+        },
+        "image_7UMBpM": {
+          "type": "image",
+          "settings": {
+            "bg_position": "center-center",
+            "overlay_opacity": 0,
+            "overlay_color": "#000000",
+            "title": "Image slide",
+            "description": "Tell your brand's story through images.",
+            "flex_align": "align--middle-center",
+            "text_color": "text-light",
+            "transparent": true,
+            "link_text": "View products",
+            "link": "",
+            "button_color": "btn--white",
+            "button_style": "hero__btn btn btn--large btn--outline caps"
+          }
+        },
         "image_Vtapgz": {
           "type": "image",
           "disabled": true,
@@ -231,6 +267,8 @@
         }
       },
       "block_order": [
+        "image_EjLYLK",
+        "image_7UMBpM",
         "image_Vtapgz",
         "16487157481a06ff77-0",
         "image_zR7jPh"
